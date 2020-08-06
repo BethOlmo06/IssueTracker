@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "ManageRoles";
+}
+
+<style>
+    #UserIds {
+        min-height: 350px;
+    }
+</style>
+
+<h2>Manage Roles</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-8">
+            @Html.ListBox("UserIds")
+        </div>
+        <div class="col-md-4">
+            @Html.DropDownList("RoleName", "-- no role --")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button type="submit" class="btn btn-primary" style="width: 100%">Manage Role Assignments</button>
+        </div>
+    </div>
+}
+
