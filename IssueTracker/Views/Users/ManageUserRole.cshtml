@@ -1,7 +1,9 @@
 ﻿@using IssueTracker.Models
-@model ApplicationUser
+@using IssueTracker.Helpers
+@model IEnumerable<ApplicationUser>
 @{
     ViewBag.Title = "ManageUserRoles";
+    var rolesHelper = new RolesHelper();
 }
 
 <style>
@@ -10,19 +12,22 @@
     }
 </style>
 
-<h2>ManageUserRoles</h2>
+<h2>Manage User Roles</h2>
 
 <div class="row">
-    <div class="col-3 text-center h2">
+    @*<div class="col-3 text-center h2">
         Managing Role for @Model.FullName
-    </div>
+    </div>*@
 </div>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <div class="row">
-        <div class="col-3">
+        <div class="col-8">
+            @Html.ListBox("UserIds")
+        </div>
+        <div class="col-4">
             @Html.DropDownList("RoleName", "-- NO ROLE --")
         </div>
     </div>
@@ -34,4 +39,27 @@
     </div>
 }
 
+<hr />
 
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("User Email")
+        </th>
+        <th>
+            @Html.DisplayName("Role")
+        </th>
+    </tr>
+
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => user.Email)
+            </td>
+            <td>
+                @rolesHelper.ListUserRoles(user.Id).FirstOrDefault();
+            </td>
+        </tr>
+    }
+</table>

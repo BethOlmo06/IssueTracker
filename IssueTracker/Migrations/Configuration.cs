@@ -15,6 +15,7 @@ namespace IssueTracker.Migrations
             AutomaticMigrationsEnabled = true;
         }
 
+        #region Seeded Users
         protected override void Seed(IssueTracker.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
@@ -46,6 +47,7 @@ namespace IssueTracker.Migrations
             }
 
 
+            
             var userManager = new UserManager<ApplicationUser>(
                new UserStore<ApplicationUser>(context));
 
@@ -80,21 +82,112 @@ namespace IssueTracker.Migrations
                 userManager.AddToRole(userId, "Developer");
             };
 
-
-            if (!context.Users.Any(u => u.Email == "betholmo13@gmail.com"))
+            if (!context.Users.Any(u => u.Email == "sebastiana@mailinator.com"))
             {
                 userManager.Create(new ApplicationUser()
                 {
-                    Email = "betholmo13@gmail.com",
-                    UserName = "betholmo13@gmail.com",
-                    FirstName = "Beth",
-                    LastName = "Olmo",
+                    Email = "sebastiana@mailinator.com",
+                    UserName = "sebastiana@mailinator.com",
+                    FirstName = "Sebastian",
+                    LastName = "Aravena",
                 }, "Abc&123");
 
-                var userId = userManager.FindByEmail("betholmo13@gmail.com").Id;
+                var userId = userManager.FindByEmail("sebastiana@mailinator.com").Id;
+
+                userManager.AddToRole(userId, "Developer");
+            };
+
+            if (!context.Users.Any(u => u.Email == "carieg@mailinator.com"))
+            {
+                userManager.Create(new ApplicationUser()
+                {
+                    Email = "carieg@mailinator.com",
+                    UserName = "carieg@mailinator.com",
+                    FirstName = "Carie",
+                    LastName = "Guyah",
+                }, "Abc&123");
+
+                var userId = userManager.FindByEmail("carieg@mailinator.com").Id;
+
+                userManager.AddToRole(userId, "Developer");
+            };
+
+            if (!context.Users.Any(u => u.Email == "admiralhopper@mailinator.com"))
+            {
+                userManager.Create(new ApplicationUser()
+                {
+                    Email = "admiralhopper@mailinator.com",
+                    UserName = "admiralhopper@mailinator.com",
+                    FirstName = "Admiral Grace",
+                    LastName = "Hopper",
+                }, "Abc&123");
+
+                var userId = userManager.FindByEmail("admiralhopper@mailinator.com").Id;
+
+                userManager.AddToRole(userId, "Developer");
+            };
+
+
+            if (!context.Users.Any(u => u.Email == "aliceog@mailinator.com"))
+            {
+                userManager.Create(new ApplicationUser()
+                {
+                    Email = "aliceog@mailinator.com",
+                    UserName = "aliceog@mailinator.com",
+                    FirstName = "Alice",
+                    LastName = "Guilfoyle",
+                }, "Abc&123");
+
+                var userId = userManager.FindByEmail("aliceog@mailinator.com").Id;
 
                 userManager.AddToRole(userId, "Submitter");
             };
+
+            if (!context.Users.Any(u => u.Email == "gener@mailinator.com"))
+            {
+                userManager.Create(new ApplicationUser()
+                {
+                    Email = "gener@mailinator.com",
+                    UserName = "gener@mailinator.com",
+                    FirstName = "Gene",
+                    LastName = "Razz",
+                }, "Abc&123");
+
+                var userId = userManager.FindByEmail("gener@mailinator.com").Id;
+
+                userManager.AddToRole(userId, "Submitter");
+            };
+
+            if (!context.Users.Any(u => u.Email == "philipj@mailinator.com"))
+            {
+                userManager.Create(new ApplicationUser()
+                {
+                    Email = "philipj@mailinator.com",
+                    UserName = "philipj@mailinator.com",
+                    FirstName = "Phil",
+                    LastName = "Black",
+                }, "Abc&123");
+
+                var userId = userManager.FindByEmail("philipj@mailinator.com").Id;
+
+                userManager.AddToRole(userId, "Submitter");
+            };
+
+            if (!context.Users.Any(u => u.Email == "ourlucieb@mailinator.com"))
+            {
+                userManager.Create(new ApplicationUser()
+                {
+                    Email = "ourlucieb@mailinator.com",
+                    UserName = "ourlucieb@mailinator.com",
+                    FirstName = "Lucie",
+                    LastName = "Black",
+                }, "Abc&123");
+
+                var userId = userManager.FindByEmail("ourlucieb@mailinator.com").Id;
+
+                userManager.AddToRole(userId, "Submitter");
+            };
+
 
             if (!context.Users.Any(u => u.Email == "ojolmo@gmail.com"))
             {
@@ -110,6 +203,37 @@ namespace IssueTracker.Migrations
 
                 userManager.AddToRole(userId, "Project Manager");
             };
+
+            if (!context.Users.Any(u => u.Email == "declanc@mailinator.com"))
+            {
+                userManager.Create(new ApplicationUser()
+                {
+                    Email = "declanc@mailinator.com",
+                    UserName = "declanc@mailinator.com",
+                    FirstName = "Declan",
+                    LastName = "Crommett",
+                }, "Abc&123");
+
+                var userId = userManager.FindByEmail("declanc@mailinator.com").Id;
+
+                userManager.AddToRole(userId, "Project Manager");
+            };
+
+            if (!context.Users.Any(u => u.Email == "tifft@mailinator.com"))
+            {
+                userManager.Create(new ApplicationUser()
+                {
+                    Email = "tifft@mailinator.com",
+                    UserName = "tifft@mailinator.com",
+                    FirstName = "Tiffany",
+                    LastName = "Thomas, MBA, PMP",
+                }, "Abc&123");
+
+                var userId = userManager.FindByEmail("tifft@mailinator.com").Id;
+
+                userManager.AddToRole(userId, "Project Manager");
+            };
         }
+        #endregion
     }
 }

@@ -18,7 +18,7 @@ namespace IssueTracker.Controllers
         private ProjectHelper projectHelper = new ProjectHelper();
 
         // GET: Assignments
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult ManageRoles()
         {
             //Use ViewBag to hold a multi select list of users in the system
@@ -26,8 +26,8 @@ namespace IssueTracker.Controllers
             ViewBag.UserIds = new MultiSelectList(db.Users, "Id", "Email");
 
             //Use ViewBag to hold a select list of Roles
-            ViewBag.RoleName = new SelectList(db.Roles, "Name", "Name");
-            return View();
+            ViewBag.RoleName = new SelectList(db.Roles.Where(r => r.Name != "Admin"), "Name", "Name");
+            return View(db.Users.ToList());
         }
 
         [HttpPost]

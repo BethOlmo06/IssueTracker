@@ -41,31 +41,24 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayName("User Email")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Created)
+            @Html.DisplayName("Role")
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsArchived)
-        </th>
-        <th></th>
     </tr>
 
-    @foreach (var user in Model)
+    @foreach (var user in Model.)
     {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => user.Email)
+                @Html.DisplayFor(modelItem => item.Created)
             </td>
             <td>
-                @foreach (var project in projectHelper.ListUserProjects(userId))
-                {
-                    @project.Name <br />
-                }
+                @Html.DisplayFor(modelItem => item.IsArchived)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

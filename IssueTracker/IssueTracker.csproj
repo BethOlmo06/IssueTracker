@@ -223,6 +223,8 @@
     <Content Include="Images\IssueTrackerSm.png" />
     <Content Include="Images\ITLogin2000x1140.png" />
     <Content Include="Private.config" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\layout.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -310,7 +312,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
