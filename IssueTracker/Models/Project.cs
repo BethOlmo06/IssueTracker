@@ -10,9 +10,9 @@ namespace IssueTracker.Models
         public int Id { get; set; }
 
         #region Parents / Children
-        public ICollection<Ticket> Tickets { get; set; }
+        public virtual ICollection<Ticket> Tickets { get; set; }
 
-        public ICollection<ApplicationUser> Users { get; set; }
+        public virtual ICollection<ApplicationUser> Users { get; set; }
         #endregion
 
         #region Actual Properties

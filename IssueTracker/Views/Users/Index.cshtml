@@ -1,0 +1,34 @@
+﻿@model IEnumerable<IssueTracker.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Users</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Full Name")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => user.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => user.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Manage Role", "ManageUserRole", new { id = user.Id })
+            </td>
+        </tr>
+    }
+
+</table>

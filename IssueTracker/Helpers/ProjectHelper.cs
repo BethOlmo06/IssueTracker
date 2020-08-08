@@ -11,12 +11,19 @@ namespace IssueTracker.Helpers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private RolesHelper roleHelper = new RolesHelper();
+        public bool IsUserOnProject(string userId, int projectId)
+
+        {
+            Project project = db.Projects.Find(projectId);
+            return project.Users.Any(u => u.Id == userId);
+        }
         //Add one or more users to a project
         public void AddUserToProject(string userId, int projectId)
         {
             Project project = db.Projects.Find(projectId);
             var user = db.Users.Find(userId);
             project.Users.Add(user);
+            db.SaveChanges();
         }
         //Remove one more users from a project
         public bool RemoveUserFromProject(string userId, int projectId)
@@ -24,8 +31,9 @@ namespace IssueTracker.Helpers
             Project project = db.Projects.Find(projectId);
             var user = db.Users.Find(userId);
             var result = project.Users.Remove(user);
+            db.SaveChanges();
             return result;
-
+            
         }
 
         //List users on a project
@@ -51,13 +59,6 @@ namespace IssueTracker.Helpers
             return resultList;
         }
         
-        //Boolean method IsUserOnProject
-        public bool IsUserOnProject (string userId, int projectId)
-        {
-            Project project = db.Projects.Find(projectId);
-            var user = db.Users.Find(userId);
-            return project.Users.Contains(user);
-        }
 
         //List users on project that occupy a specific role
         public List<ApplicationUser> ListUsersOnProjectInRole(string roleName, int projectId)

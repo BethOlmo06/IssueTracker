@@ -1,4 +1,5 @@
-﻿using IssueTracker.Helpers;
+﻿using Amazon.IdentityManagement.Model;
+using IssueTracker.Helpers;
 using IssueTracker.Models;
 using Microsoft.Ajax.Utilities;
 using Microsoft.Exchange.WebServices.Data;
@@ -14,7 +15,10 @@ namespace IssueTracker.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private RolesHelper roleHelper = new RolesHelper();
+        private ProjectHelper projectHelper = new ProjectHelper();
+
         // GET: Assignments
+        [Authorize]
         public ActionResult ManageRoles()
         {
             //Use ViewBag to hold a multi select list of users in the system
@@ -39,13 +43,12 @@ namespace IssueTracker.Controllers
                 {
                     roleHelper.RemoveUserFromRole(userId, role);
                 }
-            }
 
-            if (!string.IsNullOrEmpty(roleName))
-            {
-                roleHelper.AddUserToRole(userId, roleName);
+                if (!string.IsNullOrEmpty(roleName))
+                {
+                    roleHelper.AddUserToRole(userId, roleName);
+                }
             }
-
             return RedirectToAction("ManageRoles");
         }
 
@@ -53,5 +56,36 @@ namespace IssueTracker.Controllers
         {
             return View();
         }
+
+        public ActionResult ManageProjectUsers()
+        {
+            ViewBag.UserIds = new MultiSelectList(db.Users, "Id", "Email");
+
+            ViewBag.ProjectIds = new MultiSelectList(db.Projects, "Id", "Name");
+
+            return View(db.Users.ToList());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ManageProjectUsers(List<string>userIds, List<int>projectIds)
+        {
+            
+            if(userIds == null || projectIds == null)
+            {
+                return RedirectToAction("ManageProjectUsers");
+            }
+
+            foreach(var userId in userIds)
+            {
+                foreach(var projectId in projectIds)
+                {
+                    projectHelper.AddUserToProject(userId, projectId);
+                }
+            }
+
+            return RedirectToAction("ManageProjectUsers");
+        }
+
     }
 }
