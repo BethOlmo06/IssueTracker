@@ -97,16 +97,16 @@ namespace IssueTracker.Controllers
             {
                 ViewBag.Error += "<p>Please select at least one Submitter.</p>";
             }
-            if(ViewBag.Errors.Length > 0)
-            {
-                ViewBag.ProjectManagerId = new SelectList(rolesHelper.UsersInRole("Project Manager"), "Id", "FullName");
-                ViewBag.DeveloperIds = new MultiSelectList(rolesHelper.UsersInRole("Developer"), "Id", "FullName");
-                ViewBag.SubmitterIds = new MultiSelectList(rolesHelper.UsersInRole("Submitter"), "Id", "FullName");
-                return View(model);
-            }
+            //if (ViewBag.Errors.Length > 0)
+            //{
+            //    ViewBag.ProjectManagerId = new SelectList(rolesHelper.UsersInRole("Project Manager"), "Id", "FullName");
+            //    ViewBag.DeveloperIds = new MultiSelectList(rolesHelper.UsersInRole("Developer"), "Id", "FullName");
+            //    ViewBag.SubmitterIds = new MultiSelectList(rolesHelper.UsersInRole("Submitter"), "Id", "FullName");
+            //    return View(model);
+            //}
             #endregion
-            
-            if(ModelState.IsValid)
+
+            if (ModelState.IsValid)
             {
                 Project project = new Project();
                 project.Name = model.Name;

@@ -128,6 +128,7 @@ namespace IssueTracker.Migrations
             };
 
 
+
             if (!context.Users.Any(u => u.Email == "aliceog@mailinator.com"))
             {
                 userManager.Create(new ApplicationUser()
@@ -189,20 +190,6 @@ namespace IssueTracker.Migrations
             };
 
 
-            if (!context.Users.Any(u => u.Email == "ojolmo@gmail.com"))
-            {
-                userManager.Create(new ApplicationUser()
-                {
-                    Email = "ojolmo@gmail.com",
-                    UserName = "ojolmo@gmail.com",
-                    FirstName = "Orlando J",
-                    LastName = "Olmo, MBA, PMP",
-                }, "Abc&123");
-
-                var userId = userManager.FindByEmail("ojolmo@gmail.com").Id;
-
-                userManager.AddToRole(userId, "Project Manager");
-            };
 
             if (!context.Users.Any(u => u.Email == "declanc@mailinator.com"))
             {
@@ -230,6 +217,21 @@ namespace IssueTracker.Migrations
                 }, "Abc&123");
 
                 var userId = userManager.FindByEmail("tifft@mailinator.com").Id;
+
+                userManager.AddToRole(userId, "Project Manager");
+            };
+
+            if (!context.Users.Any(u => u.Email == "Okiboricua63@mailinator.com"))
+            {
+                userManager.Create(new ApplicationUser()
+                {
+                    Email = "Okiboricua63@mailinator.com",
+                    UserName = "Okiboricua63@mailinator.com",
+                    FirstName = "Orlando J",
+                    LastName = "Olmo, MBA, PMP",
+                }, "Abc&123");
+
+                var userId = userManager.FindByEmail("Okiboricua63@mailinator.com").Id;
 
                 userManager.AddToRole(userId, "Project Manager");
             };
