@@ -11,6 +11,7 @@ using IssueTracker.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.Exchange.WebServices.Data;
 
+
 namespace IssueTracker.Controllers
 {
     //[Authorize]
@@ -18,35 +19,17 @@ namespace IssueTracker.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private ProjectHelper projectHelper = new ProjectHelper();
-        private RolesHelper rolesHelper = new RolesHelper();
+        private TicketManager ticketManager = new TicketManager();
+
+      
 
         //public ICollection<string> ListUserRoles(string userId);
 
-        // GET: Tickets 
+        // GET: Tickets
+        [Authorize]
         public ActionResult Index()
         {
-            var userId = User.Identity.GetUserId();
-            var myRole = rolesHelper.ListUserRoles(userId).FirstOrDefault();
-            List<Ticket> model = new List<Ticket>();
-            switch(myRole)
-            {
-                case "Admin":
-                    model = db.Tickets.ToList();
-                    break;
-
-                case "Project Manager":
-                case "Developer":
-                    model = projectHelper.ListUserProjects(userId).SelectMany(p => p.Tickets).ToList();
-                    break;
-
-                case "Submitter":
-                    model = db.Tickets.Where(t => t.SubmitterId == userId).ToList();
-                    break;
-
-                default:
-                    return RedirectToAction("Index", "Home");
-            }
-            return View(model);
+            return View(ticketManager.GetMyTickets(User.Identity.GetUserId()));
         }
 
         // GET: Tickets/Details/5
