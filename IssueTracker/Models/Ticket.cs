@@ -25,9 +25,16 @@ namespace IssueTracker.Models
 
         public string DeveloperId { get; set; } //AssignedToUser
 
+        public virtual ApplicationUser Submitter { get; set; }
+
+        public virtual ApplicationUser Developer { get; set; }
+
         public virtual  Project Project { get; set; }
+
         public virtual TicketType TicketType { get; set; }
+
         public virtual TicketStatus TicketStatus { get; set; }
+
         public virtual TicketPriority TicketPriority { get; set; }
         
 

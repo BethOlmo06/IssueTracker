@@ -23,6 +23,10 @@ namespace IssueTracker.Controllers
 
         public ActionResult ManageUserRole(string id)
         {
+            if(id == null)
+            {
+                return RedirectToAction("Index");
+            }
             var userRole = roleHelper.ListUserRoles(id).FirstOrDefault();
             ViewBag.RoleName = new SelectList(db.Roles, "Name", "Name", userRole);
             return View(db.Users.Find(id));

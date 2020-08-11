@@ -6,12 +6,13 @@ using System.Web;
 using System.Xml.XPath;
 
 namespace IssueTracker.Helpers
+
 {
     public class ProjectHelper
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private RolesHelper roleHelper = new RolesHelper();
-        public bool IsUserOnProject(string userId, int projectId)
+                public bool IsUserOnProject(string userId, int projectId)
 
         {
             Project project = db.Projects.Find(projectId);

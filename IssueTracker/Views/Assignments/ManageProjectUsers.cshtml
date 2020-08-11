@@ -1,7 +1,11 @@
-﻿@model IEnumerable<IssueTracker.Models.ApplicationUser>
+﻿@using IssueTracker.Models,
+@using IssueTracker.Helpers
+@model IEnumerable<IssueTracker.Models.ApplicationUser>
 @{
     ViewBag.Title = "ManageProjectUsers";
-    var projectHelper = new IssueTracker.Helpers.ProjectHelper
+    var rolesHelper = new RolesHelper();
+    var projectHelper = new ProjectHelper();
+
 }
 
 <h2>Manage Project Users</h2>
@@ -48,11 +52,11 @@
         </th>
     </tr>
 
-    @foreach (var user in Model.)
+    @foreach (var user in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayName("")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Created)

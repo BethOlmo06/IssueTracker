@@ -1,9 +1,10 @@
-﻿@using IssueTracker.Models
-@using IssueTracker.Helpers
-@model ApplicationUser
+﻿@using IssueTracker.Models,
+@using IssueTracker.Helpers,
+@model IEnumerable<IssueTracker.Models.ApplicationUser>
 @{
     ViewBag.Title = "ManageUserRoles";
     var rolesHelper = new RolesHelper();
+    var userHelper = new UserHelper();
 }
 
 <style>
@@ -11,7 +12,7 @@
         width: 100%;
     }
 </style>
- 
+
 <h2>Manage User Roles</h2>
 
 <div class="row">
