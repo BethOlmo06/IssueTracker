@@ -222,15 +222,22 @@
     <Compile Include="ViewModels\ProjectWizardVM.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\atlantis.css" />
+    <Content Include="Content\atlantis2.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fonts.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\IssueTrackerSm.png" />
     <Content Include="Images\ITLogin2000x1140.png" />
     <Content Include="Private.config" />
-    <Content Include="Scripts\app.js" />
-    <Content Include="Scripts\layout.js" />
+    <Content Include="Scripts\atlantis.js" />
+    <Content Include="Scripts\atlantis2.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.3.2.1.min.js" />
+    <Content Include="Scripts\popper.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -323,39 +330,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\app-dark.scss" />
-    <Content Include="Content\app.scss" />
-    <Content Include="Content\bootstrap-dark.scss" />
-    <Content Include="Content\bootstrap.scss" />
-    <Content Include="Content\icons.scss" />
-    <Content Include="Content\_variables-dark.scss" />
-    <Content Include="Content\_variables.scss" />
-    <Content Include="Content\_accordions.scss" />
-    <Content Include="Content\_avatar.scss" />
-    <Content Include="Content\_backgrounds.scss" />
-    <Content Include="Content\_badge.scss" />
-    <Content Include="Content\_breadcrumb.scss" />
-    <Content Include="Content\_buttons.scss" />
-    <Content Include="Content\_card.scss" />
-    <Content Include="Content\_custom-checkbox.scss" />
-    <Content Include="Content\_custom-radio.scss" />
-    <Content Include="Content\_dropdown.scss" />
-    <Content Include="Content\_forms.scss" />
-    <Content Include="Content\_helper.scss" />
-    <Content Include="Content\_modal.scss" />
-    <Content Include="Content\_nav.scss" />
-    <Content Include="Content\_pagination.scss" />
-    <Content Include="Content\_popover.scss" />
-    <Content Include="Content\_preloader.scss" />
-    <Content Include="Content\_print.scss" />
-    <Content Include="Content\_progress.scss" />
-    <Content Include="Content\_reboot.scss" />
-    <Content Include="Content\_ribbons.scss" />
-    <Content Include="Content\_social.scss" />
-    <Content Include="Content\_tables.scss" />
-    <Content Include="Content\_type.scss" />
-    <Content Include="Content\_widgets.scss" />
-    <Content Include="Content\_maintenance.scss" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <Content Include="Views\Assignments\ManageProjectUsers.cshtml" />
     <Content Include="Views\Projects\ProjectWizard.cshtml" />

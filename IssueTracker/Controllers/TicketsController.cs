@@ -74,7 +74,7 @@ namespace IssueTracker.Controllers
             {
                 //Add back in: Created & Submitter Ids
                 //Set Developer Id to null, IsArchived, and IsResolved will be false
-                ticket.TicketStatusId = db.TicketStatuses.Where(ts = ts.Name == "Open").FirstOrDefault().Id;
+                ticket.TicketStatusId = db.TicketStatuses.Where(ts => ts.Name == "Open").FirstOrDefault().Id;
                 ticket.Created = DateTime.Now;
                 ticket.SubmitterId = userId;
                 db.Tickets.Add(ticket);
