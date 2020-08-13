@@ -1,6 +1,8 @@
-﻿@model IEnumerable<IssueTracker.Models.ApplicationUser>
+﻿@using IssueTracker.Helpers
+@model IEnumerable<IssueTracker.Models.ApplicationUser>
 @{
     ViewBag.Title = "Index";
+    var rolesHelper = new RolesHelper();
 }
 
 <h2>Users</h2>
@@ -13,6 +15,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
+        <th>
+            @Html.DisplayName("Current Role")
+        </th>
         <th></th>
     </tr>
 
@@ -24,6 +29,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => user.Email)
+            </td>
+            <td>
+                @rolesHelper.ListUserRoles(user.Id).FirstOrDefault()
             </td>
             <td>
                 @Html.ActionLink("Manage Role", "ManageUserRole", new { id = user.Id })

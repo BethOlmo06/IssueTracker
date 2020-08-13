@@ -45,7 +45,7 @@ namespace IssueTracker.Controllers
             {
                 roleHelper.AddUserToRole(id, roleName);
             }
-            return RedirectToAction("ManageUserRole", new { id });
+            return RedirectToAction("Index");
         }
 
        
