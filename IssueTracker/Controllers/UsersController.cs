@@ -45,6 +45,8 @@ namespace IssueTracker.Controllers
             {
                 roleHelper.AddUserToRole(id, roleName);
             }
+
+            TempData["Message"] = "The user's role has been updated.";
             return RedirectToAction("Index");
         }
 
