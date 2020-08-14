@@ -13,9 +13,9 @@ namespace IssueTracker.ViewModels
 
         public string ProjectManagerId { get; set; }
 
-        public ICollection<string> DeveloperIds { get; set; }
+        public virtual ICollection<string> DeveloperIds { get; set; }
 
-        public ICollection<string> SubmitterIds { get; set; }
+        public virtual ICollection<string> SubmitterIds { get; set; }
 
         public ProjectWizardVM()
         {
