@@ -48,7 +48,7 @@ namespace IssueTracker.Controllers
         }
 
         // GET: Projects/Create
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
