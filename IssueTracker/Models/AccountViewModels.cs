@@ -86,12 +86,12 @@ namespace IssueTracker.Models
     public class ExtendedRegisterViewModel : RegisterViewModel
     {
         [Required]
-        [StringLength(40, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(40, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 2)]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [Required]
-        [StringLength(40, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(40, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 2)]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 

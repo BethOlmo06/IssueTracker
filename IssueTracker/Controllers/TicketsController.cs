@@ -39,7 +39,7 @@ namespace IssueTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ticket ticket = db.Tickets.Find(id);
+            Tickets ticket = db.Tickets.Find(id);
             if (ticket == null)
             {
                 return HttpNotFound();
@@ -67,7 +67,7 @@ namespace IssueTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ProjectId,TicketPriorityId,TicketTypeId,Issue,IssueDescription")] Ticket ticket)
+        public ActionResult Create([Bind(Include = "Id,ProjectId,TicketPriorityId,TicketTypeId,Issue,IssueDescription")] Tickets ticket)
         {
             var userId = User.Identity.GetUserId();
             if (ModelState.IsValid)
@@ -95,7 +95,7 @@ namespace IssueTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ticket ticket = db.Tickets.Find(id);
+            Tickets ticket = db.Tickets.Find(id);
             if (ticket == null)
             {
                 return HttpNotFound();
@@ -112,7 +112,7 @@ namespace IssueTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ProjectId,TicketPriorityId,TicketStatusId,TicketTypeId,SubmitterId,DeveloperId,Issue,IssueDescription,Created,Updated,IsResolved,IsArchived")] Ticket ticket)
+        public ActionResult Edit([Bind(Include = "Id,ProjectId,TicketPriorityId,TicketStatusId,TicketTypeId,SubmitterId,DeveloperId,Issue,IssueDescription,Created,Updated,IsResolved,IsArchived")] Tickets ticket)
         {
             if (ModelState.IsValid)
             {
@@ -134,7 +134,7 @@ namespace IssueTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ticket ticket = db.Tickets.Find(id);
+            Tickets ticket = db.Tickets.Find(id);
             if (ticket == null)
             {
                 return HttpNotFound();

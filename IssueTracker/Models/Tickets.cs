@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace IssueTracker.Models
 {
-    public class Ticket
+    public class Tickets
     {
         public int Id { get; set; }
 
@@ -63,7 +63,7 @@ namespace IssueTracker.Models
         #endregion
 
         #region  Constructor
-        public Ticket()
+        public Tickets()
         {
             Attachments = new HashSet<TicketAttachment>();
             Comments = new HashSet<TicketComment>();

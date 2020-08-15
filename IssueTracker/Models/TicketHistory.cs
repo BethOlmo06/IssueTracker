@@ -13,7 +13,7 @@ namespace IssueTracker.Models
 
         public int TicketId { get; set; }
 
-        public virtual Ticket Ticket { get; set; }
+        public virtual Tickets Ticket { get; set; }
 
         public string UserId { get; set; }
 

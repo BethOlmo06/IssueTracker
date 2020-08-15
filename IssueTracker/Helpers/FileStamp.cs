@@ -12,7 +12,7 @@ namespace IssueTracker.Helpers
         {
             var extension = Path.GetExtension(fileName);
             fileName = Path.GetFileNameWithoutExtension(fileName);
-            fileName = SlugMaker.MakeSlug(fileName);
+            fileName = SlugMaker.URLFriendly(fileName);
             fileName = $"{fileName}{DateTime.Now.Ticks}{extension}";
             return fileName;
         }

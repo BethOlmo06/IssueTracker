@@ -74,7 +74,7 @@ namespace IssueTracker.Models
 
         public System.Data.Entity.DbSet<IssueTracker.Models.Project> Projects { get; set; }
 
-        public System.Data.Entity.DbSet<IssueTracker.Models.Ticket> Tickets { get; set; }
+        public System.Data.Entity.DbSet<IssueTracker.Models.Tickets> Tickets { get; set; }
 
         public System.Data.Entity.DbSet<IssueTracker.Models.TicketAttachment> TicketAttachments { get; set; }
 

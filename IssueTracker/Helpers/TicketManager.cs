@@ -12,9 +12,9 @@ namespace IssueTracker.Helpers
         private ApplicationDbContext db = new ApplicationDbContext();
         private RolesHelper rolesHelper = new RolesHelper();
 
-        public List<Ticket> GetMyTickets(string userId)
+        public List<Tickets> GetMyTickets(string userId)
         {
-            var tickets = new List<Ticket>();
+            var tickets = new List<Tickets>();
             var myRole = rolesHelper.ListUserRoles(userId).FirstOrDefault();
 
             switch (myRole)
