@@ -6,7 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using IssueTracker.Models;
+using IssueTracker.Helpers;
+using System.Web.Configuration;
+using System.IO;
 
 namespace IssueTracker.Controllers
 {
@@ -37,30 +41,50 @@ namespace IssueTracker.Controllers
         }
 
         // GET: TicketAttachments/Create
-        public ActionResult Create()
-        {
-            ViewBag.TicketId = new SelectList(db.Tickets, "Id", "SubmitterId");
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
-            return View();
-        }
+
+        //JASON DELETED THIS CREATE BUT I'M LEAVING IT COMMENTED OUT FOR NOW PURELY OUT OF FEAR
+
+        //public ActionResult Create()
+        //{
+        //    ViewBag.TicketId = new SelectList(db.Tickets, "Id", "SubmitterId");
+        //    ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
+        //    return View();
+        //}
+
 
         // POST: TicketAttachments/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TicketId,UserId,FilePath,Description,Created")] TicketAttachment ticketAttachment)
+        public ActionResult Create([Bind(Include = "TicketId,FileName,Description")] TicketAttachment ticketAttachment, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                ticketAttachment.Created = DateTime.Now;
+                ticketAttachment.User.Id = User.Identity.GetUserId();
+
+                if (file ==null)
+                {
+                    TempData["Error"] = "You must supply a file.";
+                    return RedirectToAction("Dashboard", "Tickets", new { id = ticketAttachment.TicketId });
+                }
+
+                if(ImageUploadValidator.IsWebFriendlyImage(file) || FileUploadValidator.IsWebFriendlyFile(file))
+                {
+                    var fileName = FileStamp.MakeUnique(file.FileName);
+
+                    var serverFolder = WebConfigurationManager.AppSettings["DefaultServerFolder"];
+                    file.SaveAs(Path.Combine(Server.MapPath(serverFolder), fileName));
+                    ticketAttachment.FilePath = $"{serverFolder}{fileName}";
+                }
+
                 db.TicketAttachments.Add(ticketAttachment);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Dashboard", "Tickets", new { id = ticketAttachment.TicketId });
             }
 
-            ViewBag.TicketId = new SelectList(db.Tickets, "Id", "SubmitterId", ticketAttachment.TicketId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", ticketAttachment.UserId);
-            return View(ticketAttachment);
+            TempData["Error"] = "The model was invalid.";
+            return RedirectToAction("Dashboard", "Tickets", new { id = ticketAttachment.TicketId });
         }
 
         // GET: TicketAttachments/Edit/5
@@ -75,8 +99,10 @@ namespace IssueTracker.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.TicketId = new SelectList(db.Tickets, "Id", "SubmitterId", ticketAttachment.TicketId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", ticketAttachment.UserId);
+
+            //AGAIN - JASON DELETED THESE VIEWBAGS BUT I'M LEAVING THEM HERE FOR THE MOMENT JUST IN CASE
+            //ViewBag.TicketId = new SelectList(db.Tickets, "Id", "SubmitterId", ticketAttachment.TicketId);
+            //ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", ticketAttachment.UserId);
             return View(ticketAttachment);
         }
 
@@ -93,8 +119,10 @@ namespace IssueTracker.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TicketId = new SelectList(db.Tickets, "Id", "SubmitterId", ticketAttachment.TicketId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", ticketAttachment.UserId);
+
+            //AND YET AGAIN - JASON DELETED THESE VIEWBAGS BUT I'M LEAVING THEM HERE FOR THE MOMENT JUST IN CASE
+            //ViewBag.TicketId = new SelectList(db.Tickets, "Id", "SubmitterId", ticketAttachment.TicketId);
+            //ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", ticketAttachment.UserId);
             return View(ticketAttachment);
         }
 

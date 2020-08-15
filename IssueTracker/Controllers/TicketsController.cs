@@ -33,7 +33,7 @@ namespace IssueTracker.Controllers
         }
 
         // GET: Tickets/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Dashboard(int? id)
         {
             if (id == null)
             {

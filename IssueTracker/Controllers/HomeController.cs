@@ -4,14 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using IssueTracker.Models;
+using Microsoft.AspNet.Identity;
 
 namespace IssueTracker.Controllers
 {
+    
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        [Authorize]
         public ActionResult Index()
         {
-            return View();
+            return View(db.Users.Find(User.Identity.GetUserId()));
         }
 
         public ActionResult About()

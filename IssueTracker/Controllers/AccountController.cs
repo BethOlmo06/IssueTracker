@@ -11,7 +11,9 @@ using Microsoft.Owin.Security;
 using IssueTracker.Models;
 using System.Net.Mail;
 using System.Configuration;
-
+using System.IO;
+using IssueTracker.Helpers;
+using System.Web.Configuration;
 
 namespace IssueTracker.Controllers
 {
@@ -150,11 +152,31 @@ namespace IssueTracker.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(ExtendedRegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    UserName = model.Email,
+                    Email = model.Email,
+                    AvatarPath = "/Images/DefaultAvatar40x40.png"
+                };
+
+                if(model.Avatar != null)
+                {
+                    if(ImageUploadValidator.IsWebFriendlyImage(model.Avatar))
+                    {
+                        var fileName = FileStamp.MakeUnique(model.Avatar.FileName);
+                        var serverFolder = WebConfigurationManager.AppSettings["DefaultServerFolder"];
+                        model.Avatar.SaveAs(Path.Combine(Server.MapPath(serverFolder), fileName));
+                        user.AvatarPath = $"{serverFolder}{fileName}";
+                    }
+                    
+                }
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

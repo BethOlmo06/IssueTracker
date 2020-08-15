@@ -16,11 +16,13 @@ namespace IssueTracker.Models
         public virtual Ticket Ticket { get; set; }
 
         public string UserId { get; set; }
+       
 
         public virtual ApplicationUser User { get; set; }
         #endregion
 
         #region Actual Properties
+        public string FileName { get; set; }
         public string FilePath { get; set; }
 
         public string Description { get; set; }

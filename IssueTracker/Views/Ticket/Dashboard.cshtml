@@ -1,0 +1,111 @@
+﻿@model IssueTracker.Models.Ticket
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-offset-1 col-10">
+            @*show project data*@
+            <p>Project Data</p>
+            <br />
+            <h2>Project Name: @Model.Project.Name</h2>
+            <h4>Project Name: @Model.Project.Created</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            @*show ticket data*@
+            <p>Ticket Data</p>
+            <br />
+            <h2>Title: @Model.Issue</h2> 
+            <h4>Priority: @Model.TicketPriority.Name</h4>
+            <h4>Status: @Model.TicketStatus.Name</h4>
+            <h4>Type: @Model.TicketType.Name</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            @*show ticket comments*@
+        </div>
+        <div class="col-6">
+            @*show ticket attachments*@
+
+            @using (Html.BeginForm("Create", "TicketAttachments", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("TicketId", Model.Id)
+
+                <div class="form-group">
+                    @Html.Label("File Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Editor("FileName", new { htmlAttributes = new { @class = "form-control" } })
+                        <input type="file" name="file" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Description", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextArea("Description", new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="submit" value="Add Attachment" class="btn btn-primary" />
+                    </div>
+                </div>
+
+            }
+
+            <hr />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Icon")
+                        </th>
+                        <th>
+                            @Html.DisplayName("File Name")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Path")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var attachment in Model.Attachments.ToList()) //Jason has "TicketAttachments" here but I don't have that option. Praying this doesn't break.
+                    {
+
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => attachment.FileName)
+                            </td>
+                            <td>
+                                <a target="_blank" href="@attachment.FilePath">@attachment.FilePath</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                
+
+                </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
