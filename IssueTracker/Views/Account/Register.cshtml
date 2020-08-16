@@ -11,7 +11,7 @@
     <script>
         WebFont.load({
             google: { "families": ["Lato:300,400,700,900"] },
-            custom: { "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['../assets/css/fonts.min.css'] },
+            custom: { "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ["~/Content/fonts.min.css"] },
             active: function () {
                 sessionStorage.fonts = true;
             }
@@ -28,7 +28,7 @@
 
 <body class="login">
     <div class="wrapper wrapper-login wrapper-login-full p-0">
-        <div class="login-aside w-50 d-flex flex-column align-items-center justify-content-center text-center bg-secondary-gradient">
+        <div class="login-aside w-50 d-flex flex-column align-items-center justify-content-center text-center bg-secondary-gradient-account">
             <h1 class="title fw-bold text-white mb-3">Issue Tracker</h1>
             <p class="subtitle text-white op-7">Support ticket tracking and management app.</p>
         </div>

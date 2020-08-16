@@ -229,9 +229,12 @@
     <Content Include="Content\atlantis2.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts.css" />
+    <Content Include="Content\fonts.min.css" />
     <Content Include="fonts\fa-brands-400.svg" />
     <Content Include="fonts\fa-regular-400.svg" />
     <Content Include="fonts\fa-solid-900.svg" />
+    <Content Include="fonts\Flaticon.svg" />
+    <Content Include="fonts\Simple-Line-Icons.svg" />
     <Content Include="Images\ajax-loader.gif" />
     <Content Include="Images\DefaultAvatar40x40.png" />
     <Content Include="Images\owl.video.play.png" />
@@ -261,7 +264,6 @@
     <Content Include="Scripts\sweetalert.min.js" />
     <Content Include="Scripts\webfont.min.js" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\IssueTrackerSm.png" />
     <Content Include="Images\ITLogin2000x1140.png" />
@@ -361,10 +363,6 @@
     <Folder Include="Avatars\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\fa-brands-400.eot" />
     <Content Include="fonts\fa-brands-400.ttf" />
     <Content Include="fonts\fa-brands-400.woff" />
@@ -377,6 +375,18 @@
     <Content Include="fonts\fa-solid-900.ttf" />
     <Content Include="fonts\fa-solid-900.woff" />
     <Content Include="fonts\fa-solid-900.woff2" />
+    <Content Include="fonts\Flaticon.eot" />
+    <Content Include="fonts\Flaticon.ttf" />
+    <Content Include="fonts\Flaticon.woff" />
+    <Content Include="fonts\Simple-Line-Icons.eot" />
+    <Content Include="fonts\Simple-Line-Icons.ttf" />
+    <Content Include="fonts\Simple-Line-Icons.woff" />
+    <Content Include="fonts\Simple-Line-Icons.woff2" />
+    <Content Include="fonts\summernote.eot" />
+    <Content Include="fonts\summernote.ttf" />
+    <Content Include="fonts\summernote.woff" />
+    <Content Include="Content\atlantis.css.map" />
+    <Content Include="Content\atlantis2.css.map" />
     <None Include="packages.config" />
     <Content Include="Views\Assignments\ManageProjectUsers.cshtml" />
     <Content Include="Views\Projects\ProjectWizard.cshtml" />

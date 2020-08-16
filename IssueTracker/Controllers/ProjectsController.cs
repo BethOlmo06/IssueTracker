@@ -48,7 +48,7 @@ namespace IssueTracker.Controllers
         }
 
         // GET: Projects/Create
-        [Authorize(Roles = "Admin")]
+        
         public ActionResult Create()
         {
             return View();
@@ -59,6 +59,7 @@ namespace IssueTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        
         public ActionResult Create([Bind(Include = "Id,Name")] Project project)
         {
             if (ModelState.IsValid)
@@ -101,13 +102,7 @@ namespace IssueTracker.Controllers
             {
                 ViewBag.Error += "<p>Please select at least one Submitter.</p>";
             }
-            //if (ViewBag.Errors.Length > 0)
-            //{
-            //    ViewBag.ProjectManagerId = new SelectList(rolesHelper.UsersInRole("Project Manager"), "Id", "FullName");
-            //    ViewBag.DeveloperIds = new MultiSelectList(rolesHelper.UsersInRole("Developer"), "Id", "FullName");
-            //    ViewBag.SubmitterIds = new MultiSelectList(rolesHelper.UsersInRole("Submitter"), "Id", "FullName");
-            //    return View(model);
-            //}
+            
             #endregion
 
             if (ModelState.IsValid)
@@ -139,9 +134,10 @@ namespace IssueTracker.Controllers
                 return View(model);
             }
         }
-        
+
 
         // GET: Projects/Edit/5
+        
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -161,6 +157,7 @@ namespace IssueTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        
         public ActionResult Edit([Bind(Include = "Id,Name,Created,IsArchived")] Project project)
         {
             if (ModelState.IsValid)
@@ -173,6 +170,7 @@ namespace IssueTracker.Controllers
         }
 
         // GET: Projects/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -190,6 +188,7 @@ namespace IssueTracker.Controllers
         // POST: Projects/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Project project = db.Projects.Find(id);

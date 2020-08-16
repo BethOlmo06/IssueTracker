@@ -14351,13 +14351,13 @@ body {
   background: -webkit-linear-gradient(legacy-direction(-45deg), #06418E, #1572E8) !important;
   background: linear-gradient(-45deg, #06418E, #1572E8) !important; }
 
-/*.bg-secondary-gradient {
+.bg-secondary-gradient {
   background: #6861CE !important;
   background: -webkit-linear-gradient(legacy-direction(-45deg), #2A20AC, #6861CE) !important;
-  background: linear-gradient(-45deg, #2A20AC, #6861CE) !important; }*/
+  background: linear-gradient(-45deg, #2A20AC, #6861CE) !important; }
 
-/*BETH CUSTOM COLOR CHOICE*/
-.bg-secondary-gradient {
+/*BETH CUSTOM COLOR CHOICE FOR LOGIN & REGISTER PAGES*/
+.bg-secondary-gradient-account {
     background: #155799; /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #155799, #159957); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #155799, #159957);

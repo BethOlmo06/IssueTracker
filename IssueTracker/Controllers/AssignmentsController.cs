@@ -32,6 +32,7 @@ namespace IssueTracker.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult ManageRoles(List<string> userIds, string roleName)
         {
             if (userIds == null)
@@ -68,6 +69,7 @@ namespace IssueTracker.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Developer")]
         public ActionResult ManageProjectUsers(List<string>userIds, List<int>projectIds)
         {
             

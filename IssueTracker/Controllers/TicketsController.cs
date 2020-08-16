@@ -78,7 +78,6 @@ namespace IssueTracker.Controllers
                 ticket.Created = DateTime.Now;
                 ticket.SubmitterId = userId;
                 db.Tickets.Add(ticket);
-                db.SaveChanges();
                 return RedirectToAction("Details", "Projects", new { id = ticket.ProjectId });
             }
 
