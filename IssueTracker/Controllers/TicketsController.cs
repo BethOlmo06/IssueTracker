@@ -14,7 +14,7 @@ using Microsoft.Exchange.WebServices.Data;
 
 namespace IssueTracker.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class TicketsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -26,7 +26,7 @@ namespace IssueTracker.Controllers
         //public ICollection<string> ListUserRoles(string userId);
 
         // GET: Tickets
-        [Authorize]
+        
         public ActionResult Index()
         {
             return View(ticketManager.GetMyTickets(User.Identity.GetUserId()));
@@ -78,6 +78,7 @@ namespace IssueTracker.Controllers
                 ticket.Created = DateTime.Now;
                 ticket.SubmitterId = userId;
                 db.Tickets.Add(ticket);
+                db.SaveChanges();
                 return RedirectToAction("Details", "Projects", new { id = ticket.ProjectId });
             }
 

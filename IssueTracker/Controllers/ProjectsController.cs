@@ -170,7 +170,7 @@ namespace IssueTracker.Controllers
         }
 
         // GET: Projects/Delete/5
-        [Authorize(Roles = "Admin")]
+        
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -188,7 +188,7 @@ namespace IssueTracker.Controllers
         // POST: Projects/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        
         public ActionResult DeleteConfirmed(int id)
         {
             Project project = db.Projects.Find(id);

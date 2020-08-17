@@ -17,13 +17,6 @@ namespace IssueTracker.Models
 
         #region Actual Properties
         public string Name { get; set; }
-        public string SubmitterId { get; set; }
-
-        public string DeveloperId { get; set; }
-
-        public virtual ApplicationUser Submitter { get; set; }
-
-        public virtual ApplicationUser Developer { get; set; }
 
         public DateTime Created { get; set; }
 

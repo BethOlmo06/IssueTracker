@@ -4,11 +4,11 @@
     ViewBag.Title = "Edit";
 }
 
-[Authenticate]
+[Authorize]
 <h2>Edit</h2>
 @if (User.IsInRole("Admin") || (User.IsInRole("Project Manager")))
 {
-    @using (Html.BeginForm())
+    using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
