@@ -11,6 +11,6 @@ namespace IssueTracker.Models
 
         public string Name { get; set; }
 
-        public virtual ICollection<Tickets> Tickets { get; set; }
+        public virtual ICollection<Ticket> Tickets { get; set; }
     }
 }

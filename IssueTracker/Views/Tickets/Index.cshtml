@@ -1,212 +1,135 @@
 ﻿@using Microsoft.AspNet.Identity;
-@model IEnumerable<IssueTracker.Models.Tickets>
+@model IEnumerable<IssueTracker.Models.Ticket>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-<div class="container">
-    <div class="page-inner">
+<body>
+    <h2>Index</h2>
+    <div class="container">
+        <div class="page-inner">
 
-        @if (User.IsInRole("Submitter"))
-        {
-            <p>
-                @Html.ActionLink("Create New", "Create")
-            </p>
-        }
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        Project Name
-                    </th>
-                    <th>
-                        Ticket Priority
-                    </th>
-                    <th>
-                        Ticket Status
-                    </th>
-                    <th>
-                        Ticket Type
-                    </th>
-                    <th>
-                        Submitter
-                    </th>
-                    <th>
-                        Developer
-                    </th>
-                    <th>
-                        Issue
-                    </th>
-                    <th>
-                        Created
-                    </th>
-                    <th>
-                        Updated
-                    </th>
-                    <th>
-                        Resolved?
-                    </th>
-                    <th>
-                        Archived?
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-
-            @foreach (var item in Model)
+            @if (User.IsInRole("Submitter"))
             {
-                <tbody>
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Project.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TicketPriority.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TicketStatus.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TicketType.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Submitter.FullName)
-                        </td>
-                        <td>
-                            @if (item.DeveloperId != null)
-                            {
-                                @Html.DisplayFor(modelItem => item.Developer.FullName)
-                            }
-                            else
-                            {
-                                <span>No Developer Assigned</span>
-                            }
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Issue)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Created)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Updated)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsResolved)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsArchived)
-                        </td>
-                        <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                        </td>
-                    </tr>
-                </tbody>
+                <p>
+                    @Html.ActionLink("Create New", "Create")
+                </p>
             }
 
-        </table>
-
-        <hr />
-
-        @if (User.IsInRole("Developer"))
-        {
-            <h3>My Tickets</h3>
-            <table class="table">
-                <tr>
-                    <th>
-                        Project Name
-                    </th>
-                    <th>
-                        Ticket Priority
-                    </th>
-                    <th>
-                        Ticket Status
-                    </th>
-                    <th>
-                        Ticket Type
-                    </th>
-                    <th>
-                        Submitter
-                    </th>
-                    <th>
-                        Developer
-                    </th>
-                    <th>
-                        Issue
-                    </th>
-                    <th>
-                        Created
-                    </th>
-                    <th>
-                        Updated
-                    </th>
-                    <th>
-                        Resolved?
-                    </th>
-                    <th>
-                        Archived?
-                    </th>
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model.Where(t => t.DeveloperId == User.Identity.GetUserId()))
-                {
+            <table class="table" id="ticketTable">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Project.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TicketPriority.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TicketStatus.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TicketType.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Submitter.FullName)
-                        </td>
-                        <td>
-                            @if (item.DeveloperId != null)
+                        <th>
+                            Project Name
+                        </th>
+                        <th>
+                            Ticket Priority
+                        </th>
+                        <th>
+                            Ticket Status
+                        </th>
+                        <th>
+                            Ticket Type
+                        </th>
+                        <th>
+                            Submitter
+                        </th>
+                        <th>
+                            Developer
+                        </th>
+                        <th>
+                            Issue
+                        </th>
+                        <th>
+                            Created
+                        </th>
+                        <th>
+                            Updated
+                        </th>
+                        <th>
+                            Resolved?
+                        </th>
+                        <th>
+                            Archived?
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+                {
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Project.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TicketPriority.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TicketStatus.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TicketType.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Submitter.FullName)
+                            </td>
+                            <td>
+                                @if (item.DeveloperId != null)
+                                {
+                                    @Html.DisplayFor(modelItem => item.Developer.FullName)
+                                }
+                                else
+                                {
+                                    <span>No Developer Assigned</span>
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Issue)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Created)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Updated)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsResolved)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsArchived)
+                            </td>
+                            @if (User.IsInRole("Project Manager") || (User.IsInRole("Developer")))
                             {
-                                @Html.DisplayFor(modelItem => item.Developer.FullName)
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                    @Html.ActionLink("Details", "Dashboard", new { id = item.Id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                </td>
+
                             }
                             else
                             {
-                                <span>No Developer Assigned</span>
+                                <td>
+                                    @Html.ActionLink("Details", "Dashboard", new { id = item.Id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                </td>
                             }
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Issue)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Created)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Updated)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsResolved)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsArchived)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                        </td>
-                    </tr>
+
+                        </tr>
+                    </tbody>
                 }
 
             </table>
-        }
-
+        </div>
     </div>
-</div>
+    @section scripts {
+
+        <script>
+            $('#ticketTable').dataTable({
+            });
+        </script>
+    }
+</body>

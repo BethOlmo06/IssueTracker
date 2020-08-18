@@ -18,14 +18,43 @@ namespace IssueTracker.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private ProjectHelper projectHelper = new ProjectHelper();
-        private TicketManager ticketManager = new TicketManager();
 
 
         // GET: Tickets
-        
+
         public ActionResult Index()
         {
-            return View(ticketManager.GetMyTickets(User.Identity.GetUserId()));
+            return View(db.Tickets.ToList());
+        }
+
+        public ActionResult GetProjectTickets() //for Project Managers to see tickets
+        {                                     //belonging to projects to which they are assigned
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var ticketList = new List<Ticket>();
+            ticketList = user.Projects.SelectMany(p => p.Tickets).ToList();
+            return View("Index", ticketList);
+        }
+
+
+        public ActionResult GetMyTickets()
+        {
+            var userId = User.Identity.GetUserId();
+            var ticketList = new List<Ticket>();
+            if (User.IsInRole("Developer"))
+            {
+                ticketList = db.Tickets.Where(t => t.DeveloperId == userId).ToList();
+                return View("Index", ticketList);
+            }
+            if (User.IsInRole("Submitter"))
+            {
+                ticketList = db.Tickets.Where(t => t.SubmitterId == userId).ToList();
+                return View("Index", ticketList);
+            }
+            else
+            {
+                return RedirectToAction("GetProjectTickets");
+            }
         }
 
 
@@ -36,7 +65,7 @@ namespace IssueTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tickets ticket = db.Tickets.Find(id);
+            Ticket ticket = db.Tickets.Find(id);
             if (ticket == null)
             {
                 return HttpNotFound();
@@ -64,7 +93,7 @@ namespace IssueTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ProjectId,TicketPriorityId,TicketTypeId,Issue,IssueDescription")] Tickets ticket)
+        public ActionResult Create([Bind(Include = "Id,ProjectId,TicketPriorityId,TicketTypeId,Issue,IssueDescription")] Ticket ticket)
         {
             var userId = User.Identity.GetUserId();
             if (ModelState.IsValid)
@@ -92,7 +121,7 @@ namespace IssueTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tickets ticket = db.Tickets.Find(id);
+            Ticket ticket = db.Tickets.Find(id);
             if (ticket == null)
             {
                 return HttpNotFound();
@@ -109,7 +138,7 @@ namespace IssueTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ProjectId,TicketPriorityId,TicketStatusId,TicketTypeId,SubmitterId,DeveloperId,Issue,IssueDescription,Created,Updated,IsResolved,IsArchived")] Tickets ticket)
+        public ActionResult Edit([Bind(Include = "Id,ProjectId,TicketPriorityId,TicketStatusId,TicketTypeId,SubmitterId,DeveloperId,Issue,IssueDescription,Created,Updated,IsResolved,IsArchived")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
@@ -131,7 +160,7 @@ namespace IssueTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tickets ticket = db.Tickets.Find(id);
+            Ticket ticket = db.Tickets.Find(id);
             if (ticket == null)
             {
                 return HttpNotFound();

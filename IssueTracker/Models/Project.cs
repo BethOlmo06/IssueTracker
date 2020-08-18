@@ -10,7 +10,7 @@ namespace IssueTracker.Models
         public int Id { get; set; }
 
         #region Parents / Children
-        public virtual ICollection<Tickets> Tickets { get; set; }
+        public virtual ICollection<Ticket> Tickets { get; set; }
 
         public virtual ICollection<ApplicationUser> Users { get; set; }
         #endregion
@@ -27,7 +27,7 @@ namespace IssueTracker.Models
         #region Constructor
         public Project()
         {
-            Tickets = new HashSet<Tickets>();
+            Tickets = new HashSet<Ticket>();
             Users = new HashSet<ApplicationUser>();
         }
         #endregion
