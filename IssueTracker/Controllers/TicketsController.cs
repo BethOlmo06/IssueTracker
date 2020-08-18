@@ -11,7 +11,6 @@ using IssueTracker.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.Exchange.WebServices.Data;
 
-
 namespace IssueTracker.Controllers
 {
     [Authorize]
@@ -21,9 +20,6 @@ namespace IssueTracker.Controllers
         private ProjectHelper projectHelper = new ProjectHelper();
         private TicketManager ticketManager = new TicketManager();
 
-      
-
-        //public ICollection<string> ListUserRoles(string userId);
 
         // GET: Tickets
         
@@ -31,6 +27,7 @@ namespace IssueTracker.Controllers
         {
             return View(ticketManager.GetMyTickets(User.Identity.GetUserId()));
         }
+
 
         // GET: Tickets/Details/5
         public ActionResult Dashboard(int? id)
