@@ -1,53 +1,81 @@
-﻿//using IssueTracker.Models;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
-//using Microsoft.AspNet.Identity;
-//using IssueTracker.Helpers;
+﻿using IssueTracker.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using Microsoft.AspNet.Identity;
+using IssueTracker.Helpers;
+using System.Security.Policy;
 
-//namespace IssueTracker.Helpers
-//{
-//    public class TicketManager
-//    {
-//        private ApplicationDbContext db = new ApplicationDbContext();
-//        private ProjectHelper projectHelper = new ProjectHelper();
-//        private RolesHelper rolesHelper = new RolesHelper();
-//        private UserHelper userHelper = new UserHelper();
+namespace IssueTracker.Helpers
+{
+    public class TicketManager
+    {
+        private RolesHelper rolesHelper = new RolesHelper();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
-        
-//        public List<Ticket>GetProjectTickets()
-//        //{
-//        //    var userId = User.Identity.GetUserId();
-//        //    var user = db.Users.Find(userId);
-//        //    var ticketList = new List<Ticket>();
-//        //    ticketList = user.Projects.SelectMany(p => p.Tickets).ToList();
-//        //    return ticketList;
+        public bool CanEditTicket(int ticketId)
+        {
+            var userId = HttpContext.Current.User.Identity.GetUserId();
+            var myRole = rolesHelper.ListUserRoles(userId).FirstOrDefault();
+            switch (myRole)
+            {
+                case "Admin":
+                    return true;
 
-//        //}
-        
-//        public List<Ticket> GetMyTickets(string userId)
-//        {
-//            var tickets = new List<Ticket>();
-//            var myRole = rolesHelper.ListUserRoles(userId).FirstOrDefault();
+                case "Project Manager":
+                    var user = db.Users.Find(userId);
+                    return user.Projects.SelectMany(p => p.Tickets).Any(t => t.Id == ticketId);
 
-//            switch (myRole)
-//            {
-//                case "Admin":
-//                    tickets.AddRange(db.Tickets);
-//                    break;
-//                case "ProjectManager":
-//                    tickets.AddRange(db.Users.Find(userId).Projects.SelectMany(p => p.Tickets));
-//                    break;
-//                case "Developer":
-//                    tickets.AddRange(db.Tickets.Where(t => t.DeveloperId == userId));
-//                    break;
-//                case "Submitter":
-//                    tickets.AddRange(db.Tickets.Where(t => t.SubmitterId == userId));
-//                    break;
-//            }
+                case "Developer":
+                case "Submitter":
+                    var ticket = db.Tickets.Find(ticketId);
+                    if (ticket.DeveloperId == userId || ticket.SubmitterId == userId)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
 
-//            return tickets;
-//        }
-//    }
-//}
+                default:
+                    return false;
+            }
+        }
+
+        public bool CanMakeComment(int ticketId)
+        {
+            var userId = HttpContext.Current.User.Identity.GetUserId();
+            var myRole = rolesHelper.ListUserRoles(userId).FirstOrDefault();
+            switch(myRole)
+            {
+                case "Admin":
+                    return true;
+
+                case "Project Manager":
+                    var user = db.Users.Find(userId);
+                    return user.Projects.SelectMany(p => p.Tickets).Any(t => t.Id == ticketId);
+                
+                case "Developer":
+                case "Submitter":
+                    var ticket = db.Tickets.Find(ticketId);
+                    if (ticket.DeveloperId == userId || ticket.SubmitterId == userId)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                default:
+                    return false;
+            }
+        }
+
+       
+
+    
+    }
+}

@@ -229,6 +229,7 @@
     <Content Include="Content\atlantis.css" />
     <Content Include="Content\atlantis2.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datatables.css" />
     <Content Include="Content\fonts.css" />
     <Content Include="Content\fonts.min.css" />
     <Content Include="fonts\fa-brands-400.svg" />

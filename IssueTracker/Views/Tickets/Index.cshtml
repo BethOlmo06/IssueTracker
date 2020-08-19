@@ -1,8 +1,10 @@
 ﻿@using Microsoft.AspNet.Identity;
+@using IssueTracker.Helpers;
 @model IEnumerable<IssueTracker.Models.Ticket>
 
 @{
     ViewBag.Title = "Index";
+    var ticketManager = new TicketManager();
 }
 
 <body>
@@ -101,22 +103,14 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.IsArchived)
                             </td>
-                            @if (User.IsInRole("Project Manager") || (User.IsInRole("Developer")))
-                            {
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                    @Html.ActionLink("Details", "Dashboard", new { id = item.Id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                                </td>
+                            <td>
+                                @if (ticketManager.CanEditTicket(item.Id))
+                                {
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <span>|</span>
+                                    @Html.ActionLink("Details", "Dashboard", new { id = item.Id })
+                                }
 
-                            }
-                            else
-                            {
-                                <td>
-                                    @Html.ActionLink("Details", "Dashboard", new { id = item.Id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                                </td>
-                            }
+                            </td>
 
                         </tr>
                     </tbody>
