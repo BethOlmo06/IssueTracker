@@ -198,9 +198,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\FileStamp.cs" />
-    <Compile Include="Helpers\FileUploadValidator.cs" />
     <Compile Include="Helpers\HistoryHelper.cs" />
-    <Compile Include="Helpers\ImageUploadValidator.cs" />
+    <Compile Include="Helpers\FileUploadValidator.cs" />
     <Compile Include="Helpers\ProjectHelper.cs" />
     <Compile Include="Helpers\SlugMaker.cs" />
     <Compile Include="Helpers\StringUtilities.cs" />
@@ -232,6 +231,7 @@
     <Content Include="Content\datatables.css" />
     <Content Include="Content\fonts.css" />
     <Content Include="Content\fonts.min.css" />
+    <Content Include="Content\responsive.dataTables.css" />
     <Content Include="fonts\fa-brands-400.svg" />
     <Content Include="fonts\fa-regular-400.svg" />
     <Content Include="fonts\fa-solid-900.svg" />
@@ -248,6 +248,7 @@
     <Content Include="Scripts\chart.min.js" />
     <Content Include="Scripts\circles.min.js" />
     <Content Include="Scripts\datatables.min.js" />
+    <Content Include="Scripts\dataTables.responsive.min.js" />
     <Content Include="Scripts\dropzone.min.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\gmaps.js" />
@@ -363,6 +364,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Avatars\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\fa-brands-400.eot" />

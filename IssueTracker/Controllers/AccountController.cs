@@ -167,7 +167,7 @@ namespace IssueTracker.Controllers
 
                 if(model.Avatar != null)
                 {
-                    if(ImageUploadValidator.IsWebFriendlyImage(model.Avatar))
+                    if(FileUploadValidator.IsWebFriendlyImage(model.Avatar))
                     {
                         var fileName = FileStamp.MakeUnique(model.Avatar.FileName);
                         var serverFolder = WebConfigurationManager.AppSettings["DefaultServerFolder"];

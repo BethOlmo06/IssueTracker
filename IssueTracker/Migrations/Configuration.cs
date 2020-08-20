@@ -1,9 +1,11 @@
 namespace IssueTracker.Migrations
 {
+    using IssueTracker.Helpers;
     using IssueTracker.Models;
     using Microsoft.Ajax.Utilities;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.Exchange.WebServices.Data;
     using Microsoft.JScript;
     using Polly;
     using System;
@@ -289,7 +291,19 @@ namespace IssueTracker.Migrations
             new Project() { Name = "Seed 5", Created = DateTime.Now.AddDays(-7)}
             );
 
-        #endregion
+            #endregion
+
+            //context.SaveChanges();
+            //var userList = context.Users.ToList();
+            //var projectList = context.Projects.ToList();
+            //foreach(var project in projectList)
+            //{
+            //    foreach(var user in userList)
+            //    {
+            //        projectHelper.AddUserToProject(user.Id, project.Id);
+            //    }
+            //}
         }
+
     }
 }

@@ -58,7 +58,7 @@ namespace IssueTracker.Controllers
                 ticketComment.Created = DateTime.Now;
                 db.TicketComments.Add(ticketComment);
                 db.SaveChanges();
-                return RedirectToAction("Details", "Tickets", new { id = ticketComment.TicketId});
+                return RedirectToAction("Dashboard", "Tickets", new { id = ticketComment.TicketId});
             }
 
             ViewBag.TicketId = new SelectList(db.Tickets, "Id", "SubmitterId", ticketComment.TicketId);

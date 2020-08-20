@@ -42,7 +42,7 @@ namespace IssueTracker.Controllers
 
         // GET: TicketAttachments/Create
 
-        //JASON DELETED THIS CREATE BUT I'M LEAVING IT COMMENTED OUT FOR NOW PURELY OUT OF FEAR
+        //JASON DELETED THIS CREATE BUT I'M LEAVING IT COMMENTED OUT FOR NOW, PURELY OUT OF FEAR
 
         //public ActionResult Create()
         //{
@@ -53,7 +53,7 @@ namespace IssueTracker.Controllers
 
 
         // POST: TicketAttachments/Create
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TicketId,FileName,Description")] TicketAttachment ticketAttachment, HttpPostedFileBase file)
@@ -61,7 +61,7 @@ namespace IssueTracker.Controllers
             if (ModelState.IsValid)
             {
                 ticketAttachment.Created = DateTime.Now;
-                ticketAttachment.User.Id = User.Identity.GetUserId();
+                ticketAttachment.UserId = User.Identity.GetUserId();
 
                 if (file ==null)
                 {
@@ -69,7 +69,7 @@ namespace IssueTracker.Controllers
                     return RedirectToAction("Dashboard", "Tickets", new { id = ticketAttachment.TicketId });
                 }
 
-                if(ImageUploadValidator.IsWebFriendlyImage(file) || FileUploadValidator.IsWebFriendlyFile(file))
+                if(FileUploadValidator.IsWebFriendlyImage(file) || FileUploadValidator.IsWebFriendlyFile(file))
                 {
                     var fileName = FileStamp.MakeUnique(file.FileName);
 
