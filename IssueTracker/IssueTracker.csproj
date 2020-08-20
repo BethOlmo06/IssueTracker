@@ -394,6 +394,7 @@
     <None Include="packages.config" />
     <Content Include="Views\Assignments\ManageProjectUsers.cshtml" />
     <Content Include="Views\Projects\ProjectWizard.cshtml" />
+    <Content Include="Views\Account\DemoLogin.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

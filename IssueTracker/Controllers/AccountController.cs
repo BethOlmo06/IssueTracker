@@ -96,6 +96,36 @@ namespace IssueTracker.Controllers
             }
         }
 
+        [AllowAnonymous]
+        public ActionResult DemoLogin()
+        {
+            return View();
+        }
+
+        // POST: /Account/Login
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DemoLogin(string emailKey, string passwordKey, string returnUrl)
+        {
+
+            var email = WebConfigurationManager.AppSettings(emailKey);
+            var password = WebConfigurationManager.AppSettings(passwordKey);
+
+            var result = await SignInManager.PasswordSignInAsync(email, password, false, shouldLockout: false);
+            switch (result)
+            {
+                case SignInStatus.Success:
+                    return RedirectToLocal(returnUrl);
+                case SignInStatus.Failure:
+                default:
+                    ModelState.AddModelError("", "Invalid login attempt.");
+                    return View();
+            }
+        }
+
+
+
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
@@ -562,6 +592,7 @@ namespace IssueTracker.Controllers
             }
         }
 
+        //TODO: Use this to set primary (first?) dashboard / entry point after login
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))

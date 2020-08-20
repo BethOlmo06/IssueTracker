@@ -13,25 +13,27 @@ namespace IssueTracker.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
     using System.Runtime.Remoting.Contexts;
+    using System.Web.Configuration;
 
     internal sealed class Configuration : DbMigrationsConfiguration<IssueTracker.Models.ApplicationDbContext>
     {
+       
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        #region Seeded Users
+            #region Roles Seed
+
         protected override void Seed(IssueTracker.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
+
             var roleManager = new RoleManager<IdentityRole>(
                 new RoleStore<IdentityRole>(context));
 
-            //Check whether a particular Role already exists in the DB.
-            //If not, create it.
             if (!context.Roles.Any(r => r.Name == "Admin"))
             {
                 roleManager.Create(new IdentityRole { Name = "Admin" });
@@ -51,11 +53,14 @@ namespace IssueTracker.Migrations
             {
                 roleManager.Create(new IdentityRole { Name = "Submitter" });
             }
+            #endregion
 
-
-            
-            var userManager = new UserManager<ApplicationUser>(
-               new UserStore<ApplicationUser>(context));
+            #region Users Seed
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var DemoAdminPassword = WebConfigurationManager.AppSettings["DemoAdminPassword"];
+            var DemoPMPassword = WebConfigurationManager.AppSettings["DemoPMPassword"];
+            var DemoDevPassword = WebConfigurationManager.AppSettings["DemoDevPassword"];
+            var DemoSubPassword = WebConfigurationManager.AppSettings["DemoSubPassword"];
 
             if (!context.Users.Any(u => u.Email == "betholmo@gmail.com"))
             {
@@ -72,21 +77,52 @@ namespace IssueTracker.Migrations
                 userManager.AddToRole(userId, "Admin");
             };
 
-
-            if (!context.Users.Any(u => u.Email == "beth.olmo@olmoweinman.com"))
+            if (!context.Users.Any(u => u.Email == "DemAd06@mailinator.com"))
             {
                 userManager.Create(new ApplicationUser()
                 {
-                    Email = "beth.olmo@olmoweinman.com",
-                    UserName = "beth.olmo@olmoweinman.com",
-                    FirstName = "Beth",
-                    LastName = "Olmo",
+                    Email = "DemAd06@mailinator.com",
+                    UserName = "DemAd06@mailinator.com",
+                    FirstName = "Demo",
+                    LastName = "Admin",
+                }, "DemoAdminPassword");
+
+                var userId = userManager.FindByEmail("DemAd06@mailinator.com").Id;
+
+                userManager.AddToRole(userId, "Admin");
+            };
+
+
+            if (!context.Users.Any(u => u.Email == "Okiboricua63@mailinator.com"))
+            {
+                userManager.Create(new ApplicationUser()
+                {
+                    Email = "Okiboricua63@mailinator.com",
+                    UserName = "Okiboricua63@mailinator.com",
+                    FirstName = "Orlando J",
+                    LastName = "Olmo, MBA, PMP",
                 }, "Abc&123");
 
-                var userId = userManager.FindByEmail("beth.olmo@olmoweinman.com").Id;
+                var userId = userManager.FindByEmail("Okiboricua63@mailinator.com").Id;
 
-                userManager.AddToRole(userId, "Developer");
+                userManager.AddToRole(userId, "Project Manager");
             };
+
+            if (!context.Users.Any(u => u.Email == "DemPM14@mailinator.com"))
+            {
+                userManager.Create(new ApplicationUser()
+                {
+                    Email = "DemPM14@mailinator.com",
+                    UserName = "DemPM14@mailinator.com",
+                    FirstName = "Demo",
+                    LastName = "PM",
+                }, "DemoPMPassword");
+
+                var userId = userManager.FindByEmail("DemPM14@mailinator.com").Id;
+
+                userManager.AddToRole(userId, "Admin");
+            };
+
 
             if (!context.Users.Any(u => u.Email == "sebastiana@mailinator.com"))
             {
@@ -103,36 +139,20 @@ namespace IssueTracker.Migrations
                 userManager.AddToRole(userId, "Developer");
             };
 
-            if (!context.Users.Any(u => u.Email == "carieg@mailinator.com"))
+            if (!context.Users.Any(u => u.Email == "DemDev15@mailinator.com"))
             {
                 userManager.Create(new ApplicationUser()
                 {
-                    Email = "carieg@mailinator.com",
-                    UserName = "carieg@mailinator.com",
-                    FirstName = "Carie",
-                    LastName = "Guyah",
-                }, "Abc&123");
+                    Email = "DemDev15@mailinator.com",
+                    UserName = "DemDev15@mailinator.com",
+                    FirstName = "Demo",
+                    LastName = "Dev",
+                }, "DemoDevPassword");
 
-                var userId = userManager.FindByEmail("carieg@mailinator.com").Id;
-
-                userManager.AddToRole(userId, "Developer");
-            };
-
-            if (!context.Users.Any(u => u.Email == "admiralhopper@mailinator.com"))
-            {
-                userManager.Create(new ApplicationUser()
-                {
-                    Email = "admiralhopper@mailinator.com",
-                    UserName = "admiralhopper@mailinator.com",
-                    FirstName = "Admiral Grace",
-                    LastName = "Hopper",
-                }, "Abc&123");
-
-                var userId = userManager.FindByEmail("admiralhopper@mailinator.com").Id;
+                var userId = userManager.FindByEmail("DemDev15@mailinator.com").Id;
 
                 userManager.AddToRole(userId, "Developer");
             };
-
 
 
             if (!context.Users.Any(u => u.Email == "aliceog@mailinator.com"))
@@ -150,159 +170,87 @@ namespace IssueTracker.Migrations
                 userManager.AddToRole(userId, "Submitter");
             };
 
-            if (!context.Users.Any(u => u.Email == "gener@mailinator.com"))
+            if (!context.Users.Any(u => u.Email == "DemSub16@mailinator.com"))
             {
                 userManager.Create(new ApplicationUser()
                 {
-                    Email = "gener@mailinator.com",
-                    UserName = "gener@mailinator.com",
-                    FirstName = "Gene",
-                    LastName = "Razz",
-                }, "Abc&123");
+                    Email = "DemSub16@mailinator.com",
+                    UserName = "DemSub16@mailinator.com",
+                    FirstName = "Demo",
+                    LastName = "Sub",
+                }, "DemoSubPassword");
 
-                var userId = userManager.FindByEmail("gener@mailinator.com").Id;
+                var userId = userManager.FindByEmail("DemSub16@mailinator.com").Id;
 
                 userManager.AddToRole(userId, "Submitter");
             };
-
-            if (!context.Users.Any(u => u.Email == "philipj@mailinator.com"))
-            {
-                userManager.Create(new ApplicationUser()
-                {
-                    Email = "philipj@mailinator.com",
-                    UserName = "philipj@mailinator.com",
-                    FirstName = "Phil",
-                    LastName = "Black",
-                }, "Abc&123");
-
-                var userId = userManager.FindByEmail("philipj@mailinator.com").Id;
-
-                userManager.AddToRole(userId, "Submitter");
-            };
-
-            if (!context.Users.Any(u => u.Email == "ourlucieb@mailinator.com"))
-            {
-                userManager.Create(new ApplicationUser()
-                {
-                    Email = "ourlucieb@mailinator.com",
-                    UserName = "ourlucieb@mailinator.com",
-                    FirstName = "Lucie",
-                    LastName = "Black",
-                }, "Abc&123");
-
-                var userId = userManager.FindByEmail("ourlucieb@mailinator.com").Id;
-
-                userManager.AddToRole(userId, "Submitter");
-            };
-
-
-
-            if (!context.Users.Any(u => u.Email == "declanc@mailinator.com"))
-            {
-                userManager.Create(new ApplicationUser()
-                {
-                    Email = "declanc@mailinator.com",
-                    UserName = "declanc@mailinator.com",
-                    FirstName = "Declan",
-                    LastName = "Crommett",
-                }, "Abc&123");
-
-                var userId = userManager.FindByEmail("declanc@mailinator.com").Id;
-
-                userManager.AddToRole(userId, "Project Manager");
-            };
-
-            if (!context.Users.Any(u => u.Email == "tifft@mailinator.com"))
-            {
-                userManager.Create(new ApplicationUser()
-                {
-                    Email = "tifft@mailinator.com",
-                    UserName = "tifft@mailinator.com",
-                    FirstName = "Tiffany",
-                    LastName = "Thomas, MBA, PMP",
-                }, "Abc&123");
-
-                var userId = userManager.FindByEmail("tifft@mailinator.com").Id;
-
-                userManager.AddToRole(userId, "Project Manager");
-            };
-
-            if (!context.Users.Any(u => u.Email == "Okiboricua63@mailinator.com"))
-            {
-                userManager.Create(new ApplicationUser()
-                {
-                    Email = "Okiboricua63@mailinator.com",
-                    UserName = "Okiboricua63@mailinator.com",
-                    FirstName = "Orlando J",
-                    LastName = "Olmo, MBA, PMP",
-                }, "Abc&123");
-
-                var userId = userManager.FindByEmail("Okiboricua63@mailinator.com").Id;
-
-                userManager.AddToRole(userId, "Project Manager");
-            };
-        
-        #endregion
-
-        context.SaveChanges();
-        #region TicketType Seed
-        context.TicketTypes.AddOrUpdate(
-            tt => tt.Name,
-            new TicketType() { Name = "Software"},
-            new TicketType() { Name = "Hardware"},
-            new TicketType() { Name = "UI"},
-            new TicketType() { Name = "Defect"},
-            new TicketType() { Name = "Feature Request"},
-            new TicketType() { Name = "Other"}
-            );
-
-        #endregion
-
-        #region TicketPriority Seed
-        context.TicketPriorities.AddOrUpdate(
-            tp => tp.Name,
-            new TicketPriority() { Name = "Low"},
-            new TicketPriority() { Name = "Medium"},
-            new TicketPriority() { Name = "High"},
-            new TicketPriority() { Name = "On Hold"}
-            );
-
-        #endregion
-
-        #region TicketStatus Seed
-        context.TicketStatuses.AddOrUpdate(
-            ts => ts.Name,
-            new TicketStatus() { Name = "Open"},
-            new TicketStatus() { Name = "Assigned"},
-            new TicketStatus() { Name = "Resolved"},
-            new TicketStatus() { Name = "Reopened"},
-            new TicketStatus() { Name = "Archived"}
-            );
-
-        #endregion
-
-        #region Project Seed
-        context.Projects.AddOrUpdate(
-            p => p.Name,
-            new Project() { Name = "Seed 1", Created = DateTime.Now.AddDays(-60), IsArchived = true},
-            new Project() { Name = "Seed 2", Created = DateTime.Now.AddDays(-45)},
-            new Project() { Name = "Seed 3", Created = DateTime.Now.AddDays(-30)},
-            new Project() { Name = "Seed 4", Created = DateTime.Now.AddDays(-15)},
-            new Project() { Name = "Seed 5", Created = DateTime.Now.AddDays(-7)}
-            );
 
             #endregion
 
-            //context.SaveChanges();
-            //var userList = context.Users.ToList();
-            //var projectList = context.Projects.ToList();
-            //foreach(var project in projectList)
-            //{
-            //    foreach(var user in userList)
-            //    {
-            //        projectHelper.AddUserToProject(user.Id, project.Id);
-            //    }
-            //}
+            context.SaveChanges();
+            #region TicketType Seed
+            context.TicketTypes.AddOrUpdate(
+                tt => tt.Name,
+                new TicketType() { Name = "Software" },
+                new TicketType() { Name = "Hardware" },
+                new TicketType() { Name = "UI" },
+                new TicketType() { Name = "Defect" },
+                new TicketType() { Name = "Feature Request" },
+                new TicketType() { Name = "Other" }
+                );
+
+            #endregion
+
+            #region TicketPriority Seed
+            context.TicketPriorities.AddOrUpdate(
+                tp => tp.Name,
+                new TicketPriority() { Name = "Low" },
+                new TicketPriority() { Name = "Medium" },
+                new TicketPriority() { Name = "High" },
+                new TicketPriority() { Name = "On Hold" }
+                );
+
+            #endregion
+
+            #region TicketStatus Seed
+            context.TicketStatuses.AddOrUpdate(
+                ts => ts.Name,
+                new TicketStatus() { Name = "Open" },
+                new TicketStatus() { Name = "Assigned" },
+                new TicketStatus() { Name = "Resolved" },
+                new TicketStatus() { Name = "Reopened" },
+                new TicketStatus() { Name = "Archived" }
+                );
+
+            #endregion
+
+            #region Project Seed
+            context.Projects.AddOrUpdate(
+                p => p.Name,
+                new Project() { Name = "Seed 1", Created = DateTime.Now.AddDays(-60), IsArchived = true },
+                new Project() { Name = "Seed 2", Created = DateTime.Now.AddDays(-45) },
+                new Project() { Name = "Seed 3", Created = DateTime.Now.AddDays(-30) },
+                new Project() { Name = "Seed 4", Created = DateTime.Now.AddDays(-15) },
+                new Project() { Name = "Seed 5", Created = DateTime.Now.AddDays(-7) }
+                );
+
+            #endregion
+
+            context.SaveChanges();
+            var userList = context.Users.ToList();
+            var projectList = context.Projects.ToList();
+            foreach (var project in projectList)
+            {
+                foreach (var user in userList)
+                {
+                    projectHelper.AddUserToProject(user.Id, project.Id);
+                }
+            }
+
+            #region Tickets Seed
+            #endregion
+
+
         }
 
     }
