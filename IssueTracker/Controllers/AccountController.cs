@@ -109,8 +109,8 @@ namespace IssueTracker.Controllers
         public async Task<ActionResult> DemoLogin(string emailKey, string passwordKey, string returnUrl)
         {
 
-            var email = WebConfigurationManager.AppSettings(emailKey);
-            var password = WebConfigurationManager.AppSettings(passwordKey);
+            var email = WebConfigurationManager.AppSettings[emailKey];
+            var password = WebConfigurationManager.AppSettings[passwordKey];
 
             var result = await SignInManager.PasswordSignInAsync(email, password, false, shouldLockout: false);
             switch (result)

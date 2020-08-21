@@ -1,5 +1,6 @@
 namespace IssueTracker.Migrations
 {
+    using Amazon.CognitoIdentity.Model;
     using IssueTracker.Helpers;
     using IssueTracker.Models;
     using Microsoft.Ajax.Utilities;
@@ -9,6 +10,7 @@ namespace IssueTracker.Migrations
     using Microsoft.JScript;
     using Polly;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -17,13 +19,16 @@ namespace IssueTracker.Migrations
 
     internal sealed class Configuration : DbMigrationsConfiguration<IssueTracker.Models.ApplicationDbContext>
     {
-       
+        private ProjectHelper projectHelper = new ProjectHelper();
+        private RolesHelper rolesHelper = new RolesHelper();
+        Random random = new Random();
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+
         }
 
-            #region Roles Seed
+        #region Roles Creation
 
         protected override void Seed(IssueTracker.Models.ApplicationDbContext context)
         {
@@ -55,12 +60,16 @@ namespace IssueTracker.Migrations
             }
             #endregion
 
-            #region Users Seed
+            #region Users Creation
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var DemoAdminPassword = WebConfigurationManager.AppSettings["DemoAdminPassword"];
             var DemoPMPassword = WebConfigurationManager.AppSettings["DemoPMPassword"];
             var DemoDevPassword = WebConfigurationManager.AppSettings["DemoDevPassword"];
             var DemoSubPassword = WebConfigurationManager.AppSettings["DemoSubPassword"];
+
+            //List<string> firstNames = new List<string>() { "Erin", "Tiffany", "Traci", "Emelia", "Mikayla" };
+            //List<string> lastNames = new List<string>() { "Crommett", "Chivers", "Thomas", "Stroppa", "Alana" };
+
 
             if (!context.Users.Any(u => u.Email == "betholmo@gmail.com"))
             {
@@ -83,9 +92,9 @@ namespace IssueTracker.Migrations
                 {
                     Email = "DemAd06@mailinator.com",
                     UserName = "DemAd06@mailinator.com",
-                    FirstName = "Demo",
-                    LastName = "Admin",
-                }, "DemoAdminPassword");
+                    FirstName = "Admiral",
+                    LastName = "Grace Hopper",
+                }, DemoAdminPassword);
 
                 var userId = userManager.FindByEmail("DemAd06@mailinator.com").Id;
 
@@ -114,11 +123,26 @@ namespace IssueTracker.Migrations
                 {
                     Email = "DemPM14@mailinator.com",
                     UserName = "DemPM14@mailinator.com",
-                    FirstName = "Demo",
-                    LastName = "PM",
-                }, "DemoPMPassword");
+                    FirstName = "Kamilah",
+                    LastName = "Taylor",
+                }, DemoPMPassword);
 
                 var userId = userManager.FindByEmail("DemPM14@mailinator.com").Id;
+
+                userManager.AddToRole(userId, "Admin");
+            };
+
+            if (!context.Users.Any(u => u.Email == "DemPM15@mailinator.com"))
+            {
+                userManager.Create(new ApplicationUser()
+                {
+                    Email = "DemPM15@mailinator.com",
+                    UserName = "DemPM15@mailinator.com",
+                    FirstName = "Katherine",
+                    LastName = "Goble Johnson",
+                }, DemoPMPassword);
+
+                var userId = userManager.FindByEmail("DemPM15@mailinator.com").Id;
 
                 userManager.AddToRole(userId, "Admin");
             };
@@ -145,11 +169,26 @@ namespace IssueTracker.Migrations
                 {
                     Email = "DemDev15@mailinator.com",
                     UserName = "DemDev15@mailinator.com",
-                    FirstName = "Demo",
-                    LastName = "Dev",
-                }, "DemoDevPassword");
+                    FirstName = "Maria",
+                    LastName = "Gutierrez",
+                }, DemoDevPassword);
 
                 var userId = userManager.FindByEmail("DemDev15@mailinator.com").Id;
+
+                userManager.AddToRole(userId, "Developer");
+            };
+
+            if (!context.Users.Any(u => u.Email == "DemDev16@mailinator.com"))
+            {
+                userManager.Create(new ApplicationUser()
+                {
+                    Email = "DemDev16@mailinator.com",
+                    UserName = "DemDev16@mailinator.com",
+                    FirstName = "Dorothy",
+                    LastName = "Vaughan",
+                }, DemoDevPassword);
+
+                var userId = userManager.FindByEmail("DemDev16@mailinator.com").Id;
 
                 userManager.AddToRole(userId, "Developer");
             };
@@ -176,18 +215,61 @@ namespace IssueTracker.Migrations
                 {
                     Email = "DemSub16@mailinator.com",
                     UserName = "DemSub16@mailinator.com",
-                    FirstName = "Demo",
-                    LastName = "Sub",
-                }, "DemoSubPassword");
+                    FirstName = "Dr.",
+                    LastName = "Jamika Burge",
+                }, DemoSubPassword);
 
                 var userId = userManager.FindByEmail("DemSub16@mailinator.com").Id;
 
                 userManager.AddToRole(userId, "Submitter");
             };
 
+            if (!context.Users.Any(u => u.Email == "DemSub17@mailinator.com"))
+            {
+                userManager.Create(new ApplicationUser()
+                {
+                    Email = "DemSub17@mailinator.com",
+                    UserName = "DemSub17@mailinator.com",
+                    FirstName = "Mary",
+                    LastName = "Jackson",
+                }, DemoSubPassword);
+
+                var userId = userManager.FindByEmail("DemSub17@mailinator.com").Id;
+
+                userManager.AddToRole(userId, "Submitter");
+            };
+
+            #endregion
+
+            #region Role Assignment
+            var adminId = userManager.FindByEmail("betholmo@gmail.com").Id;
+            userManager.AddToRole(adminId, "Admin");
+
+            var adminId2 = userManager.FindByEmail("DemAd06@mailinator.com").Id;
+            userManager.AddToRole(adminId, "Admin");
+
+            var projId = userManager.FindByEmail("Okiboricua63@mailinator.com").Id;
+            userManager.AddToRole(adminId, "Project Manager");
+
+            var projId2 = userManager.FindByEmail("DemPM14@mailinator.com").Id;
+            userManager.AddToRole(adminId, "Project Manager");
+
+            var devId = userManager.FindByEmail("sebastiana@mailinator.com").Id;
+            userManager.AddToRole(adminId, "Developer");
+
+            var devId2 = userManager.FindByEmail("DemDev15@mailinator.com").Id;
+            userManager.AddToRole(adminId, "Developer");
+
+            var subId = userManager.FindByEmail("aliceog@mailinator.com").Id;
+            userManager.AddToRole(adminId, "Submitter");
+
+            var subId2 = userManager.FindByEmail("DemSub16@mailinator.com").Id;
+            userManager.AddToRole(adminId, "Submitter");
+
             #endregion
 
             context.SaveChanges();
+
             #region TicketType Seed
             context.TicketTypes.AddOrUpdate(
                 tt => tt.Name,
@@ -237,20 +319,100 @@ namespace IssueTracker.Migrations
             #endregion
 
             context.SaveChanges();
-            var userList = context.Users.ToList();
-            var projectList = context.Projects.ToList();
-            foreach (var project in projectList)
+
+            #region Ticket Seed PREP
+
+            List<Ticket> ticketList = new List<Ticket>();
+            List<ApplicationUser> projectManagers = new List<ApplicationUser>();
+            List<ApplicationUser> developers = new List<ApplicationUser>();
+            List<ApplicationUser> submitters = new List<ApplicationUser>();
+
+            projectManagers.AddRange(rolesHelper.UsersInRole("Project Manager"));
+            developers.AddRange(rolesHelper.UsersInRole("Developer"));
+            submitters.AddRange(rolesHelper.UsersInRole("Submitter"));
+            #endregion
+
+            #region Assign Users to Projects BY ROLE
+            foreach (var project in context.Projects)
             {
-                foreach (var user in userList)
+                foreach (var user in rolesHelper.UsersInRole("Admin"))
                 {
                     projectHelper.AddUserToProject(user.Id, project.Id);
                 }
-            }
+                projectHelper.AddUserToProject(projectManagers[random.Next(projectManagers.Count)].Id, project.Id);
 
-            #region Tickets Seed
+                var firstDev = developers[random.Next(developers.Count)].Id;
+                var secondDev = developers[random.Next(developers.Count)].Id;
+                while (firstDev == secondDev)
+                {
+                    secondDev = developers[random.Next(developers.Count)].Id;
+                }
+                projectHelper.AddUserToProject(firstDev, project.Id);
+                projectHelper.AddUserToProject(secondDev, project.Id);
+
+                var firstSub = submitters[random.Next(submitters.Count)].Id;
+                var secondSub = submitters[random.Next(submitters.Count)].Id;
+                while (firstSub == secondSub)
+                {
+                    secondSub = submitters[random.Next(submitters.Count)].Id;
+                }
+                projectHelper.AddUserToProject(firstSub, project.Id);
+                projectHelper.AddUserToProject(secondSub, project.Id);
+            }
             #endregion
 
+            #region Ticket Seed
 
+            foreach (var project in context.Projects.ToList())
+            {
+                projectManagers = projectHelper.ListUsersOnProjectInRole("Project Manager", project.Id);
+                developers = projectHelper.ListUsersOnProjectInRole("Developer", project.Id);
+                submitters = projectHelper.ListUsersOnProjectInRole("Submitter", project.Id);
+                foreach (var type in context.TicketTypes.ToList())
+                {
+                    foreach (var status in context.TicketStatuses.ToList())
+                    {
+                        foreach (var priority in context.TicketPriorities.ToList())
+                        {
+                            var developerId = developers[random.Next(developers.Count)].Id;
+                            if (status.Name == "Open")
+                            {
+                                developerId = null;
+                            }
+
+                            var resolved = false;
+                            var archived = false;
+                            if (status.Name == "Resolved")
+                            {
+                                resolved = true;
+                            }
+                            if (status.Name == "Archived" || project.IsArchived)
+                            {
+                                archived = true;
+                            }
+                            var newTicket = new Ticket()
+                            {
+                                ProjectId = project.Id,
+                                TicketPriorityId = priority.Id,
+                                TicketTypeId = type.Id,
+                                TicketStatusId = status.Id,
+                                SubmitterId = submitters[random.Next(submitters.Count)].Id,
+                                DeveloperId = developerId,
+                                Created = DateTime.Now,
+                                Issue = $"This is a seeded ticket on the {project.Name} project.",
+                                IssueDescription = $"This is a description of a seeded ticket on the {project.Name} project.",
+                                IsResolved = resolved,
+                                IsArchived = archived
+                            };
+                            ticketList.Add(newTicket);
+                        }
+                    }
+                }
+            }
+
+            context.Tickets.AddRange(ticketList);
+            context.SaveChanges();
+            #endregion
         }
 
     }

@@ -4,28 +4,31 @@
     ViewBag.Title = "Log in";
     Layout = null;
 }
-<head>
-    <!-- Fonts and icons -->
-    <script src="~/Scripts/webfont.min.js"></script>
-    <script>
-        WebFont.load({
-            google: { "families": ["Lato:300,400,700,900"] },
-            custom: {
-                "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ["~/Content/fonts.min.css"] },
-            active: function () {
-                sessionStorage.fonts = true;
-            }
-        });
-    </script>
+<div>
+    <head>
+        <!-- Fonts and icons -->
+        <script src="~/Scripts/webfont.min.js"></script>
+        <script>
+            WebFont.load({
+                google: { "families": ["Lato:300,400,700,900"] },
+                custom: {
+                    "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ["~/Content/fonts.min.css"]
+                },
+                active: function () {
+                    sessionStorage.fonts = true;
+                }
+            });
+        </script>
 
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/fonts.css" rel="stylesheet" />
-    <link href="~/Content/fonts.min.css" rel="stylesheet" />
-    <link href="~/Content/atlantis.css" rel="stylesheet" />
-    <link href="~/Content/atlantis2.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/Content/fonts.css" rel="stylesheet" />
+        <link href="~/Content/fonts.min.css" rel="stylesheet" />
+        <link href="~/Content/atlantis.css" rel="stylesheet" />
+        <link href="~/Content/atlantis2.css" rel="stylesheet" />
 
-    <title>Login - Issue Tracker | Beth Olmo</title>
-</head>
+        <title>Login - Issue Tracker | Beth Olmo</title>
+    </head>
+</div>
 
 <body class="login">
     <div class="wrapper wrapper-login wrapper-login-full p-0">
@@ -68,7 +71,8 @@
                         </div>
                         <div class="login-account">
                             <span class="msg">Don't have an account yet?</span>
-                            <a href="~/Account/Register/" id="show-signup" class="link">Sign Up</a>
+                            <a href="~/Account/Register/" id="show-signup">Sign Up</a>
+
                         </div>
                     }
                 </div>

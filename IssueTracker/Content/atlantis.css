@@ -9570,7 +9570,8 @@ body .fc {
   background: #d7d7d7; }
 
 /* Buttons (styled <button> tags, normalized to work cross-browser)
---------------------------------------------------------------------------------------------------*/
+--------------------------------------------------------------------------------------------------*
+
 .fc button {
   /* force height to include the border and padding */
   -moz-box-sizing: border-box;
@@ -9584,7 +9585,7 @@ body .fc {
   font-size: 1em;
   /* normalize */
   white-space: nowrap;
-  cursor: pointer; }
+  cursor: pointer; 
   .fc button::-moz-focus-inner {
     margin: 0;
     padding: 0; }
