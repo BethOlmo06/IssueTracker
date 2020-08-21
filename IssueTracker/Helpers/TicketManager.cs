@@ -13,7 +13,7 @@ namespace IssueTracker.Helpers
     {
         private RolesHelper rolesHelper = new RolesHelper();
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        private HistoryHelper historyHelper = new HistoryHelper();
         public bool CanEditTicket(int ticketId)
         {
             var userId = HttpContext.Current.User.Identity.GetUserId();
@@ -72,6 +72,12 @@ namespace IssueTracker.Helpers
                 default:
                     return false;
             }
+        }
+
+        public void EditedTicket(Ticket oldTicket, Ticket newTicket)
+        {
+            historyHelper.ManageHistories(oldTicket, newTicket);
+            ManageTicketNotifications(oldTicket, newTicket);
         }
 
         public void ManageTicketNotifications(Ticket oldTicket, Ticket newTicket)

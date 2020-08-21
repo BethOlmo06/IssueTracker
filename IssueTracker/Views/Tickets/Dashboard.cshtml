@@ -10,28 +10,24 @@
     <div class="container">
         <div class="page-inner">
             <div class="row">
-                <div class="col-offset-1 col-10">
-
-                    <p>Project Data</p>
+                <div class="col">
                     <br />
                     <h2>Project Name: @Model.Project.Name</h2>
-                    <h4>Project Name: @Model.Project.Created</h4>
+                    <h4>Created On: @Model.Project.Created</h4>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-
-                    <p>Ticket Data</p>
+                <div class="col">
                     <br />
-                    <h2>Title: @Model.Issue</h2>
+                    <h2>Ticket Title: @Model.Issue</h2>
                     <h4>Priority: @Model.TicketPriority.Name</h4>
                     <h4>Status: @Model.TicketStatus.Name</h4>
                     <h4>Type: @Model.TicketType.Name</h4>
                 </div>
             </div>
+            <br />
             <hr />
             <div class="row">
                 <div class="col-6">
+                    <h2>Comments</h2>
                     @if (Model.Comments.Count != 0)
                     {
                         <table class="table">
@@ -77,12 +73,13 @@
                     }
                     else
                     {
-                        <h4>No comments have been made for this ticket.</h4>
+                        <h5>No comments have been made yet.</h5>
                     }
                 </div>
             </div>
             <div class="row">
                 <div class="col">
+                    <h2>Add Comment</h2>
                     @if (ticketManager.CanMakeComment(Model.Id))
                     {
                         using (Html.BeginForm("Create", "TicketComments", FormMethod.Post))
@@ -113,6 +110,7 @@
                 
 
                 <div class="col">
+                    <h2>Attachments</h2>
                     @using (Html.BeginForm("Create", "TicketAttachments", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
@@ -146,6 +144,7 @@
                     }
 
                     <hr />
+                    <h2>Add Attachment</h2>
                     <table class="table">
                         <thead>
                             <tr>
@@ -161,7 +160,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var attachment in Model.Attachments.ToList()) //Jason has "TicketAttachments" here but I don't have that option. Praying this doesn't break.
+                            @foreach (var attachment in Model.Attachments.ToList())
                             {
 
                                 <tr>
@@ -180,6 +179,64 @@
 
                     </table>
 
+                </div>
+            </div>
+            <br />
+            <hr />
+            <div class="row">
+                <div class="col">
+                    <h2>History</h2>
+                    @if(Model.Histories.Count > 0)
+                    {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Edited By
+                                </th>
+                                <th>
+                                    Property
+                                </th>
+                                <th>
+                                    Old Value
+                                </th>
+                                <th>
+                                    New Value
+                                </th>
+                                <th>
+                                    Changed On
+                                </th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model.Histories)
+                        {
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Property)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OldValue)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NewValue)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ChangedOn)
+                            </td>
+                        </tr>
+                    </tbody>
+                        }
+
+                    </table>
+                    }
+                    else
+                    {
+                        <h5>No changes have been made yet.</h5>
+                    }
                 </div>
             </div>
         </div>
