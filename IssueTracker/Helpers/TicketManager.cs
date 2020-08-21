@@ -74,6 +74,28 @@ namespace IssueTracker.Helpers
             }
         }
 
+        public void ManageTicketNotifications(Ticket oldTicket, Ticket newTicket)
+        {
+            if(oldTicket.DeveloperId != newTicket.DeveloperId && newTicket.DeveloperId != null)
+            {
+                var newNotification = new TicketNotification()
+                {
+                    TicketId = newTicket.Id,
+                    UserId = newTicket.DeveloperId,
+                    Created = DateTime.Now,
+                    Subject = $"New Ticket assignment on the {newTicket.Project.Name} project.",
+                    Body = $"Please take note, {newTicket.Developer.FullName}; Support Ticket {newTicket.Id} has been assigned to you."
+                };
+
+                db.TicketNotifications.Add(newNotification);
+                db.SaveChanges();
+            }
+
+            //TODO Case 2: Ticket UN-assignment
+
+            //TODO Case 3: Ticket RE-assignment => this could create two notifications - one for each Dev
+        }
+
        
 
     

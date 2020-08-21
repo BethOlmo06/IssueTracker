@@ -81,9 +81,9 @@
                             <td>
                                 @if (item.DeveloperId != null)
                                 {
-                                    //TODO: the Dev's name is not being pulled in
-                                    @*@Html.DisplayFor(modelItem => item.Developer.FullName)*@
-                                    <p>Sebastian</p>
+                                    
+                                    @Html.DisplayFor(modelItem => item.Developer.FullName)
+                                    
                                 }
                                 else
                                 {
@@ -106,11 +106,11 @@
                                 @Html.DisplayFor(modelItem => item.IsArchived)
                             </td>
                             <td>
-                                @if (ticketManager.CanEditTicket(item.Id))
-                                {
+                                @*@if (ticketManager.CanEditTicket(item.Id))
+                                {*@
                                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <span>|</span>
                                     @Html.ActionLink("Details", "Dashboard", new { id = item.Id })
-                                }
+                                @*}*@
 
                             </td>
 

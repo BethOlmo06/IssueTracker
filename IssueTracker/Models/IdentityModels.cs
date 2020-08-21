@@ -72,18 +72,18 @@ namespace IssueTracker.Models
         public DbSet<TicketStatus> TicketStatuses { get; set; }
         public DbSet<TicketPriority> TicketPriorities { get; set; }
 
-        public System.Data.Entity.DbSet<IssueTracker.Models.Project> Projects { get; set; }
+        public DbSet<Project> Projects { get; set; }
 
-        public System.Data.Entity.DbSet<IssueTracker.Models.Ticket> Tickets { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
 
-        public System.Data.Entity.DbSet<IssueTracker.Models.TicketAttachment> TicketAttachments { get; set; }
+        public DbSet<TicketAttachment> TicketAttachments { get; set; }
 
         
 
-        public System.Data.Entity.DbSet<IssueTracker.Models.TicketComment> TicketComments { get; set; }
+        public DbSet<TicketComment> TicketComments { get; set; }
 
-        public System.Data.Entity.DbSet<IssueTracker.Models.TicketHistory> TicketHistories { get; set; }
+        public DbSet<TicketHistory> TicketHistories { get; set; }
 
-        public System.Data.Entity.DbSet<IssueTracker.Models.TicketNotification> TicketNotifications { get; set; }
+        public DbSet<TicketNotification> TicketNotifications { get; set; }
     }
 }

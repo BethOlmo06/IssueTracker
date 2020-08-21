@@ -21,11 +21,12 @@ namespace IssueTracker.Models
         #endregion
 
         #region Actual Properties
-        public string Message { get; set; }
-
-        public DateTime Created { get; set; }
+        public string Subject { get; set; }
+        public string Body { get; set; }
 
         public bool IsRead { get; set; }
+
+        public DateTime Created { get; set; }
         #endregion
     }
 }
