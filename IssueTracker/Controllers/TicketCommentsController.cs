@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using IssueTracker.Helpers;
 using IssueTracker.Models;
 using Microsoft.AspNet.Identity;
 
@@ -14,6 +15,7 @@ namespace IssueTracker.Controllers
     public class TicketCommentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private TicketManager ticketManager = new TicketManager();
 
         // GET: TicketComments
         public ActionResult Index()
@@ -58,6 +60,13 @@ namespace IssueTracker.Controllers
                 ticketComment.Created = DateTime.Now;
                 db.TicketComments.Add(ticketComment);
                 db.SaveChanges();
+
+                var ticket = db.Tickets.Find(ticketComment.TicketId);
+                if (ticket.DeveloperId != User.Identity.GetUserId())
+                {
+                    ticketManager.CommentNotifications(ticket);
+                }
+
                 return RedirectToAction("Dashboard", "Tickets", new { id = ticketComment.TicketId});
             }
 

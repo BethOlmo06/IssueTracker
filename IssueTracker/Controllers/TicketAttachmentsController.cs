@@ -17,7 +17,7 @@ namespace IssueTracker.Controllers
     public class TicketAttachmentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        private TicketManager ticketManager = new TicketManager();
         // GET: TicketAttachments
         public ActionResult Index()
         {
@@ -80,6 +80,11 @@ namespace IssueTracker.Controllers
 
                 db.TicketAttachments.Add(ticketAttachment);
                 db.SaveChanges();
+                var ticket = db.Tickets.Find(ticketAttachment.TicketId);
+                if(ticket.DeveloperId != User.Identity.GetUserId())
+                {
+                    ticketManager.AttachmentNotifications(ticket);
+                }
                 return RedirectToAction("Dashboard", "Tickets", new { id = ticketAttachment.TicketId });
             }
 
@@ -100,9 +105,7 @@ namespace IssueTracker.Controllers
                 return HttpNotFound();
             }
 
-            //AGAIN - JASON DELETED THESE VIEWBAGS BUT I'M LEAVING THEM HERE FOR THE MOMENT JUST IN CASE
-            //ViewBag.TicketId = new SelectList(db.Tickets, "Id", "SubmitterId", ticketAttachment.TicketId);
-            //ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", ticketAttachment.UserId);
+            
             return View(ticketAttachment);
         }
 

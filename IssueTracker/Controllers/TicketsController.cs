@@ -152,8 +152,9 @@ namespace IssueTracker.Controllers
                 db.SaveChanges();
 
                 var newTicket = db.Tickets.AsNoTracking().FirstOrDefault(t => t.Id == ticket.Id);
-                ticketManager.EditedTicket(oldTicket, newTicket);
-                
+                ticketManager.ManageTicketNotifications(oldTicket, newTicket);
+                historyHelper.ManageHistories(oldTicket, newTicket);
+
                 //TODO: redirect to..... project?? ticket dashboard??
                 return RedirectToAction("Index");
             }

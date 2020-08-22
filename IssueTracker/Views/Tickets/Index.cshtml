@@ -58,10 +58,9 @@
                         <th></th>
                     </tr>
                 </thead>
-
-                @foreach (var item in Model)
-                {
-                    <tbody>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Project.Name)
@@ -81,9 +80,9 @@
                             <td>
                                 @if (item.DeveloperId != null)
                                 {
-                                    
+
                                     @Html.DisplayFor(modelItem => item.Developer.FullName)
-                                    
+
                                 }
                                 else
                                 {
@@ -106,18 +105,18 @@
                                 @Html.DisplayFor(modelItem => item.IsArchived)
                             </td>
                             <td>
-                                @*@if (ticketManager.CanEditTicket(item.Id))
-                                {*@
+                                @if (ticketManager.CanEditTicket(item.Id))
+                                {
                                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <span>|</span>
                                     @Html.ActionLink("Details", "Dashboard", new { id = item.Id })
-                                @*}*@
+                                }
 
                             </td>
 
                         </tr>
-                    </tbody>
-                }
 
+                    }
+                </tbody>
             </table>
         </div>
     </div>

@@ -48,7 +48,7 @@ namespace IssueTracker.Helpers
         {
             var userId = HttpContext.Current.User.Identity.GetUserId();
             var myRole = rolesHelper.ListUserRoles(userId).FirstOrDefault();
-            switch(myRole)
+            switch (myRole)
             {
                 case "Admin":
                     return true;
@@ -56,7 +56,7 @@ namespace IssueTracker.Helpers
                 case "Project Manager":
                     var user = db.Users.Find(userId);
                     return user.Projects.SelectMany(p => p.Tickets).Any(t => t.Id == ticketId);
-                
+
                 case "Developer":
                 case "Submitter":
                     var ticket = db.Tickets.Find(ticketId);
@@ -82,7 +82,7 @@ namespace IssueTracker.Helpers
 
         public void ManageTicketNotifications(Ticket oldTicket, Ticket newTicket)
         {
-            if(oldTicket.DeveloperId != newTicket.DeveloperId && newTicket.DeveloperId != null)
+            if (oldTicket.DeveloperId != newTicket.DeveloperId && newTicket.DeveloperId != null)
             {
                 var newNotification = new TicketNotification()
                 {
@@ -97,13 +97,49 @@ namespace IssueTracker.Helpers
                 db.SaveChanges();
             }
 
+
+
             //TODO Case 2: Ticket UN-assignment
 
+
             //TODO Case 3: Ticket RE-assignment => this could create two notifications - one for each Dev
+
+
+        }
+        public void AttachmentNotifications(Ticket ticket)
+        {
+
+            var newNotification = new TicketNotification()
+            {
+                TicketId = ticket.Id,
+                UserId = ticket.DeveloperId,
+                Created = DateTime.Now,
+                Subject = $"Attachment added on the {ticket.Project.Name} project.",
+                Body = $"Please take note, {ticket.Developer.FullName}; Support Ticket {ticket.Id} has a new attachment."
+            };
+
+            db.TicketNotifications.Add(newNotification);
+            db.SaveChanges();
         }
 
-       
+        public void CommentNotifications(Ticket ticket)
+        {
 
-    
+            var newNotification = new TicketNotification()
+            {
+                TicketId = ticket.Id,
+                UserId = ticket.DeveloperId,
+                Created = DateTime.Now,
+                Subject = $"New Comment added on the {ticket.Project.Name} project.",
+                Body = $"Please take note, {ticket.Developer.FullName}; Support Ticket {ticket.Id} has a new comment."
+            };
+
+            db.TicketNotifications.Add(newNotification);
+            db.SaveChanges();
+        }
+
+
+
+
     }
 }
