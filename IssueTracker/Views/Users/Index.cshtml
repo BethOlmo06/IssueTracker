@@ -4,6 +4,7 @@
     ViewBag.Title = "Index";
     var rolesHelper = new RolesHelper();
 }
+[authenticate]
 
 <h2>Users</h2>
 
@@ -33,9 +34,12 @@
             <td>
                 @rolesHelper.ListUserRoles(user.Id).FirstOrDefault()
             </td>
+            @if(User.IsInRole("Admin"))
+            {
             <td>
                 @Html.ActionLink("Manage Role", "ManageUserRole", new { id = user.Id })
             </td>
+            }
         </tr>
     }
 

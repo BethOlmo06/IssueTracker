@@ -71,21 +71,6 @@ namespace IssueTracker.Migrations
             //List<string> lastNames = new List<string>() { "Crommett", "Chivers", "Thomas", "Stroppa", "Alana" };
 
 
-            if (!context.Users.Any(u => u.Email == "betholmo@gmail.com"))
-            {
-                userManager.Create(new ApplicationUser()
-                {
-                    Email = "betholmo@gmail.com",
-                    UserName = "betholmo@gmail.com",
-                    FirstName = "Beth",
-                    LastName = "Olmo",
-                }, "OkiMomo06!");
-
-                var userId = userManager.FindByEmail("betholmo@gmail.com").Id;
-
-                userManager.AddToRole(userId, "Admin");
-            };
-
             if (!context.Users.Any(u => u.Email == "DemAd06@mailinator.com"))
             {
                 userManager.Create(new ApplicationUser()
@@ -99,22 +84,6 @@ namespace IssueTracker.Migrations
                 var userId = userManager.FindByEmail("DemAd06@mailinator.com").Id;
 
                 userManager.AddToRole(userId, "Admin");
-            };
-
-
-            if (!context.Users.Any(u => u.Email == "Okiboricua63@mailinator.com"))
-            {
-                userManager.Create(new ApplicationUser()
-                {
-                    Email = "Okiboricua63@mailinator.com",
-                    UserName = "Okiboricua63@mailinator.com",
-                    FirstName = "Orlando J",
-                    LastName = "Olmo, MBA, PMP",
-                }, "Abc&123");
-
-                var userId = userManager.FindByEmail("Okiboricua63@mailinator.com").Id;
-
-                userManager.AddToRole(userId, "Project Manager");
             };
 
             if (!context.Users.Any(u => u.Email == "DemPM14@mailinator.com"))
@@ -147,22 +116,6 @@ namespace IssueTracker.Migrations
                 userManager.AddToRole(userId, "Admin");
             };
 
-
-            if (!context.Users.Any(u => u.Email == "sebastiana@mailinator.com"))
-            {
-                userManager.Create(new ApplicationUser()
-                {
-                    Email = "sebastiana@mailinator.com",
-                    UserName = "sebastiana@mailinator.com",
-                    FirstName = "Sebastian",
-                    LastName = "Aravena",
-                }, "Abc&123");
-
-                var userId = userManager.FindByEmail("sebastiana@mailinator.com").Id;
-
-                userManager.AddToRole(userId, "Developer");
-            };
-
             if (!context.Users.Any(u => u.Email == "DemDev15@mailinator.com"))
             {
                 userManager.Create(new ApplicationUser()
@@ -191,22 +144,6 @@ namespace IssueTracker.Migrations
                 var userId = userManager.FindByEmail("DemDev16@mailinator.com").Id;
 
                 userManager.AddToRole(userId, "Developer");
-            };
-
-
-            if (!context.Users.Any(u => u.Email == "aliceog@mailinator.com"))
-            {
-                userManager.Create(new ApplicationUser()
-                {
-                    Email = "aliceog@mailinator.com",
-                    UserName = "aliceog@mailinator.com",
-                    FirstName = "Alice",
-                    LastName = "Guilfoyle",
-                }, "Abc&123");
-
-                var userId = userManager.FindByEmail("aliceog@mailinator.com").Id;
-
-                userManager.AddToRole(userId, "Submitter");
             };
 
             if (!context.Users.Any(u => u.Email == "DemSub16@mailinator.com"))
@@ -242,29 +179,28 @@ namespace IssueTracker.Migrations
             #endregion
 
             #region Role Assignment
-            var adminId = userManager.FindByEmail("betholmo@gmail.com").Id;
+
+
+            var adminId = userManager.FindByEmail("DemAd06@mailinator.com").Id;
             userManager.AddToRole(adminId, "Admin");
 
-            var adminId2 = userManager.FindByEmail("DemAd06@mailinator.com").Id;
-            userManager.AddToRole(adminId, "Admin");
+            var projId = userManager.FindByEmail("DemPM14@mailinator.com").Id;
+            userManager.AddToRole(projId, "Project Manager");
 
-            var projId = userManager.FindByEmail("Okiboricua63@mailinator.com").Id;
-            userManager.AddToRole(adminId, "Project Manager");
+            var projId2 = userManager.FindByEmail("DemPM15@mailinator.com").Id;
+            userManager.AddToRole(projId2, "Project Manager");
 
-            var projId2 = userManager.FindByEmail("DemPM14@mailinator.com").Id;
-            userManager.AddToRole(adminId, "Project Manager");
+            var devId = userManager.FindByEmail("DemDev15@mailinator.com").Id;
+            userManager.AddToRole(devId, "Developer");
 
-            var devId = userManager.FindByEmail("sebastiana@mailinator.com").Id;
-            userManager.AddToRole(adminId, "Developer");
+            var devId2 = userManager.FindByEmail("DemDev16@mailinator.com").Id;
+            userManager.AddToRole(devId2, "Developer");
 
-            var devId2 = userManager.FindByEmail("DemDev15@mailinator.com").Id;
-            userManager.AddToRole(adminId, "Developer");
+            var subId = userManager.FindByEmail("DemSub16@mailinator.com").Id;
+            userManager.AddToRole(subId, "Submitter");
 
-            var subId = userManager.FindByEmail("aliceog@mailinator.com").Id;
-            userManager.AddToRole(adminId, "Submitter");
-
-            var subId2 = userManager.FindByEmail("DemSub16@mailinator.com").Id;
-            userManager.AddToRole(adminId, "Submitter");
+            var subId2 = userManager.FindByEmail("DemSub17@mailinator.com").Id;
+            userManager.AddToRole(subId2, "Submitter");
 
             #endregion
 

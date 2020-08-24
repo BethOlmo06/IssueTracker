@@ -227,6 +227,7 @@
     <Content Include="Content\fonts.css" />
     <Content Include="Content\fonts.min.css" />
     <Content Include="Content\responsive.dataTables.css" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\fa-brands-400.svg" />
     <Content Include="fonts\fa-regular-400.svg" />
     <Content Include="fonts\fa-solid-900.svg" />
@@ -261,7 +262,6 @@
     <Content Include="Scripts\summernote-bs4.min.js" />
     <Content Include="Scripts\sweetalert.min.js" />
     <Content Include="Scripts\webfont.min.js" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\IssueTrackerSm.png" />
     <Content Include="Images\ITLogin2000x1140.png" />
