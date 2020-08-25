@@ -108,8 +108,8 @@
                                 @if (ticketManager.CanEditTicket(item.Id))
                                 {
                                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <span>|</span>
-                                    @Html.ActionLink("Details", "Dashboard", new { id = item.Id })
                                 }
+                                @Html.ActionLink("Details", "Dashboard", new { id = item.Id })
 
                             </td>
 
@@ -123,8 +123,7 @@
     @section scripts {
 
         <script>
-            $('#ticketTable').dataTable({
-            });
+            $('#ticketTable').dataTable();
         </script>
     }
 </body>

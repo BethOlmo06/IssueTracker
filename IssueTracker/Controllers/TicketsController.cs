@@ -13,7 +13,7 @@ using Microsoft.Exchange.WebServices.Data;
 
 namespace IssueTracker.Controllers
 {
-    [Authorize]
+    
     public class TicketsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -22,6 +22,7 @@ namespace IssueTracker.Controllers
         private HistoryHelper historyHelper = new HistoryHelper();
         private TicketManager ticketManager = new TicketManager();
 
+       
 
         // GET: Tickets
 
@@ -77,7 +78,7 @@ namespace IssueTracker.Controllers
         }
 
         // GET: Tickets/Create
-        //[Authorize (Roles = "Submitter")]
+       
         public ActionResult Create()
         {
             var userId = User.Identity.GetUserId();

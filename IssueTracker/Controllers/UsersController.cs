@@ -14,7 +14,7 @@ namespace IssueTracker.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         private RolesHelper roleHelper = new RolesHelper();
 
-        [Authorize]
+        
 
         // GET: Users
         public ActionResult Index()

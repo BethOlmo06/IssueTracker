@@ -74,6 +74,7 @@ namespace IssueTracker.Helpers
             }
         }
 
+
         public void EditedTicket(Ticket oldTicket, Ticket newTicket)
         {
             historyHelper.ManageHistories(oldTicket, newTicket);

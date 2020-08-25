@@ -3,7 +3,12 @@
 @{
     ViewBag.Title = "Home Page";
     var userHelper = new UserHelper();
+    
+
+    
 }
+
+<title>TrackIT | Beth Olmo</title>
 
 <div class="container">
     <div class="page-inner">
@@ -12,7 +17,7 @@
                 <a href="~/Projects/Index">
                     <div class="card card-dark bg-primary-gradient">
                         <div class="card-body pb-0">
-                            <div class="h1 fw-bold float-right">5</div>
+                            <div class="h1 fw-bold float-right"></div>
                             <h1 class="align-middle mb-5">Projects</h1>
                         </div>
                     </div>
@@ -20,10 +25,10 @@
             </div>
 
             <div class="col-md-4">
-                <a href="~/Tickets/Index">
+                <a href=@Url.Action("Index", "Tickets")>
                     <div class="card card-dark bg-secondary-gradient">
                         <div class="card-body pb-0">
-                            <div class="h1 fw-bold float-right">600</div>
+                            <div class="h1 fw-bold float-right"></div>
                             <h1 class="align-middle mb-5">Tickets</h1>
                         </div>
                     </div>
@@ -33,7 +38,7 @@
                 <a href="~/Users/Index">
                     <div class="card card-dark bg-success2">
                         <div class="card-body pb-0">
-                            <div class="h1 fw-bold float-right">7</div>
+                            <div class="h1 fw-bold float-right"></div>
                             <h1 class="align-middle mb-5">Users</h1>
                         </div>
                     </div>

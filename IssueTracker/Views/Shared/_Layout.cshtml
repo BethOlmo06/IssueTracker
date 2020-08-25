@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Issue Tracker App | Beth Olmo</title>
+    <title>TrackIT | Beth Olmo</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 
     <!-- Fonts and icons -->
@@ -12,14 +12,13 @@
     <script>
         WebFont.load({
             google: { "families": ["Lato:300,400,700,900"] },
-< link href = "~/Content/responsive.dataTables.css" rel = "stylesheet" />
-        custom: {
-            "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['~/Content/fonts.css']
-        },
+            custom: {
+                "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['~/Content/fonts.css']
+            },
             active: function () {
                 sessionStorage.fonts = true;
             }
-                });
+        });
     </script>
 
     <!-- CSS Files -->
@@ -64,7 +63,7 @@
             <nav class="navbar navbar-header navbar-expand-lg" data-background-color="dark">
 
                 <div class="container-fluid">
-                    <div class="collapse" id="search-nav">
+                    @*<div class="collapse" id="search-nav">
                         <form class="navbar-left navbar-form nav-search mr-md-3">
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -75,7 +74,7 @@
                                 <input type="text" placeholder="Search ..." class="form-control">
                             </div>
                         </form>
-                    </div>
+                    </div>*@
                     <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
                         <li class="nav-item toggle-nav-search hidden-caret">
                             <a class="nav-link" data-toggle="collapse" href="#search-nav" role="button"
@@ -93,7 +92,7 @@
                             </a>
                             <ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
                                 <li>
-                                    <div class="dropdown-title">You have 4 new notification</div>
+                                    <div class="dropdown-title">You have 4 new notifications</div>
                                 </li>
                                 <li>
                                     <div class="notif-scroll scrollbar-outer">
@@ -185,7 +184,7 @@
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="#">Account Setting</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Logout</a>
+                                        <a class="dropdown-item" href=@Url.Action("LogOff", "Account")>Logout</a>
                                     </li>
                                 </div>
                             </ul>
@@ -235,72 +234,43 @@
                             </div>
                         </div>
                     </div>
+                    <br />
                     <ul class="nav nav-primary">
                         <li class="nav-item active">
                             <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
                                 <i class="fas fa-home"></i>
-                                <p>Dashboard</p>
+                                <p>Go To My...</p>
                                 <span class="caret"></span>
                             </a>
                             <div class="collapse" id="dashboard">
                                 <ul class="nav nav-collapse">
                                     <li>
                                         <a href="../demo1/index.html">
-                                            <span class="sub-item">Dashboard 1</span>
+                                            <span class="sub-item">Projects</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="../demo2/index.html">
-                                            <span class="sub-item">Dashboard 2</span>
+                                            <span class="sub-item">Tickets</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="../demo3/index.html">
-                                            <span class="sub-item">Dashboard 3</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../demo4/index.html">
-                                            <span class="sub-item">Dashboard 4</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../demo5/index.html">
-                                            <span class="sub-item">Dashboard 5</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../demo6/index.html">
-                                            <span class="sub-item">Dashboard 6</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../demo7/index.html">
-                                            <span class="sub-item">Dashboard 7</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../demo8/index.html">
-                                            <span class="sub-item">Dashboard 8</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../demo9/index.html">
-                                            <span class="sub-item">Dashboard 9</span>
+                                            <span class="sub-item">Notifications</span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
                         <!-- COMPONENTS -->
-                        <li class="nav-section">
+                        <!--<li class="nav-section">
                             <span class="sidebar-mini-icon">
                                 <i class="fa fa-ellipsis-h"></i>
                             </span>
                             <h4 class="text-section">Components</h4>
-                        </li>
+                        </li>-->
                         <!-- BASE -->
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <a data-toggle="collapse" href="#base">
                                 <i class="fas fa-layer-group"></i>
                                 <p>Base</p>
@@ -375,41 +345,41 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li>-->
                         <!-- WIDGETS -->
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <a href="widgets.html">
                                 <i class="fas fa-desktop"></i>
                                 <p>Widgets</p>
                                 <span class="badge badge-success">4</span>
                             </a>
-                        </li>
+                        </li>-->
                         <!-- SNIPPETS -->
-                        <li class="nav-section">
+                        <!--<li class="nav-section">
                             <span class="sidebar-mini-icon">
                                 <i class="fa fa-ellipsis-h"></i>
                             </span>
                             <h4 class="text-section">Snippets</h4>
-                        </li>
+                        </li>-->
                         <!-- PROJECTS -->
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <a href="projects.html">
                                 <i class="fas fa-file-signature"></i>
                                 <p>Projects</p>
                                 <span class="badge badge-count">5</span>
                             </a>
-                        </li>
+                        </li>-->
                         <!-- BOARDS -->
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <a href="boards.html">
                                 <i class="fas fa-th-list"></i>
                                 <p>Boards</p>
                                 <span class="badge badge-count">4</span>
                             </a>
-                        </li>
+                        </li>-->
 
                         <!-- MENU LEVELS -->
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <a data-toggle="collapse" href="#submenu">
                                 <i class="fas fa-bars"></i>
                                 <p>Menu Levels</p>
@@ -459,7 +429,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
             </div>

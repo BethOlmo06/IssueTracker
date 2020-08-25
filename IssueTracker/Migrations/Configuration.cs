@@ -67,9 +67,6 @@ namespace IssueTracker.Migrations
             var DemoDevPassword = WebConfigurationManager.AppSettings["DemoDevPassword"];
             var DemoSubPassword = WebConfigurationManager.AppSettings["DemoSubPassword"];
 
-            //List<string> firstNames = new List<string>() { "Erin", "Tiffany", "Traci", "Emelia", "Mikayla" };
-            //List<string> lastNames = new List<string>() { "Crommett", "Chivers", "Thomas", "Stroppa", "Alana" };
-
 
             if (!context.Users.Any(u => u.Email == "DemAd06@mailinator.com"))
             {
