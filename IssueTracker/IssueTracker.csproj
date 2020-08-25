@@ -236,6 +236,7 @@
     <Content Include="Images\ajax-loader.gif" />
     <Content Include="Images\DefaultAvatar40x40.png" />
     <Content Include="Images\owl.video.play.png" />
+    <Content Include="Images\TrackIT100x40.png" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap-notify.min.js" />
     <Content Include="Scripts\bootstrap-tagsinput.min.js" />

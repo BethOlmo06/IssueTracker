@@ -539,7 +539,7 @@ namespace IssueTracker.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("DemoLogin", "Account");
         }
 
         //
