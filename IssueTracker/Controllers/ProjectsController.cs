@@ -21,6 +21,7 @@ namespace IssueTracker.Controllers
         private RolesHelper rolesHelper = new RolesHelper();
         private ProjectHelper projectHelper = new ProjectHelper();
 
+        [Authorize]
 
         // GET: Projects
         public ActionResult Index()

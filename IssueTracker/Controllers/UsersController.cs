@@ -14,13 +14,14 @@ namespace IssueTracker.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         private RolesHelper roleHelper = new RolesHelper();
 
+        [Authorize]
 
         // GET: Users
         public ActionResult Index()
         {
             return View(db.Users.ToList());
         }
-
+        [Authorize (Roles = "Admin")]
         public ActionResult ManageUserRole(string id)
         {
             if(id == null)

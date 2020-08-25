@@ -230,7 +230,7 @@ namespace IssueTracker.Controllers
                         var svc = new EmailService();
                         await svc.SendAsync(email);
 
-                        //return View("EmailConfirm");
+                        return View("ConfirmEmail");
 
                     }
                     catch (Exception ex)

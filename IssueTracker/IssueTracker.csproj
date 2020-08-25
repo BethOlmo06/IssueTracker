@@ -390,6 +390,7 @@
     <Content Include="Views\Assignments\ManageProjectUsers.cshtml" />
     <Content Include="Views\Projects\ProjectWizard.cshtml" />
     <Content Include="Views\Account\DemoLogin.cshtml" />
+    <None Include="Properties\PublishProfiles\BethOlmo-IssueTracker - Web Deploy.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

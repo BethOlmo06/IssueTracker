@@ -9,10 +9,10 @@ namespace BethOlmo_blog.Models
     public class EmailModel
     {
 
-        [Display(Name = "FromName")]
+        [Required, Display(Name = "FromName")]
         public string FromName { get; set; }
 
-        [Display(Name = "Email"), EmailAddress]
+        [Required, Display(Name = "Email"), EmailAddress]
         public string FromEmail { get; set; }
 
         [Required]
