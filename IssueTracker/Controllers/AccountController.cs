@@ -192,7 +192,7 @@ namespace IssueTracker.Controllers
                     LastName = model.LastName,
                     UserName = model.Email,
                     Email = model.Email,
-                    AvatarPath = "/Images/DefaultAvatar40x40.png"
+                    AvatarPath = WebConfigurationManager.AppSettings["DefaultAvatarPath"]
                 };
 
                 if(model.Avatar != null)
@@ -490,7 +490,7 @@ namespace IssueTracker.Controllers
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+                    return View("ExternalLoginConfirmation", new CustomExternalRegister { Email = loginInfo.Email });
             }
         }
 
@@ -499,7 +499,7 @@ namespace IssueTracker.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
+        public async Task<ActionResult> ExternalLoginConfirmation(CustomExternalRegister model, string returnUrl)
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -514,7 +514,14 @@ namespace IssueTracker.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    UserName = model.Email,
+                    Email = model.Email,
+                    AvatarPath = WebConfigurationManager.AppSettings["DefaultAvatarPath"]
+                };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

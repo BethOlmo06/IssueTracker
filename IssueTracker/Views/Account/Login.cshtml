@@ -1,10 +1,10 @@
 ﻿@using IssueTracker.Models
+
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
     Layout = null;
 }
-<div>
     <head>
         <!-- Fonts and icons -->
         <script src="~/Scripts/webfont.min.js"></script>
@@ -28,12 +28,12 @@
 
         <title>Login - Issue Tracker | Beth Olmo</title>
     </head>
-</div>
+
 
 <body class="login">
     <div class="wrapper wrapper-login wrapper-login-full p-0">
         <div class="login-aside w-50 d-flex flex-column align-items-center justify-content-center text-center bg-secondary-gradient-account">
-            <h1 class="title fw-bold text-white mb-3">Issue Tracker</h1>
+            <h1 class="title fw-bold text-white mb-3">TrackIT</h1>
             <p class="subtitle text-white op-7">Support ticket tracking and management app.</p>
         </div>
         <div class="login-aside w-50 d-flex align-items-center justify-content-center bg-white">
@@ -53,7 +53,7 @@
 
                         <div class="form-group">
                             <label for="password" class="placeholder"><b>Password</b></label>
-                            <a href="#" class="link float-right">Forgot Password?</a>
+                            <a href='@Url.Action("ForgotPassword", "Account")' class="link float-right">Forgot Password?</a>
                             <div class="position-relative">
                                 <input id="password" name="password" type="password" class="form-control" required>
                                 <div class="show-password">
@@ -73,9 +73,9 @@
 
                             <a href="~/Account/Register" class="btn btn-block btn-secondary">Create a New Account</a>
                             <a href="~/Account/demologin" class="btn btn-block btn-success">Log In As A Demo User</a>
-
                         </div>
                     }
+                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
                 </div>
             </div>
         </div>

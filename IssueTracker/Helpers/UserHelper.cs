@@ -1,5 +1,6 @@
 ﻿using IssueTracker.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.Exchange.WebServices.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,10 @@ namespace IssueTracker.Helpers
 
         public string GetFullName(string userId)
         {
+            if (string.IsNullOrEmpty(userId))
+            {
+                return "Anonymous User";
+            }
             var user = db.Users.Find(userId);
             var firstName = user.FirstName;
             var lastName = user.LastName;
@@ -27,8 +32,15 @@ namespace IssueTracker.Helpers
 
         public string GetUserRole()
         {
+       
+            
+            if (HttpContext.Current.User == null)
+            {
+                return "No Role";
+            }
             var userId = HttpContext.Current.User.Identity.GetUserId();
-            return null;
+            return "test";
+
         }
 
         public string GetUserRole(string userId)
