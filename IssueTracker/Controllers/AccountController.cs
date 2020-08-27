@@ -219,18 +219,18 @@ namespace IssueTracker.Controllers
 
                     try
                     {
-                        var from = "Issue Tracker<issuetrackerclientcare@gmail.com>";
+                        var from = "TrackIT<issuetrackerclientcare@gmail.com>";
                         var email = new MailMessage(from, model.Email)
                         {
                             Subject = "Confirm Your Account",
-                            Body = "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>",
+                            Body = "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here.</a>",
                             IsBodyHtml = true
                         };
 
                         var svc = new EmailService();
                         await svc.SendAsync(email);
 
-                        return View("ConfirmEmail");
+                        //return View("ConfirmEmail");
 
                     }
                     catch (Exception ex)
@@ -282,7 +282,7 @@ namespace IssueTracker.Controllers
 
                 try
                 {
-                    var from = "Issue Tracker<issuetrackerclientcare@gmail.com>";
+                    var from = "TrackIT<issuetrackerclientcare@gmail.com>";
                     var email = new MailMessage(from, model.Email)
                     {
                         Subject = "Confirm Your Account",
@@ -346,7 +346,7 @@ namespace IssueTracker.Controllers
                     var email = new MailMessage(from, model.Email)
                     {
                         Subject = "Reset Password",
-                        Body = "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>",
+                        Body = "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here.</a>",
                         IsBodyHtml = true
                     };
 

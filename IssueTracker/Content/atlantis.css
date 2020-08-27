@@ -14170,7 +14170,7 @@ img.mfp-img {
     padding: 60px 15px !important; } }
 /*     	Page 404     */
 .page-not-found {
-  background-image: url("https://via.placeholder.com/2000/0000FF/808080?Text=Background");
+  background-image: url("~/Images/ITAboutB1920x1280.png");
   background-size: cover;
   background-position: center;
   image-rendering: pixelated; }

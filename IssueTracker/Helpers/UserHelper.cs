@@ -16,7 +16,7 @@ namespace IssueTracker.Helpers
         {
             if (string.IsNullOrEmpty(userId))
             {
-                return "Anonymous User";
+                return "";
             }
             var user = db.Users.Find(userId);
             var firstName = user.FirstName;
@@ -30,22 +30,22 @@ namespace IssueTracker.Helpers
             return user.FullName;
         }
 
-        public string GetUserRole()
-        {
+        //public string GetUserRole()
+        //{
        
             
-            if (HttpContext.Current.User == null)
-            {
-                return "No Role";
-            }
-            var userId = HttpContext.Current.User.Identity.GetUserId();
-            return "test";
+        //    if (HttpContext.Current.User == null)
+        //    {
+        //        return "No Role";
+        //    }
+        //    var userId = HttpContext.Current.User.Identity.GetUserId();
+        //    return userId;
 
-        }
+        //}
 
-        public string GetUserRole(string userId)
-        {
-            return null;
-        }
+        //public string GetUserRole(string userId)
+        //{
+        //    return null;
+        //}
     }
 }

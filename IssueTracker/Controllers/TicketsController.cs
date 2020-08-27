@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using IssueTracker.Helpers;
@@ -144,7 +145,7 @@ namespace IssueTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ProjectId,TicketPriorityId,TicketStatusId,TicketTypeId,SubmitterId,DeveloperId,Issue,IssueDescription,Created,Updated,IsResolved,IsArchived")] Ticket ticket)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,ProjectId,TicketPriorityId,TicketStatusId,TicketTypeId,SubmitterId,DeveloperId,Issue,IssueDescription,Created,Updated,IsResolved,IsArchived")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
@@ -153,7 +154,7 @@ namespace IssueTracker.Controllers
                 db.SaveChanges();
 
                 var newTicket = db.Tickets.AsNoTracking().FirstOrDefault(t => t.Id == ticket.Id);
-                ticketManager.ManageTicketNotifications(oldTicket, newTicket);
+               await ticketManager.ManageTicketNotifications(oldTicket, newTicket);
                 historyHelper.ManageHistories(oldTicket, newTicket);
 
                 //TODO: redirect to..... project?? ticket dashboard??
