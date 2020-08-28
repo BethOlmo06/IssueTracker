@@ -14,6 +14,7 @@ namespace IssueTracker.Models
     public class CustomExternalRegister : ExternalLoginConfirmationViewModel
     {
         [Required]
+        
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
@@ -93,7 +94,6 @@ namespace IssueTracker.Models
         public string ConfirmPassword { get; set; }
     }
 
-
     public class ExtendedRegisterViewModel : RegisterViewModel
     {
         [Required]
@@ -108,7 +108,6 @@ namespace IssueTracker.Models
 
         public HttpPostedFileBase Avatar { get; set; }
     }
-
 
     public class ResetPasswordViewModel
     {

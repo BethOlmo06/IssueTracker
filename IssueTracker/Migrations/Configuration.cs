@@ -76,7 +76,8 @@ namespace IssueTracker.Migrations
                     UserName = "DemAd06@mailinator.com",
                     FirstName = "Admiral",
                     LastName = "Grace Hopper",
-                }, DemoAdminPassword);
+                    AvatarPath = "/Avatars/AdmHopperAvatar40x40.png"
+                }, DemoAdminPassword); ;
 
                 var userId = userManager.FindByEmail("DemAd06@mailinator.com").Id;
 
@@ -91,6 +92,7 @@ namespace IssueTracker.Migrations
                     UserName = "DemPM14@mailinator.com",
                     FirstName = "Kamilah",
                     LastName = "Taylor",
+                    AvatarPath = "/Avatars/KamilahTAvatar40x40.png"
                 }, DemoPMPassword);
 
                 var userId = userManager.FindByEmail("DemPM14@mailinator.com").Id;
@@ -106,6 +108,7 @@ namespace IssueTracker.Migrations
                     UserName = "DemPM15@mailinator.com",
                     FirstName = "Katherine",
                     LastName = "Goble Johnson",
+                    AvatarPath = "/Avatars/KathGJnsnAvatar40x40.png"
                 }, DemoPMPassword);
 
                 var userId = userManager.FindByEmail("DemPM15@mailinator.com").Id;
@@ -121,6 +124,7 @@ namespace IssueTracker.Migrations
                     UserName = "DemDev15@mailinator.com",
                     FirstName = "Maria",
                     LastName = "Gutierrez",
+                    AvatarPath = "/Avatars/MGutierrezAvatar40x40.png"
                 }, DemoDevPassword);
 
                 var userId = userManager.FindByEmail("DemDev15@mailinator.com").Id;
@@ -136,6 +140,7 @@ namespace IssueTracker.Migrations
                     UserName = "DemDev16@mailinator.com",
                     FirstName = "Dorothy",
                     LastName = "Vaughan",
+                    AvatarPath = "/Avatars/DorothyVaughanAvatar40x40.png"
                 }, DemoDevPassword);
 
                 var userId = userManager.FindByEmail("DemDev16@mailinator.com").Id;
@@ -151,6 +156,7 @@ namespace IssueTracker.Migrations
                     UserName = "DemSub16@mailinator.com",
                     FirstName = "Dr.",
                     LastName = "Jamika Burge",
+                    AvatarPath = "/Avatars/DrBurgeAvatar40x40.png"
                 }, DemoSubPassword);
 
                 var userId = userManager.FindByEmail("DemSub16@mailinator.com").Id;
@@ -166,6 +172,7 @@ namespace IssueTracker.Migrations
                     UserName = "DemSub17@mailinator.com",
                     FirstName = "Mary",
                     LastName = "Jackson",
+                    AvatarPath = "/Avatars/MaryJacksonAvatar40x40.png"
                 }, DemoSubPassword);
 
                 var userId = userManager.FindByEmail("DemSub17@mailinator.com").Id;

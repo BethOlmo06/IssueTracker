@@ -193,6 +193,7 @@ namespace IssueTracker.Controllers
                     UserName = model.Email,
                     Email = model.Email,
                     AvatarPath = WebConfigurationManager.AppSettings["DefaultAvatarPath"]
+                    //AvatarPath = "/Images/DefaultAvatar40x40.png"
                 };
 
                 if(model.Avatar != null)
@@ -239,7 +240,7 @@ namespace IssueTracker.Controllers
                         await Task.FromResult(0);
                     }
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("ConfirmationSent", "Account");
                 }
                 AddErrors(result);
             }

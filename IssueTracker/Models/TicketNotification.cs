@@ -22,7 +22,7 @@ namespace IssueTracker.Models
 
         #region Actual Properties
         public string Subject { get; set; }
-        public string Body { get; set; }
+        public string Message { get; set; }
 
         public bool IsRead { get; set; }
 

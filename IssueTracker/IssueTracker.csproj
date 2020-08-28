@@ -220,6 +220,13 @@
     <Compile Include="ViewModels\ProjectWizardVM.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Avatars\AdmHopperAvatar40x40.png" />
+    <Content Include="Avatars\DorothyVaughanAvatar40x40.png" />
+    <Content Include="Avatars\DrBurgeAvatar40x40.png" />
+    <Content Include="Avatars\KamilahTAvatar40x40.png" />
+    <Content Include="Avatars\KathGJnsnAvatar40x40.png" />
+    <Content Include="Avatars\MaryJacksonAvatar40x40.png" />
+    <Content Include="Avatars\MGutierrezAvatar40x40.png" />
     <Content Include="Content\atlantis.css" />
     <Content Include="Content\atlantis2.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -233,7 +240,7 @@
     <Content Include="fonts\Flaticon.svg" />
     <Content Include="fonts\Simple-Line-Icons.svg" />
     <Content Include="Images\ajax-loader.gif" />
-    <Content Include="Images\DefaultAvatar40x40.png" />
+    <Content Include="Avatars\DefaultAvatar40x40.png" />
     <Content Include="Images\ITAboutC1920x1200.png" />
     <Content Include="Images\ITAboutD1920x900.png" />
     <Content Include="Images\owl.video.play.png" />
@@ -360,7 +367,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Avatars\" />
     <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
