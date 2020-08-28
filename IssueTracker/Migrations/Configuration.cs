@@ -28,7 +28,7 @@ namespace IssueTracker.Migrations
 
         }
 
-        #region Roles Creation
+            #region Roles Creation
 
         protected override void Seed(IssueTracker.Models.ApplicationDbContext context)
         {
@@ -97,7 +97,7 @@ namespace IssueTracker.Migrations
 
                 var userId = userManager.FindByEmail("DemPM14@mailinator.com").Id;
 
-                userManager.AddToRole(userId, "Admin");
+                userManager.AddToRole(userId, "Project Manager");
             };
 
             if (!context.Users.Any(u => u.Email == "DemPM15@mailinator.com"))
@@ -113,7 +113,7 @@ namespace IssueTracker.Migrations
 
                 var userId = userManager.FindByEmail("DemPM15@mailinator.com").Id;
 
-                userManager.AddToRole(userId, "Admin");
+                userManager.AddToRole(userId, "Project Manager");
             };
 
             if (!context.Users.Any(u => u.Email == "DemDev15@mailinator.com"))
@@ -279,6 +279,7 @@ namespace IssueTracker.Migrations
                 {
                     projectHelper.AddUserToProject(user.Id, project.Id);
                 }
+
                 projectHelper.AddUserToProject(projectManagers[random.Next(projectManagers.Count)].Id, project.Id);
 
                 var firstDev = developers[random.Next(developers.Count)].Id;

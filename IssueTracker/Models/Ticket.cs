@@ -21,9 +21,9 @@ namespace IssueTracker.Models
 
         public int TicketTypeId { get; set; }
 
-        public string SubmitterId { get; set; } //OwnerUser
+        public string SubmitterId { get; set; }
 
-        public string DeveloperId { get; set; } //AssignedToUser
+        public string DeveloperId { get; set; }
 
         public virtual ApplicationUser Submitter { get; set; }
 

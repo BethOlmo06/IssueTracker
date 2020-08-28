@@ -131,7 +131,7 @@ namespace IssueTracker.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DeveloperId = new SelectList(db.Users, "Id", "FullName", ticket.DeveloperId);
+            ViewBag.DeveloperId = new SelectList(projectHelper.ListUsersOnProjectInRole("Developer", ticket.ProjectId ), "Id", "FullName", ticket.DeveloperId);
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", ticket.ProjectId);
             ViewBag.SubmitterId = new SelectList(db.Users, "Id", "FullName", ticket.SubmitterId);
             ViewBag.TicketPriorityId = new SelectList(db.TicketPriorities, "Id", "Name", ticket.TicketPriorityId);
