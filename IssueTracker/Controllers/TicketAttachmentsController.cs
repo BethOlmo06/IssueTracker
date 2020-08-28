@@ -40,16 +40,7 @@ namespace IssueTracker.Controllers
             return View(ticketAttachment);
         }
 
-        // GET: TicketAttachments/Create
-
-        //JASON DELETED THIS CREATE BUT I'M LEAVING IT COMMENTED OUT FOR NOW, PURELY OUT OF FEAR
-
-        //public ActionResult Create()
-        //{
-        //    ViewBag.TicketId = new SelectList(db.Tickets, "Id", "SubmitterId");
-        //    ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
-        //    return View();
-        //}
+        
 
 
         // POST: TicketAttachments/Create

@@ -193,7 +193,6 @@ namespace IssueTracker.Controllers
                     UserName = model.Email,
                     Email = model.Email,
                     AvatarPath = WebConfigurationManager.AppSettings["DefaultAvatarPath"]
-                    //AvatarPath = "/Images/DefaultAvatar40x40.png"
                 };
 
                 if(model.Avatar != null)
