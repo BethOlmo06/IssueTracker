@@ -30,22 +30,13 @@ namespace IssueTracker.Helpers
             return user.FullName;
         }
 
-        //public string GetUserRole()
-        //{
-       
-            
-        //    if (HttpContext.Current.User == null)
-        //    {
-        //        return "No Role";
-        //    }
-        //    var userId = HttpContext.Current.User.Identity.GetUserId();
-        //    return userId;
+        public string GetAvatarPath()
+        {
+            var userId = HttpContext.Current.User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            return user.AvatarPath;
+        }
 
-        //}
 
-        //public string GetUserRole(string userId)
-        //{
-        //    return null;
-        //}
     }
 }

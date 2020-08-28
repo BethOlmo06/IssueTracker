@@ -241,10 +241,12 @@
     <Content Include="fonts\Simple-Line-Icons.svg" />
     <Content Include="Images\ajax-loader.gif" />
     <Content Include="Avatars\DefaultAvatar40x40.png" />
+    <Content Include="Images\ComingSoon400x200.png" />
     <Content Include="Images\ITAboutC1920x1200.png" />
     <Content Include="Images\ITAboutD1920x900.png" />
     <Content Include="Images\owl.video.play.png" />
     <Content Include="Images\TrackIT100x40.png" />
+    <Content Include="Images\TrackITLight100x40.png" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap-notify.min.js" />
     <Content Include="Scripts\bootstrap-tagsinput.min.js" />

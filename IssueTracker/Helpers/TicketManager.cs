@@ -11,11 +11,20 @@ namespace IssueTracker.Helpers
 {
     public class TicketManager
     {
-        private RolesHelper rolesHelper = new RolesHelper();
         private ApplicationDbContext db = new ApplicationDbContext();
+        private RolesHelper rolesHelper = new RolesHelper();
         private HistoryHelper historyHelper = new HistoryHelper();
         EmailService svc = new EmailService();
         string from = "TrackIT app<issuetrackerclientcare@gmail.com>";
+
+        //public List<Ticket> ListUserTickets(string userId)
+        //{
+        //    var user = db.Users.Find(userId);
+        //    var resultList = new List<Ticket>();
+        //    resultList.AddRange(user.Tickets);
+        //    return resultList;
+        //}
+
         public bool CanEditTicket(int ticketId)
         {
             var userId = HttpContext.Current.User.Identity.GetUserId();
