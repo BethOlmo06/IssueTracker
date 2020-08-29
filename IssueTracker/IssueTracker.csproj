@@ -401,6 +401,7 @@
     <Content Include="Views\Projects\ProjectWizard.cshtml" />
     <Content Include="Views\Account\DemoLogin.cshtml" />
     <None Include="Properties\PublishProfiles\BethOlmo-IssueTracker - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\EKOTrackIT - Web Deploy.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
