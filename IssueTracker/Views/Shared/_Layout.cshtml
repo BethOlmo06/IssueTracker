@@ -24,8 +24,6 @@
     <!-- CSS Files -->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/atlantis.css" rel="stylesheet" />
-    
-    <link href="~/Content/fonts.min.css" rel="stylesheet" />
     <link href="~/Content/datatables.css" rel="stylesheet" />
     <link href="~/Content/responsive.dataTables.css" rel="stylesheet" />
 
@@ -157,9 +155,17 @@
                         @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
                         {
                             <li class="nav-item">
-                                <a class="btn btn-success mt-xl-5" href=@Url.Action("ProjectWizard", "Projects")><span class="btn-label"></span>Create Project</a>
+                                <a class="btn btn-success mt-xl-5" href=@Url.Action("ProjectWizard", "Projects")><span class="btn-label"></span>New Project</a>
                             </li>
                         }
+
+                        @if (User.IsInRole("Submitter")) {
+                            <li class="nav-item">
+                                <a class="btn btn-success mt-xl-5" href=@Url.Action("Create", "Tickets")><span class="btn-label"></span>New Ticket</a>
+                            </li>
+                        }
+                        
+                        
 
                         @if (User.IsInRole("Admin"))
                         {
@@ -167,7 +173,7 @@
                                 <a class="btn btn-success mt-xl-5" href=@Url.Action("ManageUserRole", "Users")><span class="btn-label"></span>User Role</a>
                             </li>
                         }
-                        
+
 
                         <li class="nav-item">
                             <a class="btn btn-danger mt-xl-5" href=@Url.Action("Login", "Account")><span class="btn-label"></span>Log Off</a>

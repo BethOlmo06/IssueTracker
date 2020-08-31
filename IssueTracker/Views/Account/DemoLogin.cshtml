@@ -22,7 +22,7 @@
     <link href="~/Content/fonts.min.css" rel="stylesheet" />
     <link href="~/Content/atlantis.css" rel="stylesheet" />
     <link href="~/Content/atlantis2.css" rel="stylesheet" />
-     
+
     <title>Demo Login - TrackIT | Beth Olmo</title>
 </head>
 
@@ -43,6 +43,7 @@
                         @Html.Hidden("passwordKey", "DemoAdminPassword")
                         <div class="login-account">
                             <button type="submit" class="btn btn-block btn-secondary">Administrator</button>
+                            <p class="mb-3">Control everything.</p>
                         </div>
                     }
 
@@ -53,6 +54,7 @@
                         @Html.Hidden("passwordKey", "DemoPMPassword")
                         <div class="login-account">
                             <button type="submit" class="btn btn-block btn-secondary">Project Manager</button>
+                            <p class="mb-3">Manage projects and team members.</p>
                         </div>
                     }
 
@@ -63,6 +65,7 @@
                         @Html.Hidden("passwordKey", "DemoDevPassword")
                         <div class="login-account">
                             <button type="submit" class="btn btn-block btn-secondary">Developer</button>
+                            <p class="mb-3">Manage assigned tickets.</p>
                         </div>
                     }
 
@@ -73,6 +76,7 @@
                         @Html.Hidden("passwordKey", "DemoSubPassword")
                         <div class="login-account">
                             <button type="submit" class="btn btn-block btn-secondary">Ticket Submitter</button>
+                            <p class="mb-3">Create tickets.</p>
                         </div>
                     }
 
