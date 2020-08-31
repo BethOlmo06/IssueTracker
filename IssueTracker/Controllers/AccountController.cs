@@ -14,6 +14,7 @@ using System.Configuration;
 using System.IO;
 using IssueTracker.Helpers;
 using System.Web.Configuration;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace IssueTracker.Controllers
 {
@@ -22,6 +23,7 @@ namespace IssueTracker.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        
 
         public AccountController()
         {
@@ -186,14 +188,15 @@ namespace IssueTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser
+                var user = new ApplicationUser 
+                
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     UserName = model.Email,
                     Email = model.Email,
                     AvatarPath = WebConfigurationManager.AppSettings["DefaultAvatarPath"]
-                };
+                };  
 
                 if(model.Avatar != null)
                 {
@@ -206,12 +209,11 @@ namespace IssueTracker.Controllers
                     }
                     
                 }
-
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
+                    UserManager.AddToRole(user.Id, "Submitter");
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

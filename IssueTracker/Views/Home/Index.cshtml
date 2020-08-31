@@ -65,9 +65,7 @@
                                     <th>
                                         Created On
                                     </th>
-                                    <th>
-                                        Is Archived?
-                                    </th>
+                                    
                                     <th></th>
                                 </tr>
                             </thead>
@@ -75,17 +73,24 @@
                                 @foreach (var item in projectHelper.ListUserProjects(User.Identity.GetUserId()))
                                 {
 
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Name)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Created)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.IsArchived)
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Created)
+                                    </td>
+                                    
+                                    @if(User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+                                    {
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", "Projects", new { id = item.Id }, null) |
+                                    @Html.ActionLink("Details", "Details", "Projects", new { id = item.Id }, null)
+                                </td>
+
+                                    }
+
+                                </tr>
                                 }
                             </tbody>
                         </table>

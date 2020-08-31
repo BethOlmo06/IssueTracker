@@ -15,10 +15,12 @@ namespace IssueTracker.Helpers
 
 
         public bool IsUserOnProject(string userId, int projectId)
-
+             
         {
             Project project = db.Projects.Find(projectId);
-            return project.Users.Any(u => u.Id == userId);
+            var user = db.Users.Find(userId);
+            return (project.Users.Contains(user));
+         
         }
         //Add one or more users to a project
         public void AddUserToProject(string userId, int projectId)

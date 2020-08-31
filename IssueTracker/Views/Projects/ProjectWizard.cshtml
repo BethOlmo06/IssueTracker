@@ -37,21 +37,21 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.ProjectManagerId, "ProjectManagerId", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.Label("Project Manager", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.DropDownList("ProjectManagerId", null, htmlAttributes: new { @class = "control-label col-md-2" })
                             </div>
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.DeveloperIds, "DeveloperIds", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.Label("Developer", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.ListBox("DeveloperIds", null, htmlAttributes: new { @class = "control-label col-md-2" })
                             </div>
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.SubmitterIds, "SubmitterIds", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.Label("Ticket Submitter", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.ListBox("SubmitterIds", null, htmlAttributes: new { @class = "control-label col-md-2" })
                             </div>

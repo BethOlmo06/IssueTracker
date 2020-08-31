@@ -31,7 +31,7 @@ namespace IssueTracker.Controllers
         {
             return View(db.Tickets.ToList());
         }
-
+        
         public ActionResult GetProjectTickets() //for Project Managers to see tickets
         {                                     //belonging to projects to which they are assigned
             var userId = User.Identity.GetUserId();
@@ -41,7 +41,7 @@ namespace IssueTracker.Controllers
             return View("Index", ticketList);
         }
 
-
+        
         public ActionResult GetMyTickets()
         {
             var userId = User.Identity.GetUserId();
@@ -79,7 +79,7 @@ namespace IssueTracker.Controllers
         }
 
         // GET: Tickets/Create
-       
+       [Authorize]
         public ActionResult Create()
         {
             var userId = User.Identity.GetUserId();
@@ -120,6 +120,7 @@ namespace IssueTracker.Controllers
         }
 
         // GET: Tickets/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)

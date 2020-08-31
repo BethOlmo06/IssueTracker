@@ -48,7 +48,7 @@ namespace IssueTracker.Controllers
         }
 
         // GET: Projects/Create
-        
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -73,7 +73,7 @@ namespace IssueTracker.Controllers
 
             return View(project);
         }
-
+        
         public ActionResult ProjectWizard()
         {
             ViewBag.ProjectManagerId = new SelectList(rolesHelper.UsersInRole("Project Manager" ), "Id", "FullName");
@@ -137,7 +137,7 @@ namespace IssueTracker.Controllers
 
 
         // GET: Projects/Edit/5
-        
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -186,16 +186,16 @@ namespace IssueTracker.Controllers
         }
 
         // POST: Projects/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
         
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Project project = db.Projects.Find(id);
-            db.Projects.Remove(project);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Project project = db.Projects.Find(id);
+        //    db.Projects.Remove(project);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {

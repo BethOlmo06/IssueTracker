@@ -24,6 +24,8 @@
     <!-- CSS Files -->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/atlantis.css" rel="stylesheet" />
+    
+    <link href="~/Content/fonts.min.css" rel="stylesheet" />
     <link href="~/Content/datatables.css" rel="stylesheet" />
     <link href="~/Content/responsive.dataTables.css" rel="stylesheet" />
 
@@ -44,9 +46,9 @@
             <div class="logo-header" data-background-color="dark2">
 
                 <a href="~/Home/Index" class="logo">
-                    <img src="~/Images/TrackITLight100x40.png" alt="navbar brand" class="navbar-brand">
+                    <img src="~/Images/TrackIT1Light100x40.png" alt="navbar brand" class="navbar-brand">
                 </a>
-                <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
+                @*<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                         data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon">
                         <i class="icon-menu"></i>
@@ -57,26 +59,26 @@
                     <button class="btn btn-toggle toggle-sidebar">
                         <i class="icon-menu"></i>
                     </button>
-                </div>
+                </div>*@
             </div>
             <!-- End Logo Header -->
             <!-- Navbar Header -->
             <nav class="navbar navbar-header navbar-expand-lg" data-background-color="dark">
 
-                <div class="container-fluid">
+                <!--<div class="container-fluid">
                     <nav class="pull-right">
                         <ul class="nav">
                             <li class="nav-item">
                             </li>
                             
                            
-                    <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+                    <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">-->
                         <!-- NOTIFICATIONS HERE -->
                         <!-- QUICK ACTION ITEMS CODE HERE -->
                         <!-- QUICK SIDEBAR CODE HERE-->
                         <!-- PROFILE DROPDOWN w LOG IN/OUT, ETC-->
-                    </ul>
-                </div>
+                    <!--</ul>
+                </div>-->
             </nav>
             <!-- End Navbar -->
         </div>
@@ -93,16 +95,16 @@
                             }
                         </div>
                         <div class="info">
-                            <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+                            @*<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">*@
                                 <span>
                                     @user
                                     <span class="user-level"></span>
-                                    <span class="caret"></span>
+                                    @*<span class="caret"></span>*@
                                 </span>
-                            </a>
+                            @*</a>*@
                             <div class="clearfix"></div>
 
-                            <div class="collapse in" id="collapseExample">
+                            @*<div class="collapse in" id="collapseExample">
                                 <ul class="nav">
                                     <li>
                                         <a href="#profile">
@@ -116,45 +118,62 @@
                                     </li>
                                     
                                 </ul>
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                     <br />
                     <ul class="nav nav-primary">
-                        
+
                         @*<li class="nav-item active mb-xl-5">
-                            <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
-                                <i class="fas fa-briefcase"></i>
-                                <p>Go To My...</p>
-                                <span class="caret"></span>
-                            </a>
-                            <div class="collapse" id="dashboard">
-                                <ul class="nav nav-collapse">
-                                    <li>
-                                        <a href="../demo1/index.html">
-                                            <span class="sub-item">Projects</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../demo2/index.html">
-                                            <span class="sub-item">Tickets</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../demo3/index.html">
-                                            <span class="sub-item">Notifications</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>*@
+            <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                <i class="fas fa-briefcase"></i>
+                <p>Go To My...</p>
+                <span class="caret"></span>
+            </a>
+            <div class="collapse" id="dashboard">
+                <ul class="nav nav-collapse">
+                    <li>
+                        <a href="../demo1/index.html">
+                            <span class="sub-item">Projects</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../demo2/index.html">
+                            <span class="sub-item">Tickets</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../demo3/index.html">
+                            <span class="sub-item">Notifications</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>*@
                         <li class="nav-item">
-                            <a class="btn btn-warning mb-xl-5" href=@Url.Action("About", "Home")><span class="btn-label"><i class="fa fa-info"></i></span>About</a>
+                            <a class="btn btn-warning mb-xl-5" href=@Url.Action("About", "Home")><span class="btn-label"></span>About</a>
                         </li>
 
+                        @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-success mt-xl-5" href=@Url.Action("ProjectWizard", "Projects")><span class="btn-label"></span>Create Project</a>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-success mt-xl-5" href=@Url.Action("ManageUserRole", "Users")><span class="btn-label"></span>User Role</a>
+                            </li>
+                        }
+                        
+
                         <li class="nav-item">
-                            <a class="btn btn-danger mt-xl-5" href=@Url.Action("Login", "Account")><span class="btn-label"><i class="fas fa-sign-out-alt"></i></span>Log Off</a>
+                            <a class="btn btn-danger mt-xl-5" href=@Url.Action("Login", "Account")><span class="btn-label"></span>Log Off</a>
                         </li>
+
+
 
                     </ul>
                 </div>
@@ -222,52 +241,16 @@
     <!-- jQuery Validation -->
     <script src="~/Scripts/jquery.validate.min.js"></script>
 
-    <!-- Summernote -->
-    <script src="~/Scripts/summernote-bs4.min.js"></script>
-
     <!-- Select2 -->
     <script src="~/Scripts/select2.full.min.js"></script>
 
     <!-- Sweet Alert -->
     <script src="~/Scripts/sweetalert.min.js"></script>
 
-    <!-- Owl Carousel SURELY NEEDS -->
-    <script src="~/Scripts/owl.carousel.min.js"></script>
-
-    <!-- Magnific Popup -->
-    <script src="~/Scripts/jquery.magnific-popup.min.js"></script>
-
     <!-- Atlantis JS -->
     <script src="~/Scripts/atlantis.js"></script>
 
-    <script>
-        $('#lineChart').sparkline([102, 109, 120, 99, 110, 105, 115], {
-            type: 'line',
-            height: '70',
-            width: '100%',
-            lineWidth: '2',
-            lineColor: 'rgba(255, 255, 255, .5)',
-            fillColor: 'rgba(255, 255, 255, .15)'
-        });
-
-        $('#lineChart2').sparkline([99, 125, 122, 105, 110, 124, 115], {
-            type: 'line',
-            height: '70',
-            width: '100%',
-            lineWidth: '2',
-            lineColor: 'rgba(255, 255, 255, .5)',
-            fillColor: 'rgba(255, 255, 255, .15)'
-        });
-
-        $('#lineChart3').sparkline([105, 103, 123, 100, 95, 105, 115], {
-            type: 'line',
-            height: '70',
-            width: '100%',
-            lineWidth: '2',
-            lineColor: 'rgba(255, 255, 255, .5)',
-            fillColor: 'rgba(255, 255, 255, .15)'
-        });
-    </script>
+    
     @RenderSection("scripts", required: false)
 </body>
 
