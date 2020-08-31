@@ -246,9 +246,8 @@
     <Content Include="Images\ITAboutC1920x1200.png" />
     <Content Include="Images\ITAboutD1920x900.png" />
     <Content Include="Images\owl.video.play.png" />
+    <Content Include="Images\TrackIT1.1Light100x40.png" />
     <Content Include="Images\TrackIT100x40.png" />
-    <Content Include="Images\TrackIT1Light100x40.png" />
-    <Content Include="Images\TrackITLight100x40.png" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap-notify.min.js" />
     <Content Include="Scripts\bootstrap-tagsinput.min.js" />

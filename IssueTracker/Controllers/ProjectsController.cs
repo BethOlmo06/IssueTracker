@@ -23,6 +23,7 @@ namespace IssueTracker.Controllers
 
 
         // GET: Projects
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Projects.ToList());
@@ -68,6 +69,7 @@ namespace IssueTracker.Controllers
                 project.IsArchived = false;
                 db.Projects.Add(project);
                 db.SaveChanges();
+                projectHelper.AddUserToProject(User.Identity.GetUserId(), project.Id);
                 return RedirectToAction("Index");
             }
 
@@ -81,6 +83,7 @@ namespace IssueTracker.Controllers
             ViewBag.SubmitterIds = new MultiSelectList(rolesHelper.UsersInRole("Submitter"), "Id", "FullName");
             ViewBag.Errors = "";
             var model = new ProjectWizardVM();
+
             return View(model);
         }
 
@@ -113,6 +116,7 @@ namespace IssueTracker.Controllers
                 project.IsArchived = false;
                 db.Projects.Add(project);
                 db.SaveChanges();
+                projectHelper.AddUserToProject(User.Identity.GetUserId(), project.Id);
 
                 projectHelper.AddUserToProject(model.ProjectManagerId, project.Id);
                 foreach(var userId in model.DeveloperIds)

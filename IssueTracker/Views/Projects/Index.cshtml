@@ -57,12 +57,12 @@
                                 </td>
                             }
 
-                            @*@if (projectHelper.IsUserOnProject(userId, projectId)) 
-                            {*@
+                            @if (projectHelper.IsUserOnProject(User.Identity.GetUserId(), item.Id)) 
+                            {
                                 <td>
                                     @Html.ActionLink("Details", "Details", new { id = item.Id })
                                 </td>
-                            @*}*@
+                            }
                             
                         </tr>
                         }

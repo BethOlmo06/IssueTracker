@@ -249,11 +249,11 @@ namespace IssueTracker.Migrations
             #region Project Seed
             context.Projects.AddOrUpdate(
                 p => p.Name,
-                new Project() { Name = "Seed 1", Created = DateTime.Now.AddDays(-60), IsArchived = true },
-                new Project() { Name = "Seed 2", Created = DateTime.Now.AddDays(-45) },
-                new Project() { Name = "Seed 3", Created = DateTime.Now.AddDays(-30) },
-                new Project() { Name = "Seed 4", Created = DateTime.Now.AddDays(-15) },
-                new Project() { Name = "Seed 5", Created = DateTime.Now.AddDays(-7) }
+                new Project() { Name = "SEO Crawler", Created = DateTime.Now.AddDays(-60), IsArchived = true },
+                new Project() { Name = "eCommerce Build", Created = DateTime.Now.AddDays(-45) },
+                new Project() { Name = "Distance Learning Build", Created = DateTime.Now.AddDays(-30) },
+                new Project() { Name = "Podcasting Integration", Created = DateTime.Now.AddDays(-15) },
+                new Project() { Name = "Federal Contracting Dashboard", Created = DateTime.Now.AddDays(-7) }
                 );
 
             #endregion
