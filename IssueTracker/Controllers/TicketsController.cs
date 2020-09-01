@@ -26,7 +26,7 @@ namespace IssueTracker.Controllers
        
 
         // GET: Tickets
-
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Tickets.ToList());
@@ -158,6 +158,7 @@ namespace IssueTracker.Controllers
                 await ticketManager.EditedTicket(oldTicket, newTicket);
                 await ticketManager.ManageTicketNotifications(oldTicket, newTicket);
                 historyHelper.ManageHistories(oldTicket, newTicket);
+                db.SaveChanges();
 
                 //TODO: redirect to..... project?? ticket dashboard??
                 return RedirectToAction("Index");

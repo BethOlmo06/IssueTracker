@@ -17,13 +17,7 @@ namespace IssueTracker.Helpers
         EmailService svc = new EmailService();
         string from = "TrackIT app<issuetrackerclientcare@gmail.com>";
 
-        //public List<Ticket> ListUserTickets(string userId)
-        //{
-        //    var user = db.Users.Find(userId);
-        //    var resultList = new List<Ticket>();
-        //    resultList.AddRange(user.Tickets);
-        //    return resultList;
-        //}
+     
 
         public bool CanEditTicket(int ticketId)
         {

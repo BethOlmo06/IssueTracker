@@ -37,6 +37,8 @@
             <div class="container container-signup container-transparent animated fadeIn">
                 <h3 class="text-center">Create Your Account</h3>
                 
+                <h4 class="font-italic text-center">New users have Read-Only access.</h4>
+                <br />
                 <div class="login-form">
                     @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {

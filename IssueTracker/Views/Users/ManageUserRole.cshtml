@@ -3,30 +3,32 @@
 @model ApplicationUser
 @{
     ViewBag.Title = "ManageUserRoles";
+    var rolesHelper = new RolesHelper();
 }
 
 
-<h2>Manage User Roles</h2>
+<div class="container">
+    <div class="page-inner">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Manage User Role for:</h5>
+                <br />
 
-<div class="row">
-    <div class="col-3 text-center h2">
-
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @*@Html.DisplayFor(model => user.FullName)*@
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        @Html.DropDownList("RoleName", "-- NO ROLE --")
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-success btnWide">Save Changes</button>
+                    </div>
+                }
+            </div>
+        </div>
     </div>
 </div>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    <div class="row">
-
-        <div class="col-4">
-            @Html.DropDownList("RoleName", "-- NO ROLE --")
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-3">
-            <button type="submit" class="btn btn-success btnWide">Manage Role</button>
-        </div>
-    </div>
-}

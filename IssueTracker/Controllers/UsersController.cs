@@ -17,6 +17,7 @@ namespace IssueTracker.Controllers
         
 
         // GET: Users
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Users.ToList());
