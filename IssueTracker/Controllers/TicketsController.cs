@@ -151,6 +151,7 @@ namespace IssueTracker.Controllers
             if (ModelState.IsValid)
             {
                 var oldTicket = db.Tickets.AsNoTracking().FirstOrDefault(t => t.Id == ticket.Id);
+                ticket.Updated = DateTime.Now;
                 db.Entry(ticket).State = EntityState.Modified;
                 db.SaveChanges();
 
@@ -158,6 +159,7 @@ namespace IssueTracker.Controllers
                 await ticketManager.EditedTicket(oldTicket, newTicket);
                 await ticketManager.ManageTicketNotifications(oldTicket, newTicket);
                 historyHelper.ManageHistories(oldTicket, newTicket);
+                
                 db.SaveChanges();
 
                 //TODO: redirect to..... project?? ticket dashboard??

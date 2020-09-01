@@ -6,8 +6,6 @@
     var projectHelper = new ProjectHelper();
     var ticketManager = new TicketManager();
 
-
-
 }
 
 <title>TrackIT | Beth Olmo</title>
@@ -55,7 +53,7 @@
                         <div class="card-title">My Projects</div>
                     </div>
                     <div class="card-body">
-                        <table class="table" id="myProjectsTable">
+                        <table class="table" id="projectTable">
                             <thead>
                                 <tr>
                                     <th>
@@ -64,9 +62,12 @@
                                     <th>
                                         Created On
                                     </th>
-
-                                    <th></th>
-                                </tr>
+                                    @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+                                    {
+                                        <th></th>
+                                    }
+                                        <th></th>
+                                    </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in projectHelper.ListUserProjects(User.Identity.GetUserId()))
@@ -77,16 +78,20 @@
                                             @Html.DisplayFor(modelItem => item.Name)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Created)
+                                            @Html.DisplayName(item.Created.ToString("MM/dd/yyyy"))
                                         </td>
+
+
 
                                         @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
                                         {
                                             <td>
                                                 @Html.ActionLink("Edit", "Edit", "Projects", new { id = item.Id }, null)
-
                                             </td>
                                         }
+
+
+
                                         <td>
                                             @Html.ActionLink("Details", "Details", "Projects", new { id = item.Id }, null)
                                         </td>
@@ -100,7 +105,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Top Tickets</div>
+                        <div class="card-title">My Top Tickets</div>
                     </div>
                     <div class="card-body">
                         <table class="table" id="ticketTable">
@@ -116,23 +121,43 @@
                                         Status
                                     </th>
                                     <th>
-                                        Type
-                                    </th>
-
-                                    <th>
-                                        Issue
-                                    </th>
-                                    <th>
                                         Created
                                     </th>
                                     <th>
                                         Updated
                                     </th>
-
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach (var item in ticketManager.MyTopTickets())
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Project.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TicketPriority.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TicketStatus.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayName(item.Created.ToString("MM/dd/yyyy"))
+                                        </td>
+                                        <td>
+                                            @Html.DisplayName(item.Updated.ToString())
+                                        </td>
+                                        <td>
+                                            @if (ticketManager.CanEditTicket(item.Id))
+                                            {
+                                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <span>|</span>
+                                                @Html.ActionLink("Details", "Dashboard", new { id = item.Id })
+                                            }
+
+                                        </td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -141,10 +166,15 @@
             </div>
 
         </div>
- 
+
 
     </div>
 </div>
+@section scripts {
+
+    <script>$('#projectTable').dataTable();</script>
+    <script>$('#ticketTable').dataTable();</script>
+}
 <footer class="footer">
 
     <div class="container-fluid">
@@ -155,10 +185,5 @@
     </div>
 </footer>
 
-@section scripts {
-    <script>
-        $('#myProjectsTable').dataTable({});
-    </script>
 
-}
 

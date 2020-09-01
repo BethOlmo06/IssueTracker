@@ -79,6 +79,57 @@ namespace IssueTracker.Helpers
             }
         }
 
+        public List<Ticket> GetMyTickets()
+        {
+            var myTickets = new List<Ticket>();
+            var userId = HttpContext.Current.User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var myRole = rolesHelper.ListUserRoles(userId).FirstOrDefault();
+            
+            switch (myRole)
+            {
+                case "Admin":
+                    myTickets.AddRange(db.Tickets);
+                    break;
+                case "Project Manager":
+                    myTickets.AddRange(user.Projects.Where(p => p.IsArchived == false).SelectMany(p => p.Tickets));
+                    myTickets.AddRange(user.Projects.SelectMany(p => p.Tickets));
+                    break;
+                case "Developer":
+                    myTickets.AddRange(db.Tickets.Where(t => t.IsArchived == false).Where(testc => testc.DeveloperId == userId));
+                    break;
+                case "Submitter":
+                    myTickets.AddRange(db.Tickets.Where(t => t.IsArchived == false).Where(t => t.SubmitterId == userId));
+                    break;
+            }
+            return myTickets;
+        }
+
+        public List<Ticket> MyTopTickets()
+        {
+            var myTickets = new List<Ticket>();
+            var userId = HttpContext.Current.User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var myRole = rolesHelper.ListUserRoles(userId).FirstOrDefault();
+
+            switch (myRole)
+            {
+                case "Admin":
+                    myTickets.AddRange(user.Projects.Where(p => !p.IsArchived).SelectMany(p => p.Tickets).Where(t => t.TicketPriority.Name == "High"));
+                    break;
+                case "Project Manager":
+                    myTickets.AddRange(user.Projects.Where(p => !p.IsArchived).SelectMany(p => p.Tickets).Where(t => t.TicketPriority.Name == "High"));
+                    break;
+                case "Developer":
+                    myTickets.AddRange(db.Tickets.Where(t => !t.IsArchived && !t.IsResolved && t.DeveloperId == userId && t.TicketPriority.Name == "High"));
+                    break;
+                case "Submitter":
+                    myTickets.AddRange(db.Tickets.Where(t => !t.IsArchived && !t.IsResolved && t.SubmitterId == userId && t.TicketPriority.Name == "High"));
+                    break;
+            }
+            return myTickets;
+        }
+
 
         public async Task EditedTicket(Ticket oldTicket, Ticket newTicket)
         {

@@ -9,18 +9,15 @@
 
 <div class="container">
     <div class="page-inner">
-        <div class="card" style="width: 18rem;">
+        <div class="card text-center" style="width: 36rem;">
             <div class="card-body">
-                <h5 class="card-title">Manage User Role for:</h5>
-                <br />
+                <h2 class="card-title">Manage User Role for:</h2>
+                <h4 class="mt-xl-3">@Model.FullName</h4>
 
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
-                    <div class="form-group">
-                        @*@Html.DisplayFor(model => user.FullName)*@
-                    </div>
-                    <br />
+                    
                     <div class="form-group">
                         @Html.DropDownList("RoleName", "-- NO ROLE --")
                     </div>

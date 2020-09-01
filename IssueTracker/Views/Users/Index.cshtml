@@ -34,9 +34,9 @@
                         </tr>
                     </thead>
 
-                    @foreach (var user in Model)
-                    {
-                        <tbody>
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
                             <tr>
                                 <td>
                                     @Html.DisplayFor(model => user.FullName)
@@ -52,60 +52,26 @@
                                     <td>
                                         @Html.ActionLink("Manage Role", "ManageUserRole", new { id = user.Id })
                                     </td>
-                                    <!-- Button trigger modal -->
-                                    @*<button type="button" class="btn btn-success" data-toggle="modal" data-target="#userRoleModal">
-                                        Manage Role
-                                    </button>*@
 
-                                    <!-- Modal -->
-                                    @*<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalCenterTitle">Manage User Role</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    @using (Html.BeginForm())
-                                                    {
-                                                        @Html.AntiForgeryToken()
-                                                        <div class="row">
-                                                            <div class="col-4">
-                                                                @Html.DropDownList("RoleName", "-- NO ROLE --")
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-success">Save Change</button>
-                                                        </div>
-                                                    }
-                                                </div>
-                                            </div>
-                                        </div>*@
                                 }
                             </tr>
-                        </tbody>
-                    }
-
+                        }
+                    </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
 @section scripts {
-    <script>
-var message = '@TempData["Message"]';
-if(message != '') {
-Swal.fire(
-'Role Change Saved',
-message,
-'success'
-    )
-}
-    </script>
 
     <script>$('#userTable').dataTable();</script>
 }
+<footer class="footer">
+
+    <div class="container-fluid">
+        <img src="~/Images/TrackIT1.1Light100x40.png" />
+        <div class="copyright ml-auto">
+            <p>&copy; @DateTime.Now.Year - <a href="//betholmo-portfolio.netlify.app/" target="_blank">Beth Olmo</a></p>
+        </div>
+    </div>
+</footer>

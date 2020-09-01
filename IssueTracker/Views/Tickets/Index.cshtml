@@ -102,18 +102,33 @@
                                         @Html.DisplayFor(modelItem => item.Issue)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Created)
+                                        @Html.DisplayName(item.Created.ToString("MM/dd/yyyy"))
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Updated)
-
+                                        @Html.DisplayName(item.Updated.ToString())
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.IsResolved)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.IsArchived)
-                                    </td>
+                                    @if (item.IsResolved)
+                                    {
+                                        <td>
+                                            <p>Resolved</p>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                        </td>
+                                    }
+                                    @if (item.IsArchived)
+                                    {
+                                        <td>
+                                            <p>Archived</p>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                        </td>
+                                    }
                                     <td>
                                         @if (ticketManager.CanEditTicket(item.Id))
                                         {
@@ -121,11 +136,8 @@
                                             @Html.ActionLink("Details", "Dashboard", new { id = item.Id })
                                         }
 
-
                                     </td>
-
                                 </tr>
-
                             }
                         </tbody>
                     </table>
@@ -136,9 +148,7 @@
 
     @section scripts {
 
-        <script>
-            $('#ticketTable').dataTable();
-        </script>
+        <script>$('#ticketTable').dataTable();</script>
     }
 </body>
 <footer class="footer">

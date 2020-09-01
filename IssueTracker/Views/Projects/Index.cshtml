@@ -46,11 +46,21 @@
                                     @Html.DisplayFor(modelItem => item.Name)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Created)
+                                    @Html.DisplayName(item.Created.ToString("MM/dd/yyyy"))
                                 </td>
+                                @if (item.IsArchived)
+                                {
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.IsArchived)
+                                    <p>Archived</p>
                                 </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        
+                                    </td>
+                                }
+
                                 @if (User.IsInRole("Admin") || (User.IsInRole("Project Manager")))
                                 {
                                     <td>
