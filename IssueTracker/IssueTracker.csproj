@@ -233,7 +233,12 @@
     <Content Include="Content\datatables.css" />
     <Content Include="Content\fonts.css" />
     <Content Include="Content\fonts.min.css" />
+    <Content Include="Content\responsive.bootstrap4.min.css" />
     <Content Include="Content\responsive.dataTables.css" />
+    <Content Include="Content\responsive.dataTables.min.css" />
+    <Content Include="Content\responsive.foundation.min.css" />
+    <Content Include="Content\responsive.jqueryui.min.css" />
+    <Content Include="Content\responsive.semanticui.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fa-brands-400.svg" />
     <Content Include="fonts\fa-regular-400.svg" />
@@ -268,6 +273,11 @@
     <Content Include="Scripts\list.min.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\owl.carousel.min.js" />
+    <Content Include="Scripts\responsive.bootstrap4.min.js" />
+    <Content Include="Scripts\responsive.dataTables.min.js" />
+    <Content Include="Scripts\responsive.foundation.min.js" />
+    <Content Include="Scripts\responsive.jqueryui.min.js" />
+    <Content Include="Scripts\responsive.semanticui.min.js" />
     <Content Include="Scripts\select2.full.min.js" />
     <Content Include="Scripts\sortable.min.js" />
     <Content Include="Scripts\sticky-sidebar.min.js" />
