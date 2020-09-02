@@ -21,8 +21,12 @@
                     <h4>Priority: @Model.TicketPriority.Name</h4>
                     <h4>Status: @Model.TicketStatus.Name</h4>
                     <h4>Type: @Model.TicketType.Name</h4>
-                    <h4>Assigned To: @Model.Developer.FullName</h4>
-                    
+                    @if (Model.DeveloperId != null)
+                    {
+                        <h4>Assigned To: @Model.Developer.FullName</h4>
+                    }
+
+
                 </div>
             </div>
             <br />
@@ -256,3 +260,12 @@
 
     }
 </body>
+<footer class="footer">
+
+    <div class="container-fluid">
+        <img src="~/Images/TrackIT1.1Light100x40.png" />
+        <div class="copyright ml-auto">
+            <p>&copy; @DateTime.Now.Year - <a href="//betholmo-portfolio.netlify.app/" target="_blank">Beth Olmo</a></p>
+        </div>
+    </div>
+</footer>

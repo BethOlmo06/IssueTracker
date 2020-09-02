@@ -1,98 +1,118 @@
 ﻿@using Microsoft.AspNet.Identity;
+@using IssueTracker.Helpers;
 @model IssueTracker.Models.Project
 
 @{
     ViewBag.Title = "Details";
+    var projectHelper = new ProjectHelper();
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Project</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Created)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Created)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsArchived)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsArchived)
-        </dd>
-
-    </dl>
-</div>
-
-<hr />
-@if (User.IsInRole("Submitter"))
-{
-    using (Html.BeginForm("Create", "Tickets", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>Ticket</h4>
-            <p>This project has @Model.Tickets.Count ticket(s).</p>
+<div class="container">
+    <div class="page-inner">
+        <div>
             <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.Hidden("ProjectId", Model.Id)
+            <dl class="dl-horizontal">
+                <dt>
+                    Project Name
+                </dt>
 
-            <div class="form-group">
-                @Html.Label("Ticket Priority", "TicketPriorityId", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("TicketPriorityId", null, htmlAttributes: new { @class = "form-control" })
-                </div>
-            </div>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
 
-            <div class="form-group">
-                @Html.Label("Ticket Type", "TicketTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("TicketTypeId", null, htmlAttributes: new { @class = "form-control" })
-                </div>
-            </div>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Created)
+                </dt>
 
-            <div class="form-group">
-                @Html.Label("Issue", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.Editor("Issue", new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-            </div>
+                <dd>
+                    @Html.DisplayFor(model => model.Created)
+                </dd>
 
-            <div class="form-group">
-                @Html.Label("Description", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextArea("Description", new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-            </div>
+                <dt>
+                </dt>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
+                @if (Model.IsArchived)
+                {
+                    <dd>
+                        <p>ARCHIVED</p>
+                    </dd>
+                }
+                else
+                {
+                    <dd>
+                        
+                    </dd>
+                }
+
+            </dl>
         </div>
-    }
 
-}
+        <hr />
+        @if (User.IsInRole("Submitter"))
+        {
+            using (Html.BeginForm("Create", "Tickets", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
 
-<hr />
+                <div class="form-horizontal">
+                    <h4>Tickets</h4>
+                    <p>This project has @Model.Tickets.Count ticket(s).</p>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.Hidden("ProjectId", Model.Id)
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                    <div class="form-group">
+                        @Html.Label("Ticket Priority", "TicketPriorityId", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("TicketPriorityId", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Ticket Type", "TicketTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("TicketTypeId", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Issue", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.Editor("Issue", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Description", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextArea("Description", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+        }
+
+        <hr />
+
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>
+<footer class="footer">
+
+    <div class="container-fluid">
+        <img src="~/Images/TrackIT1.1Light100x40.png" />
+        <div class="copyright ml-auto">
+            <p>&copy; @DateTime.Now.Year - <a href="//betholmo-portfolio.netlify.app/" target="_blank">Beth Olmo</a></p>
+        </div>
+    </div>
+</footer>
