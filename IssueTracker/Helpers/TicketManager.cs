@@ -130,6 +130,13 @@ namespace IssueTracker.Helpers
             return myTickets;
         }
 
+        public List<Ticket> ListProjectTickets(int projectId)
+        {
+            var projTickets = new List<Ticket>();
+            var project = db.Projects.Find(projectId);
+            return projTickets;
+        }
+
 
         public async Task EditedTicket(Ticket oldTicket, Ticket newTicket)
         {

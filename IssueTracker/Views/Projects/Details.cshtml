@@ -5,108 +5,142 @@
 @{
     ViewBag.Title = "Details";
     var projectHelper = new ProjectHelper();
+    var rolesHelper = new RolesHelper();
+    var ticketManager = new TicketManager();
 }
 
-<div class="container">
-    <div class="page-inner">
-        <div>
-            <hr />
-            <dl class="dl-horizontal">
-                <dt>
-                    Project Name
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Name)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Created)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Created)
-                </dd>
-
-                <dt>
-                </dt>
-
-                @if (Model.IsArchived)
-                {
-                    <dd>
-                        <p>ARCHIVED</p>
-                    </dd>
-                }
-                else
-                {
-                    <dd>
-                        
-                    </dd>
-                }
-
-            </dl>
-        </div>
-
-        <hr />
-        @if (User.IsInRole("Submitter"))
-        {
-            using (Html.BeginForm("Create", "Tickets", FormMethod.Post))
-            {
-                @Html.AntiForgeryToken()
-
-                <div class="form-horizontal">
-                    <h4>Tickets</h4>
-                    <p>This project has @Model.Tickets.Count ticket(s).</p>
-                    <hr />
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.Hidden("ProjectId", Model.Id)
-
-                    <div class="form-group">
-                        @Html.Label("Ticket Priority", "TicketPriorityId", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("TicketPriorityId", null, htmlAttributes: new { @class = "form-control" })
-                        </div>
+<body>
+    <div class="container">
+        <div class="page-inner">
+            <div class="col-md-4">
+                <div class="card card-dark bg-primary-gradient">
+                    <div class="card-body pb-lg-0">
+                        <div class="h1 fw-bold float-right"></div>
+                        <h1 class="align-middle mb-5">Project Details</h1>
                     </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col">
+                            <div class="row"><h2>Name: @Html.DisplayFor(model => model.Name) </h2></div>
+                            <div class="row"><h3>Created: @Html.DisplayFor(model => model.Created)</h3></div>
+                            <div class="row">
+                                @if (Model.IsArchived)
+                                {
+                                    <h5>ARCHIVED</h5>
+                                }
+                                else
+                                {
+                                    <p></p>
+                                }
+                            </div>
+                            <br />
 
-                    <div class="form-group">
-                        @Html.Label("Ticket Type", "TicketTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("TicketTypeId", null, htmlAttributes: new { @class = "form-control" })
-                        </div>
-                    </div>
+                            @if (User.IsInRole("Submitter"))
+                            {
+                                using (Html.BeginForm("Create", "Tickets", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
 
-                    <div class="form-group">
-                        @Html.Label("Issue", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.Editor("Issue", new { htmlAttributes = new { @class = "form-control" } })
-                        </div>
-                    </div>
+                                    <div class="form-horizontal">
+                                        <h3>Add a New Ticket</h3>
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.Hidden("ProjectId", Model.Id)
 
-                    <div class="form-group">
-                        @Html.Label("Description", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.TextArea("Description", new { htmlAttributes = new { @class = "form-control" } })
-                        </div>
-                    </div>
+                                        <div class="form-group">
+                                            @Html.Label("Ticket Priority", "TicketPriorityId", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.DropDownList("TicketPriorityId", null, htmlAttributes: new { @class = "form-control" })
+                                            </div>
+                                        </div>
 
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Create" class="btn btn-default" />
+                                        <div class="form-group">
+                                            @Html.Label("Ticket Type", "TicketTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.DropDownList("TicketTypeId", null, htmlAttributes: new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.Label("Issue", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.Editor("Issue", new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.Label("Issue Description", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                            @Html.TextArea("IssueDescription", htmlAttributes: new { @class = "textarea form-control" })
+
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Create" class="btn btn-success mr-5" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            <br />
+                            <hr />
+                            <div class="row mt-5"><h2>Tickets</h2></div>
+                            <br />
+                            <div class="row mb-xl-5">
+                                <table class="table" id="ticketTable">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Issue
+                                            </th>
+                                            <th>
+                                                Priority
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var ticket in Model.Tickets)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => ticket.Project.Name)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => ticket.TicketPriority.Name)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => ticket.TicketStatus.Name)
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("Details", "Dashboard", "Tickets", new { id = ticket.Id }, null)
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br />
+                            <a class="btn btn-success mr-2" href=@Url.Action("Edit", "Projects")><span class="btn-label"></span>Edit Project</a>
+                            <a class="btn btn-warning mr-2" href=@Url.Action("Index", "Home")><span class="btn-label"></span>Dashboard</a>
+                            <a class="btn btn-danger" href=@Url.Action("Index", "Projects")><span class="btn-label"></span>All Projects</a>
                         </div>
                     </div>
                 </div>
-            }
-
-        }
-
-        <hr />
-
-        <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-            @Html.ActionLink("Back to List", "Index")
-        </p>
+            </div>
+        </div>
     </div>
-</div>
+</body>
+@section scripts {
+
+    <script>$('#ticketTable').dataTable({ responsive: true });</script>
+}
 <footer class="footer">
 
     <div class="container-fluid">

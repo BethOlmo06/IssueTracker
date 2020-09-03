@@ -50,14 +50,13 @@
                                 </td>
                                 @if (item.IsArchived)
                                 {
-                                <td>
-                                    <p>Archived</p>
-                                </td>
+                                    <td>
+                                        <p>Archived</p>
+                                    </td>
                                 }
                                 else
                                 {
                                     <td>
-                                        
                                     </td>
                                 }
 
@@ -84,8 +83,9 @@
                 <hr />
                 @if (User.IsInRole("Admin"))
                 {
-                    <a class="btn btn-success" href=@Url.Action("ProjectWizard", "Projects")><span class="btn-label"></span>Create New</a>
+                    <a class="btn btn-success mr-2" href=@Url.Action("ProjectWizard", "Projects")><span class="btn-label"></span>Create New</a>
                 }
+                    <a class="btn btn-warning" href=@Url.Action("Index", "Home")><span class="btn-label"></span>Dashboard</a>
             </div>
         </div>
     </div>

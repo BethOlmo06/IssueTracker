@@ -19,6 +19,7 @@ table.dataTable {
   clear: both;
   border-collapse: separate;
   border-spacing: 0;
+  color: #fff;
   /*
    * Header and footer styles
    */

@@ -49,15 +49,16 @@
                                 </td>
                                 @if (User.IsInRole("Admin"))
                                 {
-                                    <td>
-                                        @Html.ActionLink("Manage Role", "ManageUserRole", new { id = user.Id })
-                                    </td>
+                            <td>
+                                @Html.ActionLink("Manage Role", "ManageUserRole", new { id = user.Id })
+                            </td>
 
                                 }
                             </tr>
                         }
                     </tbody>
                 </table>
+                <a class="btn btn-warning" href=@Url.Action("Index", "Home")><span class="btn-label"></span>Dashboard</a>
             </div>
         </div>
     </div>
