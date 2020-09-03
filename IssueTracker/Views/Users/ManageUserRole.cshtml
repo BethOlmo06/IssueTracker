@@ -6,26 +6,30 @@
     var rolesHelper = new RolesHelper();
 }
 
+<title>Manage User Role - TrackIT | Beth Olmo</title>
 
 <div class="container">
     <div class="page-inner">
-        <div class="card text-center" style="width: 36rem;">
-            <div class="card-body">
-                <h2 class="card-title">Manage User Role for:</h2>
-                <h4 class="mt-xl-3">@Model.FullName</h4>
+        <div class="col-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h2 class="card-title">Manage User Role for:</h2>
+                    <h4 class="mt-xl-3">@Model.FullName</h4>
 
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-                    
-                    <div class="form-group">
-                        @Html.DropDownList("RoleName", "-- NO ROLE --")
-                    </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-success btnWide">Save Changes</button>
-                    </div>
-                }
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group">
+                            @Html.DropDownList("RoleName", "-- NO ROLE --")
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success btnWide">Save Changes</button>
+                        </div>
+                    }
+                </div>
             </div>
+            <a class="btn btn-warning mr-1" href=@Url.Action("Index", "Home")><span class="btn-label"></span>Dashboard</a>
         </div>
     </div>
 </div>
