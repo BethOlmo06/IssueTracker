@@ -1,5 +1,7 @@
 ﻿@using Microsoft.AspNet.Identity;
 @using IssueTracker.Helpers;
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +36,7 @@
     var userId = User.Identity.GetUserId();
     var user = userHelper.GetFullName(userId);
     var userAvatar = userHelper.GetAvatarPath();
-    
+
 }
 
 <body data-background-color="dark">
@@ -47,17 +49,17 @@
                     <img src="~/Images/TrackIT1.1Light100x40.png" alt="navbar brand" class="navbar-brand">
                 </a>
                 @*<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
-                        data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon">
-                        <i class="icon-menu"></i>
-                    </span>
-                </button>
-                <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
-                <div class="nav-toggle">
-                    <button class="btn btn-toggle toggle-sidebar">
-                        <i class="icon-menu"></i>
+                            data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon">
+                            <i class="icon-menu"></i>
+                        </span>
                     </button>
-                </div>*@
+                    <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+                    <div class="nav-toggle">
+                        <button class="btn btn-toggle toggle-sidebar">
+                            <i class="icon-menu"></i>
+                        </button>
+                    </div>*@
             </div>
             <!-- End Logo Header -->
             <!-- Navbar Header -->
@@ -68,14 +70,14 @@
                         <ul class="nav">
                             <li class="nav-item">
                             </li>
-                            
-                           
+
+
                     <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">-->
-                        <!-- NOTIFICATIONS HERE -->
-                        <!-- QUICK ACTION ITEMS CODE HERE -->
-                        <!-- QUICK SIDEBAR CODE HERE-->
-                        <!-- PROFILE DROPDOWN w LOG IN/OUT, ETC-->
-                    <!--</ul>
+                <!-- NOTIFICATIONS HERE -->
+                <!-- QUICK ACTION ITEMS CODE HERE -->
+                <!-- QUICK SIDEBAR CODE HERE-->
+                <!-- PROFILE DROPDOWN w LOG IN/OUT, ETC-->
+                <!--</ul>
                 </div>-->
             </nav>
             <!-- End Navbar -->
@@ -87,70 +89,30 @@
                 <div class="sidebar-content">
                     <div class="user">
                         <div class="avatar-sm float-left mr-2">
-                            @if(User.Identity.IsAuthenticated)
+                            @if (User.Identity.IsAuthenticated)
                             {
                                 <img src="@userAvatar" class="avatar-img rounded-circle" />
                             }
                         </div>
                         <div class="info">
                             @*<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">*@
-                                <span>
-                                    @user
-                                    <span class="user-level"></span>
-                                    @*<span class="caret"></span>*@
-                                </span>
+                            <span>
+                                @user
+                                <span class="user-level"></span>
+                                @*<span class="caret"></span>*@
+                            </span>
                             @*</a>*@
                             <div class="clearfix"></div>
 
-                            @*<div class="collapse in" id="collapseExample">
-                                <ul class="nav">
-                                    <li>
-                                        <a href="#profile">
-                                            <span class="link-collapse">My Profile</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#edit">
-                                            <span class="link-collapse">Edit Profile</span>
-                                        </a>
-                                    </li>
-                                    
-                                </ul>
-                            </div>*@
+
                         </div>
                     </div>
                     <br />
                     <ul class="nav nav-primary">
 
-                        @*<li class="nav-item active mb-xl-5">
-            <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
-                <i class="fas fa-briefcase"></i>
-                <p>Go To My...</p>
-                <span class="caret"></span>
-            </a>
-            <div class="collapse" id="dashboard">
-                <ul class="nav nav-collapse">
-                    <li>
-                        <a href="../demo1/index.html">
-                            <span class="sub-item">Projects</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../demo2/index.html">
-                            <span class="sub-item">Tickets</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../demo3/index.html">
-                            <span class="sub-item">Notifications</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </li>*@
-                        <li class="nav-item">
-                            <a class="btn btn-warning mb-xl-5" href=@Url.Action("About", "Home")><span class="btn-label"></span>About</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="btn btn-warning mb-xl-5" href=@Url.Action("Index", "Manage")><span class="btn-label"></span>My Account</a>
+                            </li>
 
                         @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
                         {
@@ -159,13 +121,21 @@
                             </li>
                         }
 
-                        @if (User.IsInRole("Submitter")) {
+                        @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-success mt-xl-5" href=@Url.Action("ProjectWizard", "Projects")><span class="btn-label"></span>New Project</a>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("Submitter"))
+                        {
                             <li class="nav-item">
                                 <a class="btn btn-success mt-xl-5" href=@Url.Action("Create", "Tickets")><span class="btn-label"></span>New Ticket</a>
                             </li>
                         }
-                        
-                        
+
+
 
                         @if (User.IsInRole("Admin"))
                         {
@@ -174,9 +144,12 @@
                             </li>
                         }
 
-
                         <li class="nav-item">
                             <a class="btn btn-danger mt-xl-5" href=@Url.Action("Login", "Account")><span class="btn-label"></span>Log Off</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="btn btn-warning mt-xl-5" href=@Url.Action("About", "Home")><span class="btn-label"></span>About TrackIT</a>
                         </li>
 
 
@@ -228,7 +201,7 @@
     <!-- Bootstrap Toggle -->
     <script src="~/Scripts/bootstrap-toggle.min.js"></script>
 
-    
+
     <!-- Dropzone -->
     <script src="~/Scripts/dropzone.min.js"></script>
 
@@ -256,7 +229,7 @@
     <!-- Atlantis JS -->
     <script src="~/Scripts/atlantis.js"></script>
 
-    
+
     @RenderSection("scripts", required: false)
 </body>
 

@@ -17,6 +17,11 @@ namespace IssueTracker.Helpers
             return userManager.IsInRole(userId, roleName);
         }
 
+        //public bool DoesUserHaveRole(string userId, string roleName)
+        //{
+        //    return userManager.IsInRole(userId, roleName);
+        //}
+
         public ICollection<string> ListUserRoles(string userId)
         {
             return userManager.GetRoles(userId);

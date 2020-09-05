@@ -58,6 +58,7 @@ namespace IssueTracker.Migrations
             {
                 roleManager.Create(new IdentityRole { Name = "Submitter" });
             }
+
             #endregion
 
             #region Users Creation

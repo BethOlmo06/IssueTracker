@@ -223,6 +223,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ProjectWizardVM.cs" />
+    <Compile Include="ViewModels\UpdateProfileVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Avatars\AdmHopperAvatar40x40.png" />
