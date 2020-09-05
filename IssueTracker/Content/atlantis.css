@@ -1033,7 +1033,7 @@ body {
         }
 
     .sidebar.sidebar-style-2[data-background-color="dark"] .nav .nav-item a:hover p, .sidebar.sidebar-style-2[data-background-color="dark"] .nav .nav-item a:hover i, .sidebar.sidebar-style-2[data-background-color="dark"] .nav .nav-item a:focus p, .sidebar.sidebar-style-2[data-background-color="dark"] .nav .nav-item a:focus i, .sidebar.sidebar-style-2[data-background-color="dark"] .nav .nav-item a[data-toggle=collapse][aria-expanded=true] p, .sidebar.sidebar-style-2[data-background-color="dark"] .nav .nav-item a[data-toggle=collapse][aria-expanded=true] i, .sidebar.sidebar-style-2[data-background-color="dark2"] .nav .nav-item a:hover p, .sidebar.sidebar-style-2[data-background-color="dark2"] .nav .nav-item a:hover i, .sidebar.sidebar-style-2[data-background-color="dark2"] .nav .nav-item a:focus p, .sidebar.sidebar-style-2[data-background-color="dark2"] .nav .nav-item a:focus i, .sidebar.sidebar-style-2[data-background-color="dark2"] .nav .nav-item a[data-toggle=collapse][aria-expanded=true] p, .sidebar.sidebar-style-2[data-background-color="dark2"] .nav .nav-item a[data-toggle=collapse][aria-expanded=true] i {
-        color: #b9babf !important;
+        color: #fff !important;
     }
 
     .sidebar.sidebar-style-2[data-background-color="dark"] .nav .nav-item.active a, .sidebar.sidebar-style-2[data-background-color="dark2"] .nav .nav-item.active a {
@@ -2758,15 +2758,15 @@ body {
             }
 
     .sidebar[data-background-color="dark"] .nav > .nav-item.active > a p {
-        color: #b9babf !important;
+        color: #fff !important;
     }
 
     .sidebar[data-background-color="dark"] .nav > .nav-item a {
-        color: #b9babf !important;
+        color: #fff !important;
     }
 
         .sidebar[data-background-color="dark"] .nav > .nav-item a:hover p, .sidebar[data-background-color="dark"] .nav > .nav-item a:focus p, .sidebar[data-background-color="dark"] .nav > .nav-item a[data-toggle=collapse][aria-expanded=true] p {
-            color: #b9babf !important;
+            color: #fff !important;
         }
 
     .sidebar[data-background-color="dark"].sidebar-style-2 .nav .nav-item.active > a, .sidebar[data-background-color="dark"].sidebar-style-2 .nav .nav-item.active > a:hover, .sidebar[data-background-color="dark"].sidebar-style-2 .nav .nav-item.active > a:focus, .sidebar[data-background-color="dark"].sidebar-style-2 .nav .nav-item.active > a[data-toggle=collapse][aria-expanded=true] {
@@ -2807,11 +2807,11 @@ body {
     }
 
     .sidebar[data-background-color="dark2"] .nav > .nav-item a {
-        color: #b9babf !important;
+        color: #fff !important;
     }
 
         .sidebar[data-background-color="dark2"] .nav > .nav-item a:hover p, .sidebar[data-background-color="dark2"] .nav > .nav-item a:focus p, .sidebar[data-background-color="dark2"] .nav > .nav-item a[data-toggle=collapse][aria-expanded=true] p {
-            color: #b9babf !important;
+            color: #fff !important;
         }
 
     .sidebar[data-background-color="dark2"].sidebar-style-2 .nav .nav-item.active > a, .sidebar[data-background-color="dark2"].sidebar-style-2 .nav .nav-item.active > a:hover, .sidebar[data-background-color="dark2"].sidebar-style-2 .nav .nav-item.active > a:focus, .sidebar[data-background-color="dark2"].sidebar-style-2 .nav .nav-item.active > a[data-toggle=collapse][aria-expanded=true] {

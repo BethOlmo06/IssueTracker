@@ -110,9 +110,9 @@
                     <br />
                     <ul class="nav nav-primary">
 
-                            <li class="nav-item">
-                                <a class="btn btn-warning mb-xl-5" href=@Url.Action("Index", "Manage")><span class="btn-label"></span>My Account</a>
-                            </li>
+                            @*<li class="nav-item">
+                                <a class="btn btn-warning mb-xl-5" href="#"><span class="btn-label"></span>My Account</a>
+                            </li>*@
 
                         @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
                         {

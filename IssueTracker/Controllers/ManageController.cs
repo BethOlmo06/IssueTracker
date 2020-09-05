@@ -278,25 +278,7 @@ namespace IssueTracker.Controllers
         }
 
 
-        ////GET: /Manage/UpdateProfile
-        //public ActionResult UpdateProfile()
-        //{
-        //    var user = db.Users.Find(User.Identity.GetUserId());
-        //    return View(user);
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> UpdateProfile(UpdateProfileVM model)
-        //{
-        //    var user = db.Users.Find(model.Id);
-        //    user.FirstName = model.FirstName;
-        //    user.LastName = model.LastName;
-        //    db.SaveChanges();
-
-        //    await AuthorizeExtensions.RefreshAuthentication(HttpContext, user);
-        //    return RedirectToAction("UpdateProfile");
-        //}
+        
 
         //
         // GET: /Manage/ManageLogins
