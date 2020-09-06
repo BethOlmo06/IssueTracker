@@ -2,6 +2,7 @@
     ViewBag.Title = "Demo Login";
     Layout = null;
 }
+<html>
 <head>
     <!-- Fonts and icons -->
     <script src="~/Scripts/webfont.min.js"></script>
@@ -18,7 +19,6 @@
     </script>
 
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/fonts.css" rel="stylesheet" />
     <link href="~/Content/atlantis.css" rel="stylesheet" />
     <link href="~/Content/atlantis2.css" rel="stylesheet" />
 
@@ -35,50 +35,85 @@
             <div class="container container-login container-transparent animated fadeIn">
                 <h1 class="text-center mb-xl-4">Select Your Demo User</h1>
                 <div class="login-form">
-                    @using (Html.BeginForm("DemoLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        @Html.Hidden("emailKey", "DemoAdminEmail")
-                        @Html.Hidden("passwordKey", "DemoAdminPassword")
-                        <div class="login-account">
-                            <button type="submit" class="btn btn-block btn-secondary">Administrator</button>
-                            <p class="mb-3">Control everything.</p>
-                        </div>
-                    }
+                    <div class="form-group">
+                        @using (Html.BeginForm("DemoLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("emailKey", "DemoAdminEmail")
+                            @Html.Hidden("passwordKey", "DemoAdminPassword")
+                            <div class="login-account">
+                                <button type="submit" class="btn btn-block btn-secondary">Administrator</button>
+                                <p class="mb-3">Control everything.</p>
+                            </div>
+                        }
+                    </div>
 
-                    @using (Html.BeginForm("DemoLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        @Html.Hidden("emailKey", "DemoPMEmail")
-                        @Html.Hidden("passwordKey", "DemoPMPassword")
-                        <div class="login-account">
-                            <button type="submit" class="btn btn-block btn-secondary">Project Manager</button>
-                            <p class="mb-3">Manage projects, team members, and tickets.</p>
-                        </div>
-                    }
+                    <div class="form-group">
+                        @using (Html.BeginForm("DemoLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("emailKey", "DemoPMEmail")
+                            @Html.Hidden("passwordKey", "DemoPMPassword")
+                            <div class="login-account">
+                                <button type="submit" class="btn btn-block btn-secondary">Project Manager 1</button>
+                            </div>
+                        }
+                        @using (Html.BeginForm("DemoLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("emailKey", "DemoPM2Email")
+                            @Html.Hidden("passwordKey", "DemoPM2Password")
+                            <div class="login-account">
+                                <button type="submit" class="btn btn-block btn-secondary">Project Manager 2</button>
+                                <p class="mb-3">Manage projects, team members, and tickets.</p>
+                            </div>
+                        }
+                    </div>
 
-                    @using (Html.BeginForm("DemoLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        @Html.Hidden("emailKey", "DemoDevEmail")
-                        @Html.Hidden("passwordKey", "DemoDevPassword")
-                        <div class="login-account">
-                            <button type="submit" class="btn btn-block btn-secondary">Developer</button>
-                            <p class="mb-3">Edit assigned tickets.</p>
-                        </div>
-                    }
+                    <div class="form-group">
+                        @using (Html.BeginForm("DemoLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("emailKey", "DemoDevEmail")
+                            @Html.Hidden("passwordKey", "DemoDevPassword")
+                            <div class="login-account">
+                                <button type="submit" class="btn btn-block btn-secondary">Developer 1</button>
+                            </div>
+                        }
+                        @using (Html.BeginForm("DemoLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("emailKey", "DemoDev2Email")
+                            @Html.Hidden("passwordKey", "DemoDev2Password")
+                            <div class="login-account">
+                                <button type="submit" class="btn btn-block btn-secondary">Developer 2</button>
+                                <p class="mb-3">Edit assigned tickets.</p>
+                            </div>
+                        }
+                    </div>
 
-                    @using (Html.BeginForm("DemoLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        @Html.Hidden("emailKey", "DemoSubEmail")
-                        @Html.Hidden("passwordKey", "DemoSubPassword")
-                        <div class="login-account">
-                            <button type="submit" class="btn btn-block btn-secondary">Ticket Submitter</button>
-                            <p class="mb-3">Create tickets to log customer issues.</p>
-                        </div>
-                    }
-
+                    <div class="form-group">
+                        @using (Html.BeginForm("DemoLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("emailKey", "DemoSubEmail")
+                            @Html.Hidden("passwordKey", "DemoSubPassword")
+                            <div class="login-account">
+                                <button type="submit" class="btn btn-block btn-secondary">Ticket Submitter 1</button>
+                            </div>
+                        }
+                        @using (Html.BeginForm("DemoLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("emailKey", "DemoSub2Email")
+                            @Html.Hidden("passwordKey", "DemoSub2Password")
+                            <div class="login-account">
+                                <button type="submit" class="btn btn-block btn-secondary">Ticket Submitter 2</button>
+                                <p class="mb-3">Create tickets to log customer issues.</p>
+                            </div>
+                        }
+                    </div>
+      
                     <br />
                     <div class="login-account">
                         <a href="~/Account/Login" class="btn btn-block btn-success">Login</a>
@@ -100,3 +135,4 @@
     }
 
 </body>
+</html>

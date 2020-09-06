@@ -85,5 +85,6 @@ namespace IssueTracker.Models
         public DbSet<TicketHistory> TicketHistories { get; set; }
 
         public DbSet<TicketNotification> TicketNotifications { get; set; }
+
     }
 }

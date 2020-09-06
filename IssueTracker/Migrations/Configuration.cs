@@ -65,8 +65,11 @@ namespace IssueTracker.Migrations
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var DemoAdminPassword = WebConfigurationManager.AppSettings["DemoAdminPassword"];
             var DemoPMPassword = WebConfigurationManager.AppSettings["DemoPMPassword"];
+            var DemoPM2Password = WebConfigurationManager.AppSettings["DemoPM2Password"];
             var DemoDevPassword = WebConfigurationManager.AppSettings["DemoDevPassword"];
+            var DemoDev2Password = WebConfigurationManager.AppSettings["DemoDev2Password"];
             var DemoSubPassword = WebConfigurationManager.AppSettings["DemoSubPassword"];
+            var DemoSub2Password = WebConfigurationManager.AppSettings["DemoSub2Password"];
 
 
             if (!context.Users.Any(u => u.Email == "DemAd06@mailinator.com"))
@@ -101,6 +104,7 @@ namespace IssueTracker.Migrations
                 userManager.AddToRole(userId, "Project Manager");
             };
 
+
             if (!context.Users.Any(u => u.Email == "DemPM15@mailinator.com"))
             {
                 userManager.Create(new ApplicationUser()
@@ -110,7 +114,7 @@ namespace IssueTracker.Migrations
                     FirstName = "Katherine",
                     LastName = "Goble Johnson",
                     AvatarPath = "/Avatars/KathGJnsnAvatar40x40.png"
-                }, DemoPMPassword);
+                }, DemoPM2Password);
 
                 var userId = userManager.FindByEmail("DemPM15@mailinator.com").Id;
 
@@ -142,7 +146,7 @@ namespace IssueTracker.Migrations
                     FirstName = "Dorothy",
                     LastName = "Vaughan",
                     AvatarPath = "/Avatars/DorothyVaughanAvatar40x40.png"
-                }, DemoDevPassword);
+                }, DemoDev2Password);
 
                 var userId = userManager.FindByEmail("DemDev16@mailinator.com").Id;
 
@@ -174,7 +178,7 @@ namespace IssueTracker.Migrations
                     FirstName = "Mary",
                     LastName = "Jackson",
                     AvatarPath = "/Avatars/MaryJacksonAvatar40x40.png"
-                }, DemoSubPassword);
+                }, DemoSub2Password);
 
                 var userId = userManager.FindByEmail("DemSub17@mailinator.com").Id;
 

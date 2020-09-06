@@ -23,7 +23,7 @@ namespace IssueTracker.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        
+
 
         public AccountController()
         {
@@ -188,26 +188,26 @@ namespace IssueTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser 
-                
+                var user = new ApplicationUser
+
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     UserName = model.Email,
                     Email = model.Email,
                     AvatarPath = WebConfigurationManager.AppSettings["DefaultAvatarPath"]
-                };  
+                };
 
-                if(model.Avatar != null)
+                if (model.Avatar != null)
                 {
-                    if(FileUploadValidator.IsWebFriendlyImage(model.Avatar))
+                    if (FileUploadValidator.IsWebFriendlyImage(model.Avatar))
                     {
                         var fileName = FileStamp.MakeUnique(model.Avatar.FileName);
                         var serverFolder = WebConfigurationManager.AppSettings["DefaultServerFolder"];
                         model.Avatar.SaveAs(Path.Combine(Server.MapPath(serverFolder), fileName));
                         user.AvatarPath = $"{serverFolder}{fileName}";
                     }
-                    
+
                 }
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -365,7 +365,7 @@ namespace IssueTracker.Controllers
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
             return View(model);
-            
+
         }
 
 
