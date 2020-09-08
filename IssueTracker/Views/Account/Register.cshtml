@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Register";
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout - Copy.cshtml";
 }
 
 <head>
@@ -33,10 +33,9 @@
             <p class="subtitle text-white op-7">Support Ticket tracking and management system.</p>
         </div>
         <div class="login-aside w-50 d-flex align-items-center justify-content-center bg-white">
-
-            <div class="container container-signup container-transparent animated fadeIn">
+            <div class="container container-login container-transparent animated fadeIn">
                 <h3 class="text-center">Create Your Account</h3>
-                
+
                 <h4 class="font-italic text-center">New users have Read-Only access.</h4>
                 <br />
                 <div class="login-form">
@@ -85,16 +84,16 @@
                         </div>
                         @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
 
-                        
+
                         //This functionality is on hold temporarily, so I can focus on deliverables
-                            @*<div class="form-group">
-                                @Html.Label("Upload Custom Avatar", htmlAttributes: new { @class = "control-label" })
-                           
-                            </div>
-                            <div class="position-relative">
-                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                            </div>*@
-                        
+                        @*<div class="form-group">
+                        @Html.Label("Upload Custom Avatar", htmlAttributes: new { @class = "control-label" })
+
+                    </div>
+                    <div class="position-relative">
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    </div>*@
+
                         <div class="row form-sub mt-xl-4">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" name="agree" id="agree">
@@ -109,7 +108,7 @@
                                 <button type="submit" class="btn btn-secondary w-100 fw-bold">Sign Up</button>
                             </div>
                         </div>
-                        
+
                     }
                 </div>
             </div>

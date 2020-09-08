@@ -1,0 +1,111 @@
+﻿@using Microsoft.AspNet.Identity;
+@using IssueTracker.Helpers;
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+
+    <!-- Fonts and icons -->
+    <script src="~/Scripts/webfont.min.js"></script>
+    <script>
+        WebFont.load({
+            google: { "families": ["Lato:300,400,700,900"] },
+            custom: {
+                "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['~/Content/fonts.css']
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+
+    <!-- CSS Files -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/atlantis.css" rel="stylesheet" />
+    
+
+
+</head>
+
+
+<body>
+        
+
+        <!-- Sidebar -->
+        
+        <!-- End Sidebar -->
+        <!-- MAIN -->
+
+            @RenderBody()
+
+
+    <!--   Core JS Files   -->
+    <script src="~/Scripts/jquery.3.2.1.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Scripts/jquery.ui.touch-punch.min.js"></script>
+
+    <!-- jQuery Scrollbar -->
+    <script src="~/Scripts/jquery.scrollbar.min.js"></script>
+
+    <!-- Moment JS -->
+    <script src="~/Scripts/moment.min.js"></script>
+
+    <!-- Chart JS -->
+    <script src="~/Scripts/chart.min.js"></script>
+
+    <!-- jQuery Sparkline -->
+    <script src="~/Scripts/jquery.sparkline.min.js"></script>
+
+    <!-- Chart Circle -->
+    <script src="~/Scripts/circles.min.js"></script>
+
+    <!-- Datatables -->
+    <script src="~/Scripts/datatables.min.js"></script>
+    <script src="~/Scripts/dataTables.responsive.min.js"></script>
+
+    <!-- Bootstrap Notify -->
+    <script src="~/Scripts/bootstrap-notify.min.js"></script>
+
+    <!-- Bootstrap Toggle -->
+    <script src="~/Scripts/bootstrap-toggle.min.js"></script>
+
+
+    <!-- Dropzone -->
+    <script src="~/Scripts/dropzone.min.js"></script>
+
+    <!-- Fullcalendar -->
+    <script src="~/Scripts/fullcalendar.min.js"></script>
+
+    <!-- DateTimePicker -->
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+
+    <!-- Bootstrap Tagsinput -->
+    <script src="~/Scripts/bootstrap-tagsinput.min.js"></script>
+
+    <!-- Bootstrap Wizard -->
+    <script src="~/Scripts/bootstrapwizard.js"></script>
+
+    <!-- jQuery Validation -->
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+    <!-- Select2 -->
+    <script src="~/Scripts/select2.full.min.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="~/Scripts/sweetalert.min.js"></script>
+
+    <!-- Atlantis JS -->
+    <script src="~/Scripts/atlantis.js"></script>
+
+
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

@@ -264,6 +264,7 @@
     <Content Include="Images\owl.video.play.png" />
     <Content Include="Images\TrackIT1.1Light100x40.png" />
     <Content Include="Images\TrackIT100x40.png" />
+    <Content Include="Images\TrackITBigger.png" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap-notify.min.js" />
     <Content Include="Scripts\bootstrap-tagsinput.min.js" />
@@ -497,6 +498,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Shared\_Layout - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

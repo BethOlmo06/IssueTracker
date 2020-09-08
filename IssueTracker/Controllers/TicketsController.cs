@@ -152,6 +152,7 @@ namespace IssueTracker.Controllers
             {
                 var oldTicket = db.Tickets.AsNoTracking().FirstOrDefault(t => t.Id == ticket.Id);
                 ticket.Updated = DateTime.Now;
+                
                 db.Entry(ticket).State = EntityState.Modified;
                 db.SaveChanges();
 
