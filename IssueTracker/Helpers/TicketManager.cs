@@ -147,9 +147,9 @@ namespace IssueTracker.Helpers
         public async Task ManageTicketNotifications(Ticket oldTicket, Ticket newTicket)
         {
 
-            var ticketAssigned = oldTicket.DeveloperId == "" && newTicket.DeveloperId != "";
-            var ticketUnassigned = oldTicket.DeveloperId != "" && newTicket.DeveloperId == "";
-            var ticketReassigned = oldTicket.DeveloperId != "" && newTicket.DeveloperId != "" && oldTicket.DeveloperId != newTicket.DeveloperId;
+            var ticketAssigned = oldTicket.DeveloperId == null && newTicket.DeveloperId != null;
+            var ticketUnassigned = oldTicket.DeveloperId != null && newTicket.DeveloperId == null;
+            var ticketReassigned = oldTicket.DeveloperId != null && newTicket.DeveloperId != null && oldTicket.DeveloperId != newTicket.DeveloperId;
 
             if (ticketAssigned)
             {
@@ -202,6 +202,7 @@ namespace IssueTracker.Helpers
         private async Task AddUnassignmentNotification(Ticket oldTicket)
         {
             var notification = new TicketNotification
+
             {
                 TicketId = oldTicket.Id,
                 IsRead = false,

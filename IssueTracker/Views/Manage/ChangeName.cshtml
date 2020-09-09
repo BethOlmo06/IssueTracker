@@ -1,0 +1,51 @@
+﻿@model IssueTracker.Models.ApplicationUser
+@{
+    ViewBag.Title = "ChangeName";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="page-inner">
+        <div class="col-md-4">
+            <div class="card card-dark bg-warning-gradient">
+                <div class="card-body pb-lg-0">
+                    <div class="h1 fw-bold float-right"></div>
+                    <h1 class="align-middle mb-5">Edit Your Name</h1>
+                </div>
+            </div>
+        </div><div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group">
+                            @Html.Label("First Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col">
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            @Html.Label("Last Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col">
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Save" class="btn btn-success mr-1" />
+                                <a class="btn btn-danger mr-1" href=@Url.Action("ChangePassword", "Manage")><span class="btn-label"></span>Reset Password</a>
+                                <a class="btn btn-warning mr-1" href=@Url.Action("Index", "Home")><span class="btn-label"></span>Dashboard</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

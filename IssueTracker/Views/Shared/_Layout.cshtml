@@ -115,10 +115,10 @@
                                 <a class="btn btn-warning mb-xl-5" href="#"><span class="btn-label"></span>My Account</a>
                             </li>*@
 
-                        @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+                        @if (User.IsInRole("Guest"))
                         {
                             <li class="nav-item">
-                                <a class="btn btn-success mt-xl-5" href=@Url.Action("ProjectWizard", "Projects")><span class="btn-label"></span>New Project</a>
+                                <a class="btn btn-secondary mt-xl-5" href=@Url.Action("ChangeName", "Manage")><span class="btn-label"></span>Update My Profile</a>
                             </li>
                         }
 

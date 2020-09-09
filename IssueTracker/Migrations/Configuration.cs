@@ -59,6 +59,11 @@ namespace IssueTracker.Migrations
                 roleManager.Create(new IdentityRole { Name = "Submitter" });
             }
 
+            if (!context.Roles.Any(r => r.Name == "Guest"))
+            {
+                roleManager.Create(new IdentityRole { Name = "Guest" });
+            }
+
             #endregion
 
             #region Users Creation

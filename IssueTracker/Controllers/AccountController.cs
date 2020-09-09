@@ -213,7 +213,7 @@ namespace IssueTracker.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                    //UserManager.AddToRole(user.Id, "Guest");
+                    UserManager.AddToRole(user.Id, "Guest");
 
 
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

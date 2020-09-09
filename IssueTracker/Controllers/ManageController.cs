@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using IssueTracker.Models;
 using IssueTracker.ViewModels;
+using System.Data.Entity;
 
 namespace IssueTracker.Controllers
 {
@@ -243,6 +244,25 @@ namespace IssueTracker.Controllers
             }
             AddErrors(result);
             return View(model);
+        }
+
+        public ActionResult ChangeName()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            return View(db.Users.Find(User.Identity.GetUserId()));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeName(string firstName, string lastName)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var userId = User.Identity.GetUserId();
+            db.Users.Find(userId).FirstName = firstName;
+            db.Users.Find(userId).LastName = lastName;
+            db.Entry(db.Users.Find(userId)).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index", "Home", new { id = userId });
         }
 
         //
