@@ -14,6 +14,7 @@ using Amazon.DynamoDBv2;
 
 namespace IssueTracker.Controllers
 {
+    [Authorize]
     public class ProjectsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -23,7 +24,6 @@ namespace IssueTracker.Controllers
 
 
         // GET: Projects
-        [Authorize]
         public ActionResult Index()
         {
             return View(db.Projects.ToList());
@@ -49,7 +49,6 @@ namespace IssueTracker.Controllers
         }
 
         // GET: Projects/Create
-        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -141,7 +140,6 @@ namespace IssueTracker.Controllers
 
 
         // GET: Projects/Edit/5
-        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)

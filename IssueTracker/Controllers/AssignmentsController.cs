@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace IssueTracker.Controllers
 {
+    [Authorize]
     public class AssignmentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

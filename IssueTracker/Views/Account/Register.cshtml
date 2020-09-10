@@ -77,9 +77,9 @@
                             <label for="confirmpassword" class="placeholder"><b>Confirm Password</b></label>
                             <div class="position-relative">
                                 <input id="confirmpassword" name="confirmpassword" type="password" class="form-control" required>
-                                <div class="show-password">
+                                @*<div class="show-password">
                                     <i class="icon-eye"></i>
-                                </div>
+                                </div>*@
                             </div>
                         </div>
                         @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })

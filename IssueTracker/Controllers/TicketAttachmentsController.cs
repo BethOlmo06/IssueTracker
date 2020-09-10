@@ -14,6 +14,7 @@ using System.IO;
 
 namespace IssueTracker.Controllers
 {
+    [Authorize]
     public class TicketAttachmentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

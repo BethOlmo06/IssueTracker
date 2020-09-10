@@ -54,13 +54,13 @@
                         <i class="icon-menu"></i>
                     </span>
                 </button>
-                
+
                 @*<button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
-                <div class="nav-toggle">
-                    <button class="btn btn-toggle toggle-sidebar">
-                        <i class="icon-menu"></i>
-                    </button>
-                </div>*@
+                    <div class="nav-toggle">
+                        <button class="btn btn-toggle toggle-sidebar">
+                            <i class="icon-menu"></i>
+                        </button>
+                    </div>*@
             </div>
             <!-- End Logo Header -->
             <!-- Navbar Header -->
@@ -111,7 +111,7 @@
                     <br />
                     <ul class="nav nav-primary">
 
-                            @*<li class="nav-item">
+                        @*<li class="nav-item">
                                 <a class="btn btn-warning mb-xl-5" href="#"><span class="btn-label"></span>My Account</a>
                             </li>*@
 
@@ -225,13 +225,27 @@
     <script src="~/Scripts/select2.full.min.js"></script>
 
     <!-- Sweet Alert -->
-    <script src="~/Scripts/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <!-- Atlantis JS -->
     <script src="~/Scripts/atlantis.js"></script>
 
 
     @RenderSection("scripts", required: false)
+    @section scripts {
+
+        <script>
+            $('#pwdBtn').click(function ()) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your password has been saved.',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            };
+        </script>
+    }
 </body>
 
 </html>

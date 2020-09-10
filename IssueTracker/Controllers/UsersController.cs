@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace IssueTracker.Controllers
 {
+    [Authorize]
     public class UsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -17,12 +18,11 @@ namespace IssueTracker.Controllers
         
 
         // GET: Users
-        [Authorize]
         public ActionResult Index()
         {
             return View(db.Users.ToList());
         }
-        [Authorize (Roles = "Admin")]
+        
         public ActionResult ManageUserRole(string id)
         {
             if(id == null)
@@ -35,6 +35,7 @@ namespace IssueTracker.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult ManageUserRole(string id, string roleName)
         {

@@ -55,21 +55,18 @@
                                                 @Html.DropDownList("TicketPriorityId", null, htmlAttributes: new { @class = "form-control" })
                                             </div>
                                         </div>
-
                                         <div class="form-group">
                                             @Html.Label("Ticket Type", "TicketTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-10">
                                                 @Html.DropDownList("TicketTypeId", null, htmlAttributes: new { @class = "form-control" })
                                             </div>
                                         </div>
-
                                         <div class="form-group">
                                             @Html.Label("Issue", htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-10">
                                                 @Html.Editor("Issue", new { htmlAttributes = new { @class = "form-control" } })
                                             </div>
                                         </div>
-
                                         <div class="form-group">
                                             @Html.Label("Issue Description", htmlAttributes: new { @class = "control-label col-md-2" })
 
@@ -127,7 +124,7 @@
                                 </table>
                             </div>
                             <br />
-                            <a class="btn btn-success mr-2" href=@Url.Action("Edit", "Projects")><span class="btn-label"></span>Edit Project</a>
+                            <a class="btn btn-success mr-2" href=@Url.Action("Edit", "Projects", new { Model.Id })><span class="btn-label"></span>Edit Project</a>
                             <a class="btn btn-warning mr-2" href=@Url.Action("Index", "Home")><span class="btn-label"></span>Dashboard</a>
                             <a class="btn btn-danger" href=@Url.Action("Index", "Projects")><span class="btn-label"></span>All Projects</a>
                         </div>

@@ -8,24 +8,23 @@ using Microsoft.AspNet.Identity;
 
 namespace IssueTracker.Controllers
 {
+    [Authorize]
     
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        [Authorize]
         public ActionResult Index()
         {
             return View(db.Users.Find(User.Identity.GetUserId()));
         }
-        [Authorize]
+        [AllowAnonymous]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
-        [Authorize]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

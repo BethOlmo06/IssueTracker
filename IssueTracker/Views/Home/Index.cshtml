@@ -105,7 +105,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Top Tickets</div>
+                        <div class="card-title">High Priority Tickets</div>
                     </div>
                     <div class="card-body">
                         <table class="table" id="ticketTable">
@@ -118,13 +118,13 @@
                                         Type
                                     </th>
                                     <th>
-                                        Priority
-                                    </th>
-                                    <th>
                                         Status
                                     </th>
                                     <th>
                                         Created
+                                    </th>
+                                    <th>
+                                        Updated
                                     </th>
                                     
                                     <th></th>
@@ -141,13 +141,13 @@
                                         @Html.DisplayFor(modelItem => item.TicketType.Name)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.TicketPriority.Name)
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(modelItem => item.TicketStatus.Name)
                                     </td>
                                     <td>
                                         @Html.DisplayName(item.Created.ToString("MM/dd/yyyy"))
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Updated)
                                     </td>
                                     
                                     <td>
