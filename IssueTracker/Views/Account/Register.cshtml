@@ -66,9 +66,9 @@
                             <label for="passwordsignin" class="placeholder"><b>Password</b></label>
                             <div class="position-relative">
                                 <input id="passwordsignin" name="Password" type="password" class="form-control" required>
-                                <div class="show-password">
+                                @*<div class="show-password">
                                     <i class="icon-eye"></i>
-                                </div>
+                                </div>*@
                             </div>
                         </div>
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })

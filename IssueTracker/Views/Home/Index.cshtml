@@ -115,6 +115,9 @@
                                         Project
                                     </th>
                                     <th>
+                                        Type
+                                    </th>
+                                    <th>
                                         Priority
                                     </th>
                                     <th>
@@ -123,41 +126,40 @@
                                     <th>
                                         Created
                                     </th>
-                                    <th>
-                                        Updated
-                                    </th>
+                                    
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in ticketManager.MyTopTickets())
                                 {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Project.Name)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.TicketPriority.Name)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.TicketStatus.Name)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayName(item.Created.ToString("MM/dd/yyyy"))
-                                        </td>
-                                        <td>
-                                            @Html.DisplayName(item.Updated.ToString())
-                                        </td>
-                                        <td>
-                                            @if (ticketManager.CanEditTicket(item.Id))
-                                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Project.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TicketType.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TicketPriority.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TicketStatus.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayName(item.Created.ToString("MM/dd/yyyy"))
+                                    </td>
+                                    
+                                    <td>
+                                        @if (ticketManager.CanEditTicket(item.Id))
+                                        {
 
-                                                @Html.ActionLink("Edit", "Edit", "Tickets", new { id = item.Id }, null) <span>|</span>
-                                                @Html.ActionLink("Details", "Dashboard", "Tickets", new { id = item.Id }, null)
-                                            }
+                                            @Html.ActionLink("Edit", "Edit", "Tickets", new { id = item.Id }, null) <span>|</span>
+                                            @Html.ActionLink("Details", "Dashboard", "Tickets", new { id = item.Id }, null)
+                                        }
 
-                                        </td>
-                                    </tr>
+                                    </td>
+                                </tr>
                                 }
                             </tbody>
                         </table>

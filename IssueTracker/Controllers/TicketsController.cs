@@ -158,8 +158,7 @@ namespace IssueTracker.Controllers
 
                 var newTicket = db.Tickets.AsNoTracking().FirstOrDefault(t => t.Id == ticket.Id);
                 await ticketManager.EditedTicket(oldTicket, newTicket);
-                await ticketManager.ManageTicketNotifications(oldTicket, newTicket);
-                historyHelper.ManageHistories(oldTicket, newTicket);
+               
                 
                 db.SaveChanges();
 
