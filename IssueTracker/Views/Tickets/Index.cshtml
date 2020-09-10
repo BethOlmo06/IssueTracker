@@ -105,7 +105,7 @@
                                         @Html.DisplayName(item.Created.ToString("MM/dd/yyyy"))
                                     </td>
                                     <td>
-                                        @Html.DisplayName(item.Updated.ToString())
+                                        @Html.DisplayFor(modelItem =>item.Updated)
                                     </td>
                                     @if (item.IsResolved)
                                     {

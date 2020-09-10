@@ -14,7 +14,8 @@ using Microsoft.Exchange.WebServices.Data;
 
 namespace IssueTracker.Controllers
 {
-    
+    [Authorize]
+
     public class TicketsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -26,7 +27,7 @@ namespace IssueTracker.Controllers
        
 
         // GET: Tickets
-        [Authorize]
+        
         public ActionResult Index()
         {
             return View(db.Tickets.ToList());
@@ -79,7 +80,6 @@ namespace IssueTracker.Controllers
         }
 
         // GET: Tickets/Create
-       [Authorize]
         public ActionResult Create()
         {
             var userId = User.Identity.GetUserId();
@@ -120,7 +120,6 @@ namespace IssueTracker.Controllers
         }
 
         // GET: Tickets/Edit/5
-        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -150,17 +149,17 @@ namespace IssueTracker.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 var oldTicket = db.Tickets.AsNoTracking().FirstOrDefault(t => t.Id == ticket.Id);
                 ticket.Updated = DateTime.Now;
-                
                 db.Entry(ticket).State = EntityState.Modified;
                 db.SaveChanges();
-
                 var newTicket = db.Tickets.AsNoTracking().FirstOrDefault(t => t.Id == ticket.Id);
-                await ticketManager.EditedTicket(oldTicket, newTicket);
-               
-                
-                db.SaveChanges();
+                //await ticketManager.EditedTicket(oldTicket, newTicket);
+                historyHelper.ManageHistories(oldTicket, newTicket);
+                await ticketManager.ManageTicketNotifications(oldTicket, newTicket);
+
+                //db.SaveChanges();
 
                 //TODO: redirect to..... project?? ticket dashboard??
                 return RedirectToAction("Index");

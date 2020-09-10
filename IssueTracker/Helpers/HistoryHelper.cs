@@ -32,6 +32,7 @@ namespace IssueTracker.Helpers
                     NewValue = newTicket.DeveloperId == null ? "No Developer Assigned" : newTicket.Developer.FullName,
                     ChangedOn = DateTime.Now
                 };
+                db.TicketHistories.Add(history);
             }
         }
         private void PriorityUpdate(Ticket oldTicket, Ticket newTicket)
@@ -47,6 +48,7 @@ namespace IssueTracker.Helpers
                     NewValue = newTicket.TicketPriority.Name,
                     ChangedOn = DateTime.Now
                 };
+                db.TicketHistories.Add(history);
             }
         }
         private void StatusUpdate(Ticket oldTicket, Ticket newTicket)
@@ -62,6 +64,7 @@ namespace IssueTracker.Helpers
                     NewValue = newTicket.TicketStatus.Name,
                     ChangedOn = DateTime.Now
                 };
+                db.TicketHistories.Add(history);
             }
         }
         private void TypeUpdate(Ticket oldTicket, Ticket newTicket)
@@ -77,6 +80,7 @@ namespace IssueTracker.Helpers
                     NewValue = newTicket.TicketType.Name,
                     ChangedOn = DateTime.Now
                 };
+                db.TicketHistories.Add(history);
             }
         }
     }
