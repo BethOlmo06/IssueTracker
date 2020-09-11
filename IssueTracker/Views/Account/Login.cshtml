@@ -35,7 +35,7 @@
         <div class="login-aside w-50 d-flex align-items-center justify-content-center bg-white">
             <div class="container container-login container-transparent animated fadeIn">
                 <h3 class="text-center">Sign In</h3>
-   
+
                 <div class="login-form">
                     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
@@ -51,11 +51,13 @@
                         <div class="form-group">
                             <label for="password" class="placeholder"><b>Password</b></label>
                             <a href='@Url.Action("ForgotPassword", "Account")' class="link float-right">Forgot Password?</a>
+
+                            @*<a id="forgotPwd" class="button float-right">Forgot Password?</a>*@
                             <div class="position-relative">
                                 <input id="password" name="password" type="password" class="form-control" required>
                                 @*<div class="show-password">
-                                    <i class="icon-eye"></i>
-                                </div>*@
+                                        <i class="icon-eye"></i>
+                                    </div>*@
                             </div>
                         </div>
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
@@ -83,6 +85,21 @@
         @Scripts.Render("~/Scripts/popper.min.js")
         @Scripts.Render("~/Scripts/bootstrap.min.js")
         @Scripts.Render("~/Scripts/atlantis.js")
+
+        @*<script>
+            $('#forgotPwd').click(function () {
+                const { value: email } = await Swal.fire({
+                    title: 'Enter your email address',
+                    input: 'email',
+                    inputPlaceholder: 'example@example.com'
+                })
+
+                if (email) {
+                    Swal.fire(`Link has been sent to: ${email}`)
+                };
+        </script>*@
+
+        
     }
 
 </body>
