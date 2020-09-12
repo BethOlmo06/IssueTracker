@@ -344,7 +344,7 @@ namespace IssueTracker.Controllers
 
                 try
                 {
-                    var from = "Issue Tracker<issuetrackerclientcare@gmail.com>";
+                    var from = "TrackIT<issuetrackerclientcare@gmail.com>";
                     var email = new MailMessage(from, model.Email)
                     {
                         Subject = "Reset Password",
