@@ -1,4 +1,5 @@
-﻿@using IssueTracker.Helpers
+﻿@using IssueTracker.Models
+@using IssueTracker.Helpers
 @model IEnumerable<IssueTracker.Models.ApplicationUser>
 @{
     ViewBag.Title = "Index";
@@ -26,7 +27,7 @@
                             <th>
                                 @Html.DisplayName("Full Name")
                             </th>
-                           
+
                             <th>
                                 @Html.DisplayName("Current Role")
                             </th>
@@ -37,23 +38,28 @@
                     <tbody>
                         @foreach (var user in Model)
                         {
-                                <tr>
+                            <tr>
 
+                                <td>
+                                    @Html.DisplayFor(model => user.FullName)
+                                </td>
+
+                                <td>
+                                    @rolesHelper.ListUserRoles(user.Id).FirstOrDefault()
+                                </td>
+                                @if (User.IsInRole("Admin"))
+                                {
                                     <td>
-                                        @Html.DisplayFor(model => user.FullName)
+                                        @Html.ActionLink("Manage Role", "ManageUserRole", new { id = user.Id })
+                                        @*<p class="m-0" data-toggle="modal" data-target="#manageUserRole"><a href="#manageUserRole">Manage Role</a></p>*@
+                                        @*@Html.DropDownList("RoleName", "-- NO ROLE --")*@
+                                       
                                     </td>
 
-                                    <td>
-                                        @rolesHelper.ListUserRoles(user.Id).FirstOrDefault()
-                                    </td>
-                                    @if (User.IsInRole("Admin"))
-                                    {
-                                        <td>
-                                            @Html.ActionLink("Manage Role", "ManageUserRole", new { id = user.Id })
-                                        </td>
+                                }
 
-                                    }
-                                </tr>
+
+                            </tr>
                         }
                     </tbody>
                 </table>
@@ -62,6 +68,9 @@
         </div>
     </div>
 </div>
+
+
+
 @section scripts {
 
     <script>$('#userTable').dataTable();</script>

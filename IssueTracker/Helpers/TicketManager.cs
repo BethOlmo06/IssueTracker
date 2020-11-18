@@ -89,14 +89,13 @@ namespace IssueTracker.Helpers
             switch (myRole)
             {
                 case "Admin":
-                    myTickets.AddRange(db.Tickets);
+                    myTickets.AddRange(db.Tickets); //only allowing Admin to see or interact with archived projects
                     break;
                 case "Project Manager":
                     myTickets.AddRange(user.Projects.Where(p => !p.IsArchived).SelectMany(p => p.Tickets));
-                    myTickets.AddRange(user.Projects.SelectMany(p => p.Tickets));
                     break;
                 case "Developer":
-                    myTickets.AddRange(db.Tickets.Where(t => !t.IsArchived).Where(testc => testc.DeveloperId == userId));
+                    myTickets.AddRange(db.Tickets.Where(t => !t.IsArchived).Where(t => t.DeveloperId == userId));
                     break;
                 case "Submitter":
                     myTickets.AddRange(db.Tickets.Where(t => !t.IsArchived).Where(t => t.SubmitterId == userId));

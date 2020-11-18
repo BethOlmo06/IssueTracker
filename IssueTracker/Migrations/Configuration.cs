@@ -350,8 +350,8 @@ namespace IssueTracker.Migrations
                                 SubmitterId = submitters[random.Next(submitters.Count)].Id,
                                 DeveloperId = developerId,
                                 Created = DateTime.Now,
-                                Issue = $"This is a seeded ticket on the {project.Name} project.",
-                                IssueDescription = $"This is a description of a seeded ticket on the {project.Name} project.",
+                                Issue = $"Seeded issue on the {project.Name} project.",
+                                IssueDescription = $"Issue description for the seeded ticket.",
                                 IsResolved = resolved,
                                 IsArchived = archived
                             };
