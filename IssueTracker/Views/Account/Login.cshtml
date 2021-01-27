@@ -74,7 +74,7 @@
                             <a href="~/Account/demologin" class="btn btn-block btn-success">Log In As A Demo User</a>
                         </div>
                     }
-                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                    @Html.partial("_externalloginslistpartial", new externalloginlistviewmodel { returnurl = viewbag.returnurl })
                 </div>
             </div>
         </div>
@@ -87,19 +87,19 @@
         @Scripts.Render("~/Scripts/atlantis.js")
 
         @*<script>
-            $('#forgotPwd').click(function () {
-                const { value: email } = await Swal.fire({
-                    title: 'Enter your email address',
-                    input: 'email',
-                    inputPlaceholder: 'example@example.com'
-                })
+                $('#forgotPwd').click(function () {
+                    const { value: email } = await Swal.fire({
+                        title: 'Enter your email address',
+                        input: 'email',
+                        inputPlaceholder: 'example@example.com'
+                    })
 
-                if (email) {
-                    Swal.fire(`Link has been sent to: ${email}`)
-                };
-        </script>*@
+                    if (email) {
+                        Swal.fire(`Link has been sent to: ${email}`)
+                    };
+            </script>*@
 
-        
+
     }
 
 </body>

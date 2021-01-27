@@ -1,6 +1,7 @@
 ﻿@using IssueTracker.Models
 @using IssueTracker.Helpers
 @model IEnumerable<IssueTracker.Models.ApplicationUser>
+
 @{
     ViewBag.Title = "Index";
     var rolesHelper = new RolesHelper();
@@ -51,9 +52,8 @@
                                 {
                                     <td>
                                         @Html.ActionLink("Manage Role", "ManageUserRole", new { id = user.Id })
-                                        @*<p class="m-0" data-toggle="modal" data-target="#manageUserRole"><a href="#manageUserRole">Manage Role</a></p>*@
-                                        @*@Html.DropDownList("RoleName", "-- NO ROLE --")*@
-                                       
+                                        @*<p class="m-0" data-toggle="modal" data-target="#manageRole"><a href="#manageRole">Manage User Role</a></p>*@
+
                                     </td>
 
                                 }
@@ -74,7 +74,36 @@
 @section scripts {
 
     <script>$('#userTable').dataTable();</script>
+
 }
+
+@*@using (Html.BeginForm("ManageUserRole", "UsersController", FormMethod.Post, null))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="modal" tabindex="-1" role="dialog" id="manageRole">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Manage User Role</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        @Html.DropDownList("RoleName", "-- NO ROLE --")
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success btnWide">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}*@
+
 <footer class="footer">
 
     <div class="container-fluid">
