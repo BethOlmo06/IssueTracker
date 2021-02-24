@@ -16,6 +16,7 @@ using IssueTracker.Helpers;
 using System.Web.Configuration;
 using Microsoft.AspNet.Identity.EntityFramework;
 
+
 namespace IssueTracker.Controllers
 {
     [Authorize]
@@ -64,6 +65,7 @@ namespace IssueTracker.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -101,6 +103,7 @@ namespace IssueTracker.Controllers
         [AllowAnonymous]
         public ActionResult DemoLogin()
         {
+            
             return View();
         }
 

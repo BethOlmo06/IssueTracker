@@ -10,7 +10,6 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace IssueTracker.Models
 {
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
         #region Parents / Children
@@ -34,6 +33,7 @@ namespace IssueTracker.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string AvatarPath { get; set; }
+        public string LargeAvatarPath { get; set; }
         #endregion
 
         #region Constructor

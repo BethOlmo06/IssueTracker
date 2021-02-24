@@ -85,7 +85,8 @@ namespace IssueTracker.Migrations
                     UserName = "DemAd06@mailinator.com",
                     FirstName = "Admiral",
                     LastName = "Grace Hopper",
-                    AvatarPath = "/Avatars/AdmHopperAvatar40x40.png"
+                    AvatarPath = "/Avatars/AdmHopperAvatar40x40.png",
+                    LargeAvatarPath = "/Avatars/AdmiralHopper.png"
                 }, DemoAdminPassword); ;
 
                 var userId = userManager.FindByEmail("DemAd06@mailinator.com").Id;
@@ -118,7 +119,8 @@ namespace IssueTracker.Migrations
                     UserName = "DemPM15@mailinator.com",
                     FirstName = "Katherine",
                     LastName = "Goble Johnson",
-                    AvatarPath = "/Avatars/KathGJnsnAvatar40x40.png"
+                    AvatarPath = "/Avatars/KathGJnsnAvatar40x40.png",
+                    LargeAvatarPath = "/Avatars/KatherineJohnson.png"
                 }, DemoPM2Password);
 
                 var userId = userManager.FindByEmail("DemPM15@mailinator.com").Id;
@@ -150,7 +152,8 @@ namespace IssueTracker.Migrations
                     UserName = "DemDev16@mailinator.com",
                     FirstName = "Dorothy",
                     LastName = "Vaughan",
-                    AvatarPath = "/Avatars/DorothyVaughanAvatar40x40.png"
+                    AvatarPath = "/Avatars/DorothyVaughanAvatar40x40.png",
+                    LargeAvatarPath = "/Avatars/DorothyVaughn.png"
                 }, DemoDev2Password);
 
                 var userId = userManager.FindByEmail("DemDev16@mailinator.com").Id;
@@ -182,7 +185,8 @@ namespace IssueTracker.Migrations
                     UserName = "DemSub17@mailinator.com",
                     FirstName = "Mary",
                     LastName = "Jackson",
-                    AvatarPath = "/Avatars/MaryJacksonAvatar40x40.png"
+                    AvatarPath = "/Avatars/MaryJacksonAvatar40x40.png",
+                    LargeAvatarPath = "/Avatars/MaryJackson.png"
                 }, DemoSub2Password);
 
                 var userId = userManager.FindByEmail("DemSub17@mailinator.com").Id;

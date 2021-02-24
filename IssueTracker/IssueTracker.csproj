@@ -206,6 +206,10 @@
     <Compile Include="Helpers\TicketManager.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Helpers\RolesHelper.cs" />
+    <Compile Include="Migrations\202101290009467_Update-Database.cs" />
+    <Compile Include="Migrations\202101290009467_Update-Database.designer.cs">
+      <DependentUpon>202101290009467_Update-Database.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EmailModel.cs" />
@@ -228,10 +232,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Avatars\AdmHopperAvatar40x40.png" />
+    <Content Include="Avatars\AdmiralHopper.png" />
     <Content Include="Avatars\DorothyVaughanAvatar40x40.png" />
+    <Content Include="Avatars\DorothyVaughn.png" />
     <Content Include="Avatars\DrBurgeAvatar40x40.png" />
     <Content Include="Avatars\KamilahTAvatar40x40.png" />
+    <Content Include="Avatars\KatherineJohnson.png" />
     <Content Include="Avatars\KathGJnsnAvatar40x40.png" />
+    <Content Include="Avatars\MaryJackson.png" />
     <Content Include="Avatars\MaryJacksonAvatar40x40.png" />
     <Content Include="Avatars\MGutierrezAvatar40x40.png" />
     <Content Include="Content\atlantis.css" />
@@ -544,6 +552,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202101290009467_Update-Database.resx">
+      <DependentUpon>202101290009467_Update-Database.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

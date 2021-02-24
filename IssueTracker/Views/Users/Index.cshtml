@@ -1,10 +1,16 @@
 ﻿@using IssueTracker.Models
+@using IssueTracker.ViewModels
 @using IssueTracker.Helpers
 @model IEnumerable<IssueTracker.Models.ApplicationUser>
+
+
 
 @{
     ViewBag.Title = "Index";
     var rolesHelper = new RolesHelper();
+
+
+
 }
 
 <title>All Users - TrackIT | Beth Olmo</title>
@@ -92,7 +98,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        @Html.DropDownList("RoleName", "-- NO ROLE --")
+                        @Html.DropDownList("UserRole", "-- NO ROLE --")
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -1,36 +1,123 @@
 ﻿@using IssueTracker.Models,
 @using IssueTracker.Helpers,
+
 @model ApplicationUser
 @{
     ViewBag.Title = "ManageUserRoles";
     var rolesHelper = new RolesHelper();
+    var ticketManager = new TicketManager();
 }
 
 <title>Manage User Role - TrackIT | Beth Olmo</title>
 
 <div class="container">
     <div class="page-inner">
-        <div class="col-4">
-            <div class="card text-center">
-                <div class="card-body">
-                    <h2 class="card-title">Manage User Role for:</h2>
-                    <h4 class="mt-xl-3">@Model.FullName</h4>
+        @*<div class="col-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h2 class="card-title">Manage User Role for:</h2>
+                        <h4 class="mt-xl-3">@Model.FullName</h4>
 
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
 
-                        <div class="form-group">
-                            @Html.DropDownList("RoleName", "-- NO ROLE --")
-                        </div>
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-success btnWide">Save Changes</button>
-                        </div>
-                    }
+                            <div class="form-group">
+                                @Html.DropDownList("RoleName", "-- NO ROLE --")
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-success btnWide">Save Changes</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <a class="btn btn-warning mr-1" href=@Url.Action("Index", "Home")><span class="btn-label"></span>Dashboard</a>
+            </div>*@
+
+        <div class="col-md-4">
+            <div class="card card-dark bg-success-gradient">
+                <div class="card-body pb-lg-0">
+                    <div class="h1 fw-bold float-right"></div>
+                    <h1 class="align-middle mb-5">Manage @Model.FirstName</h1>
                 </div>
             </div>
-            <a class="btn btn-warning mr-1" href=@Url.Action("Index", "Home")><span class="btn-label"></span>Dashboard</a>
         </div>
+        @*<h4 class="page-title">User Profile</h4>*@
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card card-with-nav">
+                    <div class="card-body">
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-default">
+                                    <h4>Full Name</h4>
+                                    <input type="text" class="form-control" name="name" placeholder="name" value="@Model.FullName">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-group-default">
+                                    <h4>Email</h4>
+                                    <input type="email" class="form-control" name="email" placeholder="Name" value="@Model.Email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            @*<div class="col-md-4">
+                                <div class="avatar avatar-lg">
+                                    <img src="@Model.LargeAvatarPath" class="rounded">
+                                </div>
+                            </div>*@
+                            <div class="col">
+                                <div class="form-group form-group-default">
+                                    <h3>@Model.Projects.Count Projects</h3>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group form-group-default">
+                                    <h3> 27 Tickets</h3>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group form-group-default">
+                                    <h4>Change Role</h4>
+
+                                    @using (Html.BeginForm())
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        <div class="form-group mb-4">
+                                            @Html.DropDownList("RoleName", null, "-- NO ROLE --", new { @class = "custom-select pull-right form-control" })
+                                        </div>
+                                        <div class="card-footer">
+                                            <button type="submit" class="btn btn-success btnWide">Save Changes</button>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                        @*<div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div class="form-group form-group-default">
+                                        <label>Address</label>
+                                        <input type="text" class="form-control" value="st Merdeka Putih, Jakarta Indonesia" name="address" placeholder="Address">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3 mb-1">
+                                <div class="col-md-12">
+                                    <div class="form-group form-group-default">
+                                        <label>About Me</label>
+                                        <textarea class="form-control" name="about" placeholder="About Me" rows="3">A man who hates loneliness</textarea>
+                                    </div>
+                                </div>
+                            </div>*@
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 <footer class="footer">
